@@ -1,0 +1,6 @@
+stage: scanning
+stage: parsing
+stage: AST
+stage: semantic
+stage: IRT
+stage: Code Generation
