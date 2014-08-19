@@ -2,7 +2,75 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f8dfea22-b6cf-486e-9ed7-1cfff20dcdb7" name="Default" comment="">
-      <change type="MOVED" beforePath="C:\Dev\_CC4\cc4\compiler\src\README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/antlr_4_3_complete.xml" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\Compiler.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\Compiler.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\Makefile" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\README.md" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\ast\Ast.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\ast\Ast.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\clase.txt" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\codegen\Codegen.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\codegen\Codegen.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\doc\README.md" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\irt\Irt.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\irt\Irt.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\CliManager\CommandLine.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\CliManager\CommandLine.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\CliManager\CommandLineParser.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\CliManager\CommandLineParser.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\CliManager\HelpFormatter.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\CliManager\HelpFormatter.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\CliManager\Option$1.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\CliManager\Option$Builder.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\CliManager\Option.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\CliManager\Option.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\CliManager\Options.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\CliManager\Options.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\CompilerOptions.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\CompilerOptions.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\Debug.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\Debug.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\ErrorHandler.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\ErrorHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\lib\antlr-4.3-complete.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\opt\Algebraic.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\opt\Algebraic.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\opt\ConstantFolding.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\opt\ConstantFolding.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\parser\CC4Parser.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\parser\CC4Parser.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\scanner\Decaf.g" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\scanner\Scanner.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\scanner\Scanner.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\semantic\Semantic.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\semantic\Semantic.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\test\scanner" afterPath="" />
+      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\test\semantic" afterPath="" />
+      <change type="MOVED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\test\codegen" afterPath="$PROJECT_DIR$/src/parser/DecafGrammar.g4" />
+      <change type="MOVED" beforePath="C:\Dev\_CC4\cc4\compiler\src\cc4\compiler\test\parser" afterPath="$PROJECT_DIR$/src/test/test.decaf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/opt/Algebraic.class" afterPath="$PROJECT_DIR$/src/opt/Algebraic.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/Ast.class" afterPath="$PROJECT_DIR$/src/ast/Ast.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/CC4Parser.class" afterPath="$PROJECT_DIR$/src/parser/CC4Parser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/codegen/Codegen.class" afterPath="$PROJECT_DIR$/src/codegen/Codegen.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/CliManager/CommandLine.class" afterPath="$PROJECT_DIR$/src/lib/CliManager/CommandLine.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/CliManager/CommandLineParser.class" afterPath="$PROJECT_DIR$/src/lib/CliManager/CommandLineParser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Compiler.class" afterPath="$PROJECT_DIR$/src/Compiler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/CompilerOptions.class" afterPath="$PROJECT_DIR$/src/lib/CompilerOptions.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/opt/ConstantFolding.class" afterPath="$PROJECT_DIR$/src/opt/ConstantFolding.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/Debug.class" afterPath="$PROJECT_DIR$/src/lib/Debug.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/ErrorHandler.class" afterPath="$PROJECT_DIR$/src/lib/ErrorHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/CliManager/HelpFormatter.class" afterPath="$PROJECT_DIR$/src/lib/CliManager/HelpFormatter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/Irt.class" afterPath="$PROJECT_DIR$/src/irt/Irt.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/CliManager/Option$1.class" afterPath="$PROJECT_DIR$/src/lib/CliManager/Option$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/CliManager/Option$Builder.class" afterPath="$PROJECT_DIR$/src/lib/CliManager/Option$Builder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/CliManager/Option.class" afterPath="$PROJECT_DIR$/src/lib/CliManager/Option.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/CliManager/Options.class" afterPath="$PROJECT_DIR$/src/lib/CliManager/Options.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scanner/Scanner.class" afterPath="$PROJECT_DIR$/src/scanner/Scanner.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/Semantic.class" afterPath="$PROJECT_DIR$/src/semantic/Semantic.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Compiler.iml" afterPath="$PROJECT_DIR$/Compiler.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scanner/DecafLexer.g4" afterPath="$PROJECT_DIR$/src/scanner/DecafLexer.g4" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Makefile" afterPath="$PROJECT_DIR$/src/Makefile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Compiler.iws" />
@@ -69,18 +137,34 @@
       <file leaf-file-name="DecafLexer.g4" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/scanner/DecafLexer.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45506692" vertical-offset="187" max-vertical-offset="2023">
-              <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.23376623" vertical-offset="521" max-vertical-offset="1394">
+              <caret line="37" column="14" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JSON.g4" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../tpantlr2-code/code/examples/JSON.g4">
+      <file leaf-file-name="Makefile" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Makefile">
+          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="850">
-              <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+            <state vertical-scroll-proportion="-11.36" vertical-offset="651" max-vertical-offset="1173">
+              <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.decaf" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/test.decaf">
+          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.24" vertical-offset="5" max-vertical-offset="442">
+              <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -128,13 +212,15 @@
         <option value="$PROJECT_DIR$/src/semantic/Semantic.java" />
         <option value="$PROJECT_DIR$/src/irt/Irt.java" />
         <option value="$PROJECT_DIR$/src/codegen/Codegen.java" />
-        <option value="$PROJECT_DIR$/src/Makefile" />
         <option value="$PROJECT_DIR$/src/opt/Algebraic.java" />
         <option value="$PROJECT_DIR$/src/opt/ConstantFolding.java" />
         <option value="$PROJECT_DIR$/src/lib/CompilerOptions.java" />
         <option value="$PROJECT_DIR$/src/lib/OptimizationTypes.java" />
         <option value="$PROJECT_DIR$/src/Compiler.java" />
         <option value="$PROJECT_DIR$/src/scanner/Decaf.g" />
+        <option value="$PROJECT_DIR$/src/test/test.decaf" />
+        <option value="$PROJECT_DIR$/src/parser/DecafGrammar.g4" />
+        <option value="$PROJECT_DIR$/src/Makefile" />
         <option value="$PROJECT_DIR$/src/scanner/DecafLexer.g4" />
       </list>
     </option>
@@ -142,7 +228,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1616" />
+    <option name="width" value="1612" />
     <option name="height" value="886" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -206,6 +292,74 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="compiler" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="compiler" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="compiler" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scanner" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="compiler" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parser" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -228,8 +382,8 @@
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="FullScreen" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/scanner/Decaf.g" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../antlr-4.3-complete.jar!/" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -495,50 +649,56 @@
       <workItem from="1407371480176" duration="2638000" />
       <workItem from="1407975585172" duration="2792000" />
       <workItem from="1407979061747" duration="621000" />
-      <workItem from="1407979687132" duration="316000" />
+      <workItem from="1407979687132" duration="3793000" />
+      <workItem from="1408413519379" duration="11000" />
+      <workItem from="1408418662169" duration="4796000" />
     </task>
     <task id="LOCAL-00001" summary="changed project settings">
       <created>1407979735465</created>
       <updated>1407979735465</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="changed project settings">
+      <created>1407982105242</created>
+      <updated>1407982105242</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18336000" />
+    <option name="totallyTimeSpent" value="26620000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="886" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1612" height="886" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24587911" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24587911" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3272727" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49544626" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32967034" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24587911" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24587911" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24452555" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15661104" sideWeight="0.50091076" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15637065" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15661104" sideWeight="0.49908924" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15637065" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924694" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909092" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909092" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -569,79 +729,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/scanner/Scanner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="340">
-          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="238">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parser/CC4Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="340">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ast/Ast.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="340">
-          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/semantic/Semantic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="340">
-          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/opt/Algebraic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="238">
-          <caret line="8" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/irt/Irt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="340">
-          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/codegen/Codegen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="306">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2941">
-          <caret line="146" column="0" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/CompilerOptions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1836">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/scanner/Scanner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="340">
@@ -779,13 +866,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../laboratorios/lab01/Makefile">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4005891" vertical-offset="0" max-vertical-offset="679">
           <caret line="16" column="29" selection-start-line="0" selection-start-column="0" selection-end-line="19" selection-end-column="4" />
         </state>
-      </provider>
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lib/Debug.java">
@@ -835,16 +922,6 @@
         <state vertical-scroll-proportion="0.14718615" vertical-offset="0" max-vertical-offset="731">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20930232" vertical-offset="956" max-vertical-offset="1377">
-          <caret line="59" column="40" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="40" />
-        </state>
-      </provider>
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/opt/ConstantFolding.java">
@@ -910,13 +987,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scanner/Scanner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
-          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
@@ -927,23 +997,131 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/codegen">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="702">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../tpantlr2-code/code/lexmagic/XMLParser.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53125" vertical-offset="0" max-vertical-offset="704">
+          <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../tpantlr2-code/code/lexmagic/XMLLexer.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1173">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../6-035-spring-2010/contents/projects/p1-provided-files/provided/skeleton/src/decaf/Lexer.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.024147727" vertical-offset="0" max-vertical-offset="704">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parser/DecafGrammar.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1377">
+          <caret line="0" column="29" selection-start-line="0" selection-start-column="29" selection-end-line="0" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../6035decafcompiler-read-only/Compiler/src/decaf/Parser.g">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.69174755" vertical-offset="5648" max-vertical-offset="11152">
+          <caret line="349" column="48" selection-start-line="315" selection-start-column="3" selection-end-line="315" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../6035decafcompiler-read-only/Compiler/src/decaf/Lexer.g">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.512987" vertical-offset="1" max-vertical-offset="1513">
+          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../laboratorios/lab05/src/laboratorios/lab05/lexer/JSONLexer.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1406926" vertical-offset="136" max-vertical-offset="867">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="44" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../../tpantlr2-code/code/examples/JSON.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        <state vertical-scroll-proportion="1.2619047" vertical-offset="148" max-vertical-offset="850">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scanner/DecafLexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33903134" vertical-offset="0" max-vertical-offset="5542">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scanner/Scanner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18398269" vertical-offset="0" max-vertical-offset="462">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/test.decaf">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.24" vertical-offset="5" max-vertical-offset="442">
+          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Makefile">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.36" vertical-offset="651" max-vertical-offset="1173">
+          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/scanner/DecafLexer.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45506692" vertical-offset="187" max-vertical-offset="2023">
-          <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
       <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
         <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23376623" vertical-offset="521" max-vertical-offset="1394">
+          <caret line="37" column="14" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>

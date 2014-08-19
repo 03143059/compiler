@@ -51,12 +51,13 @@ scanner\Scanner.class: scanner\Scanner.java
 scanner\DecafLexer.class: scanner\DecafLexer.java
 	javac scanner\DecafLexer.java
 	
-scanner\DecafLexer.java: scanner\Decaf.g
-	java org.antlr.v4.Tool -o scanner scanner\Decaf.g
+scanner\DecafLexer.java: scanner\DecafLexer.g4
+	java org.antlr.v4.Tool scanner\DecafLexer.g4
 
 semantic\Semantic.class: semantic\Semantic.java
 	javac semantic\Semantic.java
 
 clean:
     @del /q /s *.class  2>nul
-		@del /q /s scanner\DecafLexer.java scanner\*.tokens
+	@del /q /s scanner\DecafLexer.java scanner\*.tokens 2>nul
+
