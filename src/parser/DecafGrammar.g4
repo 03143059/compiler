@@ -1,75 +1,88 @@
-NT_program	:	RW_class ID("Program") '{' NT_field_decl* NT_method_decl* '}'
+parser grammar Lab04Parser;
 
-NT_field_decl	:	NT_type '{' NT_id | NT_id '[' NT_int_literal ']' }+, ;
+options {
+    tokenVocab = DecafLexer;
+}
 
-NT_method_decl	:	{NT_type | RW_void} NT_id ( [{NT_type NT_id+},] ) NT_block
+@parser::header{
+  package parser;
+}
 
-NT_block	:	'\{' NT_field_decl*  NT_statement* '\}'
+start : NT_PROGRAM;
 
-%NT_var_decl	:	NT_type NT_id+, ;
+NT_PROGRAM	:	RW_CLASS ID '{' NT_FIELD_DECLS* NT_METHOD_DECLS* '}' ;
 
-NT_type	:	RW_int | RW_boolean
+NT_FIELD_DECLS  : NT_FIELD_DECL (',' NT_FIELD_DECL)* ;
 
-NT_statement	:	NT_location NT_assign_op NT_expr ;
-             | NT_method_call ;
-             | RW_if ( NT_expr ) NT_block [RW_else NT_block]
-             | RW_for NT_id = NT_expr , NT_expr NT_block
-             | RW_return [NT_expr] ;
-             | RW_break ;
-             | RW_continue ;
+NT_FIELD_DECL	:	NT_TYPE '{' NT_ID | NT_ID '[' NT_INT_LITERAL ']' '}' ;
 
-NT_assign_op	:	=
-             | +=
-	     | -=
+NT_METHOD_DECL	:	'{' NT_TYPE | RW_VOID '}' NT_ID '(' '[' '{' NT_TYPE NT_ID+ '}' ',' ']' ')' NT_BLOCK ;
 
-NT_method_call	:	NT_method_name ( [NT_expr+,] )
-        |        NT_method_name ( [NT_callout_arg+,] )
+NT_BLOCK	:	'{' NT_FIELD_DECL*  NT_STATEMENT* '}' ;
 
-NT_method_name	:	NT_id
+%NT_VAR_DECL	:	NT_TYPE NT_ID+, ;
 
-NT_location	:	NT_id
-            | NT_id '\[' NT_expr '\']
+NT_TYPE	:	RW_INT | RW_BOOLEAN ;
 
-NT_expr	:	NT_location
-        | NT_method_call
-        | NT_literal
-        | NT_expr NT_bin_op NT_expr
-        | - NT_expr
-        | | NT_expr
-        | ( NT_expr )
+NT_STATEMENT	:	NT_LOCATION NT_ASSIGN_OP NT_EXPR
+             | NT_METHOD_CALL
+             | RW_IF ( NT_EXPR ) NT_BLOCK [RW_ELSE NT_BLOCK]
+             | RW_FOR NT_ID = NT_EXPR , NT_EXPR NT_BLOCK
+             | RW_RETURN [NT_EXPR]
+             | RW_BREAK
+             | RW_CONTINUE ;
 
-NT_callout_arg	:	NT_expr | NT_string_literal
+NT_ASSIGN_OP	:	'=' | '+=' | '-=' ;
 
-NT_bin_op	:	NT_arith_op | NT_rel_op | NT_eq_op | NT_cond_op
+NT_METHOD_CALL	:	NT_METHOD_NAME ( [NT_EXPR+,] )
+        |        NT_METHOD_NAME ( [NT_CALLOUT_ARG+,] ) ;
 
-NT_arith_op	:	+ | - | * | / | \% % | << | >>
+NT_METHOD_NAME	:	NT_ID ;
 
-NT_rel_op	:	< | > | <= | >=
+NT_LOCATION	:	NT_ID
+            | NT_ID '[' NT_EXPR ']' ;
 
-NT_eq_op  	:	== | !=
+NT_EXPR	:	NT_LOCATION
+        | NT_METHOD_CALL
+        | NT_LITERAL
+        | NT_EXPR NT_BIN_OP NT_EXPR
+        | '-' NT_EXPR
+        | '|' NT_EXPR
+        | '(' NT_EXPR ')' ;
 
-NT_cond_op	:	\&\& | ||
+NT_CALLOUT_ARG	:	NT_EXPR | NT_STRING_LITERAL ;
 
-NT_literal	:	NT_int_literal | NT_char_literal | NT_bool_literal
+NT_BIN_OP	:	NT_ARITH_OP | NT_REL_OP | NT_EQ_OP | NT_COND_OP ;
 
-NT_id	:	NT_alpha NT_alpha_num*
+NT_ARITH_OP	:	'+' | '-' | '*' | '/' | '%' | '<<' | '>>' ;
 
-NT_alpha_num	:	NT_alpha | NT_digit
+NT_REL_OP	:	'<' | '>' | '<=' | '>=' ;
 
-NT_alpha	:	a | b | \ldots{} | z | A | B | \ldots{} | Z | \_
+NT_EQ_OP  	:	'==' | '!=' ;
 
-NT_digit	:	0 | 1 | 2 | \ldots | 9
+NT_COND_OP	:	'&&' | '||' ;
 
-NT_hex_digit	:	NT_digit | a | b | c | d | e | f | A | B | C | D | E | F
+NT_LITERAL	:	NT_INT_LITERAL | NT_CHAR_LITERAL | NT_BOOL_LITERAL ;
 
-NT_int_literal	:	NT_decimal_literal | NT_hex_literal
+NT_ID	:	NT_ALPHA NT_ALPHA_NUM* ;
 
-NT_decimal_literal	:	NT_digit NT_digit*
+NT_ALPHA_NUM	:	NT_ALPHA | NT_DIGIT  ;
 
-NT_hex_literal	:	0x NT_hex_digit NT_hex_digit*
+NT_ALPHA	:	[A-Za-z_] ;
 
-NT_bool_literal	:	RW_true | RW_false
+NT_DIGIT	:	[0-9] ;
 
-NT_char_literal	:	' NT_char '
+NT_HEX_DIGIT	:	NT_DIGIT | [A-F] ;
 
-NT_string_literal	:	" NT_char* "
+NT_INT_LITERAL	:	NT_DECIMAL_LITERAL | NT_HEX_LITERAL ;
+
+NT_DECIMAL_LITERAL	:	NT_DIGIT NT_DIGIT* ;
+
+NT_HEX_LITERAL	:	'0' [xX] NT_HEX_DIGIT NT_HEX_DIGIT* ;
+
+NT_BOOL_LITERAL	:	RW_TRUE | RW_FALSE ;
+
+NT_CHAR_LITERAL	:	NT_CHAR ;
+
+NT_STRING_LITERAL	:	NT_CHAR* ;
+

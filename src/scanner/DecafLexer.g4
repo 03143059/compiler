@@ -1,6 +1,6 @@
 lexer grammar DecafLexer;
 
-@header {
+@lexer::header {
     package scanner;
 }
 
