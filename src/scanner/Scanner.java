@@ -3,6 +3,7 @@ package scanner;
 import lib.CompilerOptions;
 import org.antlr.v4.runtime.*;
 import parser.CC4Parser;
+import parser.DescriptiveErrorListener;
 
 import java.io.*;
 
@@ -22,8 +23,12 @@ public class Scanner {
             if (compilerOptions.isDebbuggingActiveFor(this)) {
                 System.out.println();
                 lexer.LexerDebug = true;
+                lexer.removeErrorListeners();
+                lexer.addErrorListener(DescriptiveErrorListener.INSTANCE);
                 // now, print all tokens
-                while (lexer.nextToken().getType() != Token.EOF);
+                while (lexer.nextToken().getType() != Token.EOF) {
+                    if (!DescriptiveErrorListener.INSTANCE.result) System.exit(1);
+                }
             }
         } catch (IOException e) {
             System.err.println("El archivo " + compilerOptions.getFilename() + " no existe!");

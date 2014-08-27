@@ -82,7 +82,8 @@ DECIMAL_LITERAL : ( DIGIT )+ { print("DECIMAL "); } ;
 HEX_LITERAL     : '0x' ( HEX_DIGIT )+ { print("HEX "); } ;
 BOOL_LITERAL	: ( TRUE | FALSE ) { print("BOOLEAN "); } ;
 CHAR_LITERAL    : '\'' -> more, pushMode(CARACTER);
-STRING_LITERAL  : '"'  -> more, pushMode(CADENA);
+//STRING_LITERAL  : '"'  -> more, pushMode(CADENA);
+STRING_LITERAL  : '"' ( CHAR )*? '"' { print("CADENA "); } ;
 
 // Protected tokens
 ALPHA_NUM   : ( ALPHA | DIGIT ) ;
@@ -100,6 +101,7 @@ NL          : [\r]? [\n]
             } -> skip ;
 
 mode CARACTER;
+ENDCHAR     : '\'' { print("CHAR "); } -> mode(DEFAULT_MODE) ;
 CHAR        : ( ESC | VALIDCHAR ) ;
 ESC         :  '\\' [ntr"'\\] ;
 VALIDCHAR   : ( '\u0020'..'\u0021'
@@ -107,8 +109,7 @@ VALIDCHAR   : ( '\u0020'..'\u0021'
             | '\u0028'..'\u005B'
             | '\u005d'..'\u007e' )
             ;
-ENDCHAR     : '\'' { print("CHAR "); } -> mode(DEFAULT_MODE) ;
 
-mode CADENA;
-ENDSTRING   : '"' { print("CADENA "); } -> mode(DEFAULT_MODE) ;
-TEXT        : . -> more ; // collect more text for string
+//mode CADENA;
+//ENDSTRING   : '"' { print("CADENA "); } -> mode(DEFAULT_MODE) ;
+//TEXT        : . -> more ;

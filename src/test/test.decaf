@@ -11,7 +11,7 @@ class GreatestCommonDivisor {
         z = gcd(x, y);
 
         // print_int is part of the standard input-output library
-        callout(print_int,z);
+        callout("print_int",z);
     }
 
     // function that computes the greatest common divisor

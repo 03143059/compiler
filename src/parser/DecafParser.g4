@@ -53,7 +53,11 @@ assign_op	    : ASSIGNEQ
                 ;
 
 method_call	    : method_name LPAREN ( exprs )? RPAREN
-                | CALLOUT LPAREN STRING_LITERAL ( callout_args )? RPAREN
+                | CALLOUT LPAREN STRING_LITERAL ( COMMA callout_arg )*? RPAREN
+                ;
+
+callout_arg	    : expr
+                | STRING_LITERAL
                 ;
 
 method_name	    : ID
@@ -73,13 +77,6 @@ expr	        : location
                 | MINUS expr
                 | NOT expr
                 | LPAREN expr RPAREN
-                ;
-
-callout_args    : callout_arg ( COMMA callout_arg )*?
-                ;
-
-callout_arg	    : expr
-                | STRING_LITERAL
                 ;
 
 bin_op	        : arith_op
