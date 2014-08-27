@@ -9,6 +9,7 @@ RESERVED    :
                 (CLASS | IF | ELSE | FOR | RETURN | BREAK | CONTINUE | CALLOUT | TRUE | FALSE | INT | BOOLEAN | VOID ) {
                     System.out.println("reserved word " + getText().toUpperCase());
                  };
+
 CLASS       :   'class';
 IF	        :	'if';
 ELSE	    :	'else';
@@ -32,15 +33,14 @@ RSQUARE : ']' { System.out.println("]"); };
 
 SL_COMMENT : '//' (~'\n')* '\n' { System.out.println("comment"); } -> skip;
 
-STRING : '"' (ESC | VALIDCHARS)* '"' { System.out.println("string literal"); };
-CHAR : '\'' (ESC | VALIDCHARS) '\'' { System.out.println("char literal"); };
 COMMA : ','  { System.out.println("comma"); };
 SEMI : ';'  { System.out.println("semicolon"); };
 
 // Arithmetic operators
 PLUS : '+'  { System.out.println("plus sign"); };
 MINUS : '-' { System.out.println("minus sign"); };
-MULDIV : '*' | '/'  { System.out.println("mul or div operation"); };
+MUL : '*' { System.out.println("mul operation"); };
+DIV : '/'  { System.out.println("div operation"); };
 MOD : '%'  { System.out.println("modulus operation"); };
 
 // Assignment operators
@@ -60,17 +60,21 @@ OR : '||' { System.out.println("||"); };
 NOT : '!' { System.out.println("!"); };
 
 // Identifiers and Literals
-ID : (ALPHA)(ALPHA_NUM)*  { System.out.println("identifier"); };
-INTLIT : DECIMAL | HEX  { System.out.println("integer literal"); };
+ID : ALPHA ( ALPHA_NUM )*  { System.out.println("identifier"); };
+ALPHA_NUM : ALPHA | DIGIT ;
+ALPHA : [A-Za-z_] ;
+DIGIT : [0-9] ;
+HEX_DIGIT : DIGIT | [a-fA-F] ;
+INT_LITERAL : DECIMAL_LITERAL | HEX_LITERAL  { System.out.println("integer literal"); };
+DECIMAL_LITERAL : ( DIGIT )+ ;
+HEX_LITERAL : '0x' ( HEX_DIGIT )+ ;
+BOOL_LITERAL	: TRUE | FALSE ;
+CHAR_LITERAL : '\'' CHAR '\'' { System.out.println("char literal"); };
+STRING_LITERAL : '"' ( CHAR )* '"' { System.out.println("string literal"); };
+CHAR: ESC | VALIDCHAR ;
 
 // Protected tokens
 ESC :  '\\' ('n'|'"'|'t'|'r'|'\''|'\\') ;
-VALIDCHARS : ('\u0020'..'\u0021' | '\u0023'..'\u0026' | '\u0028'..'\u005B' | '\u005d'..'\u007e') ;
-ALPHA : 'a'..'z' | 'A'..'Z' | '_' ;
-DIGIT : '0'..'9' ;
-HEX_DIGIT : DIGIT | 'a'..'f' | 'A'..'F' ;
-ALPHA_NUM : ALPHA | DIGIT ;
-DECIMAL : (DIGIT)+ ;
-HEX : '0x' (HEX_DIGIT)+ ;
+VALIDCHAR : ('\u0020'..'\u0021' | '\u0023'..'\u0026' | '\u0028'..'\u005B' | '\u005d'..'\u007e') ;
 
 WS  :   [ \t\n\r]+ -> skip ;
