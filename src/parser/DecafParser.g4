@@ -9,10 +9,6 @@ options {
   import scanner.*;
 }
 
-
-start           : program
-                ;
-
 program	        : CLASS ID LCURLY ( field_decls )* ( method_decls )? RCURLY
                 ;
 
