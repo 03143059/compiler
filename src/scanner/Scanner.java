@@ -21,8 +21,10 @@ public class Scanner {
             lexer = new DecafLexer(new ANTLRFileStream(compilerOptions.getFilename()));
             if (compilerOptions.isDebbuggingActiveFor(this)) {
                 System.out.println();
+                lexer.LexerDebug = true;
                 // now, print all tokens
-                while (lexer.nextToken().getType() != Token.EOF);        }
+                while (lexer.nextToken().getType() != Token.EOF);
+            }
         } catch (IOException e) {
             System.err.println("El archivo " + compilerOptions.getFilename() + " no existe!");
             System.err.println(e.getMessage());

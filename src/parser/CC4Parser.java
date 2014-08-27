@@ -20,6 +20,7 @@ public class CC4Parser {
             compilerOptions.out.println("Debbugging parsing");
 
         DecafParser parser = new DecafParser(new CommonTokenStream(scanner.getLexer()));
+
         if (compilerOptions.isDebbuggingActiveFor(this)) {
             System.out.println();
             // print parse tree

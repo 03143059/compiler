@@ -6,103 +6,109 @@ lexer grammar DecafLexer;
 
 @members {
     private int count = 0;
+    public static boolean LexerDebug = false;
     private static final String TAB = "  ";
+    private static void print(String p) { if (LexerDebug) System.out.print(p); }
+    private static void println(String p) { if (LexerDebug) System.out.println(p); }
+    private static void println() { if (LexerDebug) System.out.println(); }
 }
 
 // reserved words
-RESERVED    :
-                (CLASS | IF | ELSE | FOR | RETURN | BREAK | CONTINUE | CALLOUT | TRUE | FALSE | INT | BOOLEAN | VOID ) {
-                    System.out.print(getText().toUpperCase() + " ");
-                 };
-
-CLASS       :   'class';
-IF	        :	'if';
-ELSE	    :	'else';
-FOR	        :	'for';
-RETURN	    :	'return';
-BREAK	    :	'break';
-CONTINUE	:	'continue';
-CALLOUT	    :	'callout';
-TRUE	    :	'true';
-FALSE	    :	'false';
-INT	        :	'int';
-BOOLEAN	    :	'boolean';
-VOID	    :	'void';
+CLASS	    :	'class' { print(getText().toUpperCase() + " "); } ;
+IF	        :	'if' { print(getText().toUpperCase() + " "); } ;
+ELSE	    :	'else' { print(getText().toUpperCase() + " "); } ;
+FOR	        :	'for' { print(getText().toUpperCase() + " "); } ;
+RETURN	    :	'return' { print(getText().toUpperCase() + " "); } ;
+BREAK	    :	'break' { print(getText().toUpperCase() + " "); } ;
+CONTINUE	:	'continue' { print(getText().toUpperCase() + " "); } ;
+CALLOUT	    :	'callout' { print(getText().toUpperCase() + " "); } ;
+TRUE	    :	'true' { print(getText().toUpperCase() + " "); } ;
+FALSE	    :	'false' { print(getText().toUpperCase() + " "); } ;
+INT	        :	'int' { print(getText().toUpperCase() + " "); } ;
+BOOLEAN	    :	'boolean' { print(getText().toUpperCase() + " "); } ;
+VOID	    :	'void' { print(getText().toUpperCase() + " "); } ;
 
 LCURLY      : '{'
             {
-                System.out.print(getText() + " ");
+                print(getText() + " ");
                 count++;
             };
 
 RCURLY      : '}'
             {
-                System.out.print("\b\b");
-                System.out.print(getText() + " ");
+                print("\b\b");
+                print(getText() + " ");
                 count--;
             };
 
-LPAREN      : '(' { System.out.print(getText() + " "); };
-RPAREN      : ')' { System.out.print(getText() + " "); };
-LSQUARE     : '[' { System.out.print(getText() + " "); };
-RSQUARE     : ']' { System.out.print(getText() + " "); };
+LPAREN      : '(' { print(getText() + " "); };
+RPAREN      : ')' { print(getText() + " "); };
+LSQUARE     : '[' { print(getText() + " "); };
+RSQUARE     : ']' { print(getText() + " "); };
 
-SL_COMMENT  : '//' (~'\n')*? NL -> skip;
+SL_COMMENT  : '//' ~[\r\n]* -> skip;
 
-COMMA       : ',' { System.out.print(getText() + " "); };
-SEMI        : ';' { System.out.print(getText() + TAB + " "); };
+COMMA       : ',' { print(getText() + " "); };
+SEMI        : ';' { print(getText() + TAB + " "); };
 
 // Arithmetic operators
-PLUS        : '+' { System.out.print(getText() + " "); };
-MINUS       : '-' { System.out.print(getText() + " "); };
-MUL         : '*' { System.out.print(getText() + " "); };
-DIV         : '/' { System.out.print(getText() + " "); };
-MOD         : '%' { System.out.print(getText() + " "); };
+PLUS        : '+' { print(getText() + " "); };
+MINUS       : '-' { print(getText() + " "); };
+MUL         : '*' { print(getText() + " "); };
+DIV         : '/' { print(getText() + " "); };
+MOD         : '%' { print(getText() + " "); };
 
 // Assignment operators
-ASSIGNPLUSEQ    : '+=' { System.out.print(getText() + " "); };
-ASSIGNMINUSEQ   : '-=' { System.out.print(getText() + " "); };
-ASSIGNEQ        : '=' { System.out.print(getText() + " "); };
+ASSIGNPLUSEQ    : '+=' { print(getText() + " "); };
+ASSIGNMINUSEQ   : '-=' { print(getText() + " "); };
+ASSIGNEQ        : '=' { print(getText() + " "); };
 
 // Relation operators
-LESS        : '<'  { System.out.print(getText() + " "); };
-MORE        : '>'  { System.out.print(getText() + " "); };
-LEQ         : '<=' { System.out.print(getText() + " "); };
-GEQ         : '>=' { System.out.print(getText() + " "); };
-CEQ         : '==' { System.out.print(getText() + " "); };
-NEQ         : '!=' { System.out.print(getText() + " "); };
-AND         : '&&' { System.out.print(getText() + " "); };
-OR          : '||' { System.out.print(getText() + " "); };
-NOT         : '!'  { System.out.print(getText() + " "); };
+LESS        : '<'  { print(getText() + " "); };
+MORE        : '>'  { print(getText() + " "); };
+LEQ         : '<=' { print(getText() + " "); };
+GEQ         : '>=' { print(getText() + " "); };
+CEQ         : '==' { print(getText() + " "); };
+NEQ         : '!=' { print(getText() + " "); };
+AND         : '&&' { print(getText() + " "); };
+OR          : '||' { print(getText() + " "); };
+NOT         : '!'  { print(getText() + " "); };
 
 // Identifiers and Literals
-ID              : ALPHA ( ALPHA_NUM )* { System.out.print("ID "); } ;
-INT_LITERAL     : ( DECIMAL_LITERAL | HEX_LITERAL ) { System.out.print("ENTERO "); } ;
-DECIMAL_LITERAL : ( DIGIT )+ { System.out.print("DECIMAL "); } ;
-HEX_LITERAL     : '0x' ( HEX_DIGIT )+ { System.out.print("HEX "); } ;
-BOOL_LITERAL	: ( TRUE | FALSE ) { System.out.print("BOOLEAN "); } ;
-CHAR_LITERAL    : '\'' CHAR '\'' { System.out.print("CHAR "); } ;
-STRING_LITERAL  : '"' ( CHAR )*? '"' { System.out.print("CADENA "); } ;
-CHAR            : ESC | VALIDCHAR ;
+ID              : ALPHA ( ALPHA_NUM )* { print("ID "); } ;
+
+INT_LITERAL     : ( DECIMAL_LITERAL | HEX_LITERAL ) { print("ENTERO "); } ;
+DECIMAL_LITERAL : ( DIGIT )+ { print("DECIMAL "); } ;
+HEX_LITERAL     : '0x' ( HEX_DIGIT )+ { print("HEX "); } ;
+BOOL_LITERAL	: ( TRUE | FALSE ) { print("BOOLEAN "); } ;
+CHAR_LITERAL    : '\'' -> more, pushMode(CARACTER);
+STRING_LITERAL  : '"'  -> more, pushMode(CADENA);
 
 // Protected tokens
-ALPHA_NUM   : ALPHA | DIGIT ;
+ALPHA_NUM   : ( ALPHA | DIGIT ) ;
 ALPHA       : [A-Za-z_] ;
 DIGIT       : [0-9] ;
-HEX_DIGIT   : DIGIT | [a-fA-F] ;
+HEX_DIGIT   : [0-9a-fA-F] ;
+
+WS          : [\t ]+ -> skip ;
+
+NL          : [\r]? [\n]
+            {
+                println();
+                for(int i = 0; i<count; i++)
+                    print(TAB);
+            } -> skip ;
+
+mode CARACTER;
+CHAR        : ( ESC | VALIDCHAR ) ;
 ESC         :  '\\' [ntr"'\\] ;
 VALIDCHAR   : ( '\u0020'..'\u0021'
             | '\u0023'..'\u0026'
             | '\u0028'..'\u005B'
             | '\u005d'..'\u007e' )
             ;
+ENDCHAR     : '\'' { print("CHAR "); } -> mode(DEFAULT_MODE) ;
 
-//WS          :   [ \t\n\r]+ -> skip ;
-NL          : [\r]? [\n]
-            {
-                System.out.println();
-                for(int i = 0; i<count; i++)
-                    System.out.print(TAB);
-            } -> skip ;
-
-WS          : [\t ]+ -> skip ;
+mode CADENA;
+ENDSTRING   : '"' { print("CADENA "); } -> mode(DEFAULT_MODE) ;
+TEXT        : . -> more ; // collect more text for string

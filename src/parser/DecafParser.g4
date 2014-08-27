@@ -9,31 +9,28 @@ options {
   import scanner.*;
 }
 
-program	        : CLASS ID LCURLY ( field_decls )* ( method_decls )? RCURLY
+program	        : CLASS ID LCURLY ( field_decls )*? ( method_decl )*? RCURLY
                 ;
 
-field_decls     : type field_decl ( COMMA field_decl )* SEMI
+field_decls     : type field_decl ( COMMA field_decl )*? SEMI
                 ;
 
 field_decl	    : ( ID | ID LSQUARE INT_LITERAL RSQUARE )
                 ;
 
-method_decls    : method_decl ( COMMA method_decl )*
-                ;
-
 method_decl	    : ( type | VOID ) ID LPAREN ( method_params )? RPAREN block
                 ;
 
-method_params   : method_param ( COMMA method_param )*
+method_params   : method_param ( COMMA method_param )*?
                 ;
 
 method_param    : type ID
                 ;
 
-block	        : LCURLY ( var_decl )* ( statement )* RCURLY
+block	        : LCURLY ( var_decl )*? ( statement )* RCURLY
                 ;
 
-var_decl	    : type ID (COMMA ID)* SEMI
+var_decl	    : type ID (COMMA ID)*? SEMI
                 ;
 
 type            : INT
@@ -66,7 +63,7 @@ location	    : ID
                 | ID LSQUARE expr RSQUARE
                 ;
 
-exprs           : expr ( COMMA expr )*
+exprs           : expr ( COMMA expr )*?
                 ;
 
 expr	        : location
@@ -78,7 +75,7 @@ expr	        : location
                 | LPAREN expr RPAREN
                 ;
 
-callout_args    : callout_arg ( COMMA callout_arg )*
+callout_args    : callout_arg ( COMMA callout_arg )*?
                 ;
 
 callout_arg	    : expr
