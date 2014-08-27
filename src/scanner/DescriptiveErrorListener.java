@@ -1,4 +1,4 @@
-package parser;
+package scanner;
 
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.RecognitionException;
@@ -15,16 +15,16 @@ public class DescriptiveErrorListener extends BaseErrorListener {
                             int line, int charPositionInLine,
                             String msg, RecognitionException e)
     {
-            if (!REPORT_SYNTAX_ERRORS) {
-                return;
-            }
+        if (!REPORT_SYNTAX_ERRORS) {
+            return;
+        }
 
         String sourceName = recognizer.getInputStream().getSourceName();
         if (!sourceName.isEmpty()) {
-            sourceName = String.format("%s:%d:%d: ", sourceName, line, charPositionInLine);
+            sourceName = String.format("%s: warning at line %d, pos %d: ", sourceName, line, charPositionInLine);
         }
 
-        System.err.println(sourceName+"line "+line+":"+charPositionInLine+" "+msg);
+        System.err.println(sourceName+msg);
         result = false;
     }
 }

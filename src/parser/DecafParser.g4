@@ -15,8 +15,10 @@ program	        : CLASS ID LCURLY ( field_decls )*? ( method_decl )*? RCURLY
 field_decls     : type field_decl ( COMMA field_decl )*? SEMI
                 ;
 
-field_decl	    : ( ID | ID LSQUARE INT_LITERAL RSQUARE )
+field_decl	    : ( ID | ID LSQUARE INT_LITERAL RSQUARE | bad_field_decl)
                 ;
+
+bad_field_decl  : location assign_op expr { notifyErrorListeners("invalid assignment '='"); };
 
 method_decl	    : ( type | VOID ) ID LPAREN ( method_params )? RPAREN block
                 ;

@@ -42,11 +42,11 @@ opt\Algebraic.class: opt\Algebraic.java
 opt\ConstantFolding.class: opt\ConstantFolding.java
 	javac opt\ConstantFolding.java
 
-parser\CC4Parser.class: parser\CC4Parser.java
-	javac parser\CC4Parser.java
+parser\CC4Parser.class: parser\CC4Parser.java parser\MyErrorStrategy.java
+	javac parser\CC4Parser.java parser\MyErrorStrategy.java
 
-scanner\Scanner.class: scanner\Scanner.java
-	javac scanner\Scanner.java
+scanner\Scanner.class: scanner\Scanner.java scanner\DescriptiveErrorListener.java
+	javac scanner\Scanner.java scanner\DescriptiveErrorListener.java
 	
 semantic\Semantic.class: semantic\Semantic.java
 	javac semantic\Semantic.java
