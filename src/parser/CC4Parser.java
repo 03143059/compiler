@@ -9,7 +9,7 @@ import scanner.Scanner;
 public class CC4Parser {
 
     private final Scanner scanner;
-    private static final boolean USE_GUI = true;
+    private static final boolean USE_GUI = false;
 
     public CC4Parser(Scanner scanner) {
         this.scanner = scanner;
@@ -23,7 +23,7 @@ public class CC4Parser {
         DecafParser parser = new DecafParser(new CommonTokenStream(scanner.getLexer()));
 
         if (compilerOptions.isDebbuggingActiveFor(this)) {
-            System.out.println();
+            compilerOptions.out.println();
 
             //disable lexer debug
             scanner.getLexer().LexerDebug = false;
@@ -40,13 +40,17 @@ public class CC4Parser {
                 // print parse tree
                 tree = parser.program(); // ParseTree
                 if (parser.getNumberOfSyntaxErrors() == 0)
-                    System.out.println(tree.toStringTree(parser));
+                    compilerOptions.out.println(tree.toStringTree(parser));
             }
 
         }
 
-        if (!compilerOptions.stopAt(this))
-            new Ast(this);
+        if (!compilerOptions.stopAt(this)) {
+            if (parser.getNumberOfSyntaxErrors() == 0)
+                new Ast(this);
+            else
+                System.err.println("There were syntax errors. Aborting.");
+        }
     }
 
     public Scanner getScanner() {

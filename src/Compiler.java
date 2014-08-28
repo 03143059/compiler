@@ -101,6 +101,8 @@ public class Compiler {
                 }
                 compilerOptions.setTarget(target);
                 argCount -= 2;
+            } else {
+                compilerOptions.setTarget("parse"); // default parser
             }
 
             if (cmdLine.hasOption("opt")) {

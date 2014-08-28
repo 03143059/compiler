@@ -19,30 +19,43 @@ public class Scanner {
 
         try {
             lexer = new DecafLexer(new ANTLRFileStream(compilerOptions.getFilename()));
+            lexer.removeErrorListeners();
+            lexer.addErrorListener(DescriptiveErrorListener.INSTANCE);
             if (compilerOptions.isDebbuggingActiveFor(this)) {
-                System.out.println();
-                lexer.LexerDebug = true;
-                lexer.removeErrorListeners();
-                lexer.addErrorListener(DescriptiveErrorListener.INSTANCE);
+                compilerOptions.out.println();
+                //lexer.LexerDebug = true;
 
                 // now, print all tokens
-                while (lexer.nextToken().getType() != Token.EOF) {
-                  //  if (!DescriptiveErrorListener.INSTANCE.result) System.exit(1);
+                compilerOptions.out.println("LINE  \tTYPE              \tATTRIBUTES");
+                compilerOptions.out.println("------\t------------------\t----------------------------------------");
+                Token token = lexer.nextToken();
+                while (token.getType() != Token.EOF) {
+                    if (DescriptiveErrorListener.INSTANCE.result) {
+                        int l = token.getLine();
+                        String t = lexer.getRuleNames()[token.getType()-1];
+                        compilerOptions.out.println(String.format("%6d\t(%3d) %-14s\t@%-3d: %s",
+                                l, token.getType(), t, token.getCharPositionInLine(), token.getText()));
+                    }
+                    token = lexer.nextToken();
                 }
+                compilerOptions.out.println();
 
-                lexer.reset(); // if not, the parser throws an error
-
-                System.out.println();
-
+            } else {
+                while (lexer.nextToken().getType() != Token.EOF); // traverse and don't print
             }
+            lexer.reset(); // if not, the parser throws an error
         } catch (IOException e) {
-            System.err.println("El archivo " + compilerOptions.getFilename() + " no existe!");
+            System.err.println("File not found: " + compilerOptions.getFilename());
             System.err.println(e.getMessage());
             System.exit(1);
         }
 
-        if (!compilerOptions.stopAt(this))
-            new CC4Parser(this);
+        if (!compilerOptions.stopAt(this)) {
+            if (DescriptiveErrorListener.INSTANCE.result)
+                new CC4Parser(this);
+            else
+                System.err.println("There were lexical errors. Aborting.");
+        }
     }
 
     public CompilerOptions getCompilerOptions() {
