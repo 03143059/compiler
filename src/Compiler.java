@@ -30,6 +30,11 @@ public class Compiler {
         Options options = new Options();
         options.addOption(Option
                 .builder()
+                .longOpt("gui")
+                .desc("Muestra el resultado de debug del parser en forma grafica.")
+                .build());
+        options.addOption(Option
+                .builder()
                 .longOpt("o")
                 .desc("Escribir el output a un archivo de texto llamado <outname>.")
                 .hasArg()
@@ -69,6 +74,10 @@ public class Compiler {
             CommandLine cmdLine = parser.parse(options, args);
 
             CompilerOptions compilerOptions = new CompilerOptions();
+            if (cmdLine.hasOption("gui")) {
+                compilerOptions.setGui(true);
+                argCount--;
+            }
 
             // validar cada opcion
             if (cmdLine.hasOption("help") || cmdLine.hasOption("h")) {
@@ -138,7 +147,15 @@ public class Compiler {
 
             compilerOptions.setFilename(args[args.length - 1]);
             // hasta aca para no generar el archivo antes de tiempo
-            compilerOptions.setOutputFile(cmdLine.getOptionValue("o"));
+            if (cmdLine.hasOption("o"))
+                compilerOptions.setOutputFile(cmdLine.getOptionValue("o"));
+            else {
+                String f = args[args.length - 1];
+                if (f.lastIndexOf('.') > 0)
+                    f = f.substring(0, f.lastIndexOf('.'));
+                f += ".s";
+                compilerOptions.setOutputFile(f);
+            }
 
             if (compilerOptions.getOpt().equals("algebraic"))
                 new Algebraic(compilerOptions);

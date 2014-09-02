@@ -11,9 +11,9 @@ public class Irt {
     public Irt(Semantic semantic) {
         this.semantic = semantic;
         CompilerOptions compilerOptions = semantic.getAst().getCc4Parser().getScanner().getCompilerOptions();
-        compilerOptions.out.println("stage: IRT");
+        System.out.println("stage: IRT");
         if (compilerOptions.isDebbuggingActiveFor(this))
-            compilerOptions.out.println("Debbugging IRT");
+            System.out.println("Debbugging IRT");
         if (!compilerOptions.stopAt(this))
             new Codegen(this);
     }

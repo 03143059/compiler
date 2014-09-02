@@ -14,19 +14,19 @@ lexer grammar DecafLexer;
 }
 
 // reserved words
-CLASS	    :	'class' { print(getText().toUpperCase() + " "); } ;
-IF	        :	'if' { print(getText().toUpperCase() + " "); } ;
-ELSE	    :	'else' { print(getText().toUpperCase() + " "); } ;
-FOR	        :	'for' { print(getText().toUpperCase() + " "); } ;
-RETURN	    :	'return' { print(getText().toUpperCase() + " "); } ;
-BREAK	    :	'break' { print(getText().toUpperCase() + " "); } ;
-CONTINUE	:	'continue' { print(getText().toUpperCase() + " "); } ;
-CALLOUT	    :	'callout' { print(getText().toUpperCase() + " "); } ;
-TRUE	    :	'true' { print(getText().toUpperCase() + " "); } ;
-FALSE	    :	'false' { print(getText().toUpperCase() + " "); } ;
-INT	        :	'int' { print(getText().toUpperCase() + " "); } ;
-BOOLEAN	    :	'boolean' { print(getText().toUpperCase() + " "); } ;
-VOID	    :	'void' { print(getText().toUpperCase() + " "); } ;
+CLASS	    : 'class' { print(getText().toUpperCase() + " "); } ;
+IF	        : 'if' { print(getText().toUpperCase() + " "); } ;
+ELSE	    : 'else' { print(getText().toUpperCase() + " "); } ;
+FOR	        : 'for' { print(getText().toUpperCase() + " "); } ;
+RETURN	    : 'return' { print(getText().toUpperCase() + " "); } ;
+BREAK	    : 'break' { print(getText().toUpperCase() + " "); } ;
+CONTINUE	: 'continue' { print(getText().toUpperCase() + " "); } ;
+CALLOUT	    : 'callout' { print(getText().toUpperCase() + " "); } ;
+INT	        : 'int' { print(getText().toUpperCase() + " "); } ;
+BOOLEAN	    : 'boolean' { print(getText().toUpperCase() + " "); } ;
+VOID	    : 'void' { print(getText().toUpperCase() + " "); } ;
+
+PROGRAM     : 'Program' { print(getText() + " "); } ;
 
 LCURLY      : '{'
             {
@@ -74,16 +74,21 @@ AND         : '&&' { print(getText() + " "); };
 OR          : '||' { print(getText() + " "); };
 NOT         : '!'  { print(getText() + " "); };
 
+BOOL_LITERAL	: ( TRUE | FALSE ) { print("BOOLEAN "); } ;
+
+TRUE	    : 'true' { print(getText().toUpperCase() + " "); } ;
+FALSE	    : 'false' { print(getText().toUpperCase() + " "); } ;
+
 // Identifiers and Literals
 ID              : ALPHA ( ALPHA_NUM )* { print("ID "); } ;
 
 INT_LITERAL     : ( DECIMAL_LITERAL | HEX_LITERAL ) { print("ENTERO "); } ;
 DECIMAL_LITERAL : ( DIGIT )+ { print("DECIMAL "); } ;
 HEX_LITERAL     : '0x' ( HEX_DIGIT )+ { print("HEX "); } ;
-BOOL_LITERAL	: ( TRUE | FALSE ) { print("BOOLEAN "); } ;
-CHAR_LITERAL    : '\'' -> more, pushMode(CARACTER);
-//STRING_LITERAL  : '"'  -> more, pushMode(CADENA);
+
 STRING_LITERAL  : '"' ( CHAR )*? '"' { print("CADENA "); } ;
+CHAR_LITERAL    : STARTCHAR CHAR ENDCHAR ;
+STARTCHAR       : '\'' -> more, pushMode(CARACTER);
 
 // Protected tokens
 ALPHA_NUM   : ( ALPHA | DIGIT ) ;
@@ -109,7 +114,3 @@ VALIDCHAR   : ( '\u0020'..'\u0021'
             | '\u0028'..'\u005B'
             | '\u005d'..'\u007e' )
             ;
-
-//mode CADENA;
-//ENDSTRING   : '"' { print("CADENA "); } -> mode(DEFAULT_MODE) ;
-//TEXT        : . -> more ;

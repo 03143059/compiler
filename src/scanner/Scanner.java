@@ -13,32 +13,32 @@ public class Scanner {
 
     public Scanner(CompilerOptions compilerOptions) {
         this.compilerOptions = compilerOptions;
-        compilerOptions.out.println("stage: scanning");
+        System.out.println("stage: scanning");
         if (compilerOptions.isDebbuggingActiveFor(this))
-            compilerOptions.out.println("Debbugging scanning");
+            System.out.println("Debbugging scanning");
 
         try {
             lexer = new DecafLexer(new ANTLRFileStream(compilerOptions.getFilename()));
             lexer.removeErrorListeners();
             lexer.addErrorListener(DescriptiveErrorListener.INSTANCE);
             if (compilerOptions.isDebbuggingActiveFor(this)) {
-                compilerOptions.out.println();
+                System.out.println();
                 //lexer.LexerDebug = true;
 
                 // now, print all tokens
-                compilerOptions.out.println("LINE  \tTYPE              \tATTRIBUTES");
-                compilerOptions.out.println("------\t------------------\t----------------------------------------");
+                System.out.println("LINE  \tTYPE              \tATTRIBUTES");
+                System.out.println("------\t------------------\t----------------------------------------");
                 Token token = lexer.nextToken();
                 while (token.getType() != Token.EOF) {
                     if (DescriptiveErrorListener.INSTANCE.result) {
                         int l = token.getLine();
                         String t = lexer.getRuleNames()[token.getType()-1];
-                        compilerOptions.out.println(String.format("%6d\t(%3d) %-14s\t@%-3d: %s",
+                        System.out.println(String.format("%6d\t(%3d) %-14s\t@%-3d: %s",
                                 l, token.getType(), t, token.getCharPositionInLine(), token.getText()));
                     }
                     token = lexer.nextToken();
                 }
-                compilerOptions.out.println();
+                System.out.println();
 
             } else {
                 while (lexer.nextToken().getType() != Token.EOF); // traverse and don't print

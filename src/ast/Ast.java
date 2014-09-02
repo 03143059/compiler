@@ -11,9 +11,9 @@ public class Ast {
     public Ast(CC4Parser cc4Parser) {
         this.cc4Parser = cc4Parser;
         CompilerOptions compilerOptions = cc4Parser.getScanner().getCompilerOptions();
-        compilerOptions.out.println("stage: AST");
+        System.out.println("stage: AST");
         if (compilerOptions.isDebbuggingActiveFor(this))
-            compilerOptions.out.println("Debbugging AST");
+            System.out.println("Debbugging AST");
         if (!compilerOptions.stopAt(this))
             new Semantic(this);
     }

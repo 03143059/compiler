@@ -9,7 +9,7 @@ options {
   import scanner.*;
 }
 
-program	        : CLASS ID LCURLY ( field_decls )*? ( method_decl )*? RCURLY
+start	        : CLASS PROGRAM LCURLY ( field_decls )*? ( method_decl )*? RCURLY
                 ;
 
 field_decls     : type field_decl ( COMMA field_decl )*? SEMI
@@ -75,11 +75,23 @@ exprs           : expr ( COMMA expr )*?
 expr	        : location
                 | method_call
                 | literal
-                | expr bin_op expr
                 | MINUS expr
                 | NOT expr
+                | expr bin_op expr
                 | LPAREN expr RPAREN
                 ;
+
+/*
+   precedence:
+   -
+   !
+   * / %
+   + -
+   < <= >= >
+   == !=
+   &&
+   ||
+*/
 
 bin_op	        : arith_op
                 | rel_op
@@ -87,17 +99,17 @@ bin_op	        : arith_op
                 | cond_op
                 ;
 
-arith_op	    : PLUS
-                | MINUS
-                | MUL
+arith_op	    : MUL
                 | DIV
                 | MOD
+                | PLUS
+                | MINUS
                 ;
 
 rel_op	        : LESS
-                | MORE
                 | LEQ
                 | GEQ
+                | MORE
                 ;
 
 eq_op  	        : CEQ

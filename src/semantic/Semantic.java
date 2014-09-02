@@ -11,9 +11,9 @@ public class Semantic {
     public Semantic(Ast ast) {
         this.ast = ast;
         CompilerOptions compilerOptions = ast.getCc4Parser().getScanner().getCompilerOptions();
-        compilerOptions.out.println("stage: semantic");
+        System.out.println("stage: semantic");
         if (compilerOptions.isDebbuggingActiveFor(this))
-            compilerOptions.out.println("Debbugging semantic");
+            System.out.println("Debbugging semantic");
         if (!compilerOptions.stopAt(this))
             new Irt(this);
     }

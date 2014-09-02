@@ -21,6 +21,7 @@ public class CompilerOptions {
     private String opt = "";
     private String debug = "";
     public PrintStream out = null;
+    private boolean gui = false;
 
     public CompilerOptions() {
         setOut();
@@ -98,5 +99,13 @@ public class CompilerOptions {
                 (clase instanceof Semantic && target.equals("semantic")) ||
                 (clase instanceof Irt && target.equals("irt")) ||
                 (clase instanceof Codegen && target.equals("codegen")));
+    }
+
+    public void setGui(boolean gui) {
+        this.gui = gui;
+    }
+
+    public boolean hasGui() {
+        return gui;
     }
 }
