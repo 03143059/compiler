@@ -1,6 +1,7 @@
 package ast;
 
 import lib.CompilerOptions;
+import org.antlr.v4.runtime.tree.ParseTree;
 import parser.CC4Parser;
 import semantic.Semantic;
 
@@ -14,6 +15,14 @@ public class Ast {
         System.out.println("stage: AST");
         if (compilerOptions.isDebbuggingActiveFor(this))
             System.out.println("Debbugging AST");
+
+        ParseTree tree = cc4Parser.parse();
+
+        AstVisitor visitor = new AstVisitor();
+        Root root = (Root)visitor.visit(tree);
+
+        root.print();
+
         if (!compilerOptions.stopAt(this))
             new Semantic(this);
     }

@@ -60,6 +60,13 @@ public class CC4Parser {
         }
     }
 
+    public ParseTree parse() {
+        scanner.getLexer().LexerDebug = false;
+        DecafParser parser = new DecafParser(new CommonTokenStream(scanner.getLexer()));
+        parser.setBuildParseTree(true);
+        return parser.start(); // ParseTree
+    }
+
     public Scanner getScanner() {
         return scanner;
     }

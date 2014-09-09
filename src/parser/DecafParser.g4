@@ -72,15 +72,6 @@ location	    : ID
 exprs           : expr ( COMMA expr )*?
                 ;
 
-expr	        : location
-                | method_call
-                | literal
-                | MINUS expr
-                | NOT expr
-                | expr bin_op expr
-                | LPAREN expr RPAREN
-                ;
-
 /*
    precedence:
    -
@@ -92,6 +83,15 @@ expr	        : location
    &&
    ||
 */
+
+expr	        : location
+                | method_call
+                | literal
+                | MINUS expr
+                | NOT expr
+                | expr bin_op expr
+                | LPAREN expr RPAREN
+                ;
 
 bin_op	        : arith_op
                 | rel_op

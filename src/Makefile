@@ -4,7 +4,7 @@ Compiler.class: Compiler.java
 	javac Compiler.java
 
 ast\Ast.class: ast\Ast.java
-	javac ast\Ast.java
+	javac ast\*.java
 
 codegen\Codegen.class: codegen\Codegen.java
 	javac codegen\Codegen.java
@@ -58,10 +58,10 @@ scanner\DecafLexer.java: scanner\DecafLexer.g4
 	java org.antlr.v4.Tool scanner\DecafLexer.g4
 
 parser\DecafParser.class: parser\DecafParser.java
-	javac parser\DecafParser.java
+	javac parser\DecafParser*.java
 
 parser\DecafParser.java: parser\DecafParser.g4 scanner\DecafLexer.tokens
-	java org.antlr.v4.Tool -lib .\scanner parser\DecafParser.g4
+	java org.antlr.v4.Tool -visitor -lib .\scanner parser\DecafParser.g4
 
 clean:
     @del /q /s *.class  2>nul
