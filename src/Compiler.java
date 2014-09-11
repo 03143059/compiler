@@ -166,6 +166,7 @@ public class Compiler {
 
         } catch (Exception exp) {
             System.out.println("Ha ocurrido un error: " + exp.getMessage());
+            exp.printStackTrace();
         }
     }
 
