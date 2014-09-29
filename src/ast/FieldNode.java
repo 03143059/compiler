@@ -1,5 +1,7 @@
 package ast;
 
+import java.io.PrintStream;
+
 public class FieldNode extends Node {
 
         private final Node fieldType;
@@ -11,9 +13,10 @@ public class FieldNode extends Node {
         }
 
         @Override
-        public void print(String padding) {
-            System.out.println(padding + "Fields:");
-            fieldType.print(padding + "\t");
-            fields.print(padding + "\t");
+        public void print(String padding, PrintStream out) {
+            out.println(padding + "type ->");
+            fieldType.print(padding + "  ", out);
+            out.println(padding + "fields ->");
+            fields.print(padding + "  ", out);
         }
     }

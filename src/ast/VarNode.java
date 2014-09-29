@@ -2,6 +2,7 @@ package ast;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.io.PrintStream;
 import java.util.List;
 
 public class VarNode extends Node {
@@ -15,10 +16,11 @@ public class VarNode extends Node {
         }
 
         @Override
-        public void print(String padding) {
-            System.out.println(padding + "Variables:");
-            varType.print(padding + "\t");
+        public void print(String padding, PrintStream out) {
+            out.println(padding + "Type ->");
+            varType.print(padding + "  ", out);
+            out.println(padding + "Names ->");
             for(TerminalNode varName : varNames)
-                System.out.println(padding + varName.getText());
+                out.println(padding + "  " + varName.getText());
         }
     }

@@ -1,5 +1,7 @@
 package ast;
 
+import java.io.PrintStream;
+
 public class IfNode extends Node {
         private final Node expr;
         private final Node ifs;
@@ -12,14 +14,14 @@ public class IfNode extends Node {
         }
 
         @Override
-        public void print(String padding) {
-            System.out.println(padding + "If ");
-            expr.print(padding + "\t");
-            System.out.println(padding + "Verdadero:");
-            ifs.print(padding + "\t");
+        public void print(String padding, PrintStream out) {
+            out.println(padding + "if ->");
+            expr.print(padding + "  ", out);
+            out.println(padding + "block ->");
+            ifs.print(padding + "  ", out);
             if (els != null) {
-                System.out.println(padding + "Else:");
-                els.print(padding + "\t");
+                out.println(padding + "block ->");
+                els.print(padding + "  ", out);
             }
         }
     }

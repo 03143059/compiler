@@ -1,5 +1,7 @@
 package ast;
 
+import java.io.PrintStream;
+
 public class StringLiteral extends Node {
         private String value;
 
@@ -7,7 +9,7 @@ public class StringLiteral extends Node {
             value = v;
         }
 
-        public void print(String padding){
-            System.out.println(padding + value);
+        public void print(String padding, PrintStream out){
+            out.println(padding + value);
         }
     }

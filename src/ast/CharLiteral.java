@@ -1,13 +1,16 @@
 package ast;
 
+import java.io.PrintStream;
+
 public class CharLiteral extends Node {
-        private char value;
+        //TODO: extract char value
+        private String value;
 
         public CharLiteral(String v){
-            value = v.charAt(0);
+            value = v;
         }
 
-        public void print(String padding){
-            System.out.println(padding + value);
+        public void print(String padding, PrintStream out){
+            out.println(padding + value);
         }
     }

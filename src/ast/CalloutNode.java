@@ -1,5 +1,7 @@
 package ast;
 
+import java.io.PrintStream;
+
 public class CalloutNode extends Node {
         private final String func;
         private final Node args;
@@ -10,8 +12,10 @@ public class CalloutNode extends Node {
         }
 
         @Override
-        public void print(String padding) {
-            System.out.println(padding + "callout " + func );
-            args.print(padding + "\t");
+        public void print(String padding, PrintStream out) {
+            out.println(padding + "callout ");
+            out.println(padding + "  " + func);
+            out.println(padding + "args ->");
+            args.print(padding + "  ", out);
         }
     }

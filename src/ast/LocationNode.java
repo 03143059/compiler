@@ -1,5 +1,7 @@
 package ast;
 
+import java.io.PrintStream;
+
 public class LocationNode extends Node {
         private final Node location;
         private final Node op;
@@ -12,9 +14,12 @@ public class LocationNode extends Node {
         }
 
         @Override
-        public void print(String padding) {
-            location.print(padding + "\t");
-            op.print(padding + "\t");
-            expr.print(padding + "\t");
+        public void print(String padding, PrintStream out) {
+            out.println(padding + "location ->");
+            location.print(padding + "  ", out);
+            out.println(padding + "op ->");
+            op.print(padding + "  ", out);
+            out.println(padding + "expr ->");
+            expr.print(padding + "  ", out);
         }
     }

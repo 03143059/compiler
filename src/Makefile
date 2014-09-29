@@ -3,7 +3,7 @@ make: scanner\DecafLexer.class parser\DecafParser.class Compiler.class ast\Ast.c
 Compiler.class: Compiler.java
 	javac Compiler.java
 
-ast\Ast.class: ast\Ast.java ast\AstVisitor.java ast\Node.java ast\Root.java
+ast\Ast.class: ast\Ast.java ast\AstVisitor.java ast\Node.java ast\Root.java ast\BinOp.java ast\BlockNode.java ast\BoolLiteral.java ast\CalloutNode.java ast\CharLiteral.java ast\FieldNode.java ast\ForNode.java ast\IfNode.java ast\IntLiteral.java ast\LocArrayNode.java ast\LocationNode.java ast\MethodCallNode.java ast\MethodNode.java ast\MethodParamNode.java ast\ParenNode.java ast\PrefixNode.java ast\ProgramNode.java ast\StringLiteral.java ast\VarNode.java
 	javac ast\*.java
 
 codegen\Codegen.class: codegen\Codegen.java
@@ -67,4 +67,3 @@ clean:
     @del /q /s *.class  2>nul
 	@del /q /s scanner\DecafLexer.java scanner\*.tokens 2>nul
 	@del /q /s parser\DecafParser*.java parser\*.tokens 2>nul
-

@@ -1,5 +1,7 @@
 package ast;
 
+import java.io.PrintStream;
+
 public class MethodCallNode extends Node {
         private final Node name;
         private final Node exprs;
@@ -10,8 +12,10 @@ public class MethodCallNode extends Node {
         }
 
         @Override
-        public void print(String padding) {
-            name.print(padding + "\t");
-            exprs.print(padding + "\t");
+        public void print(String padding, PrintStream out) {
+            out.println(padding + "Name ->");
+            name.print(padding + "  ", out);
+            out.println(padding + "Exprs ->");
+            exprs.print(padding + "  ", out);
         }
     }

@@ -1,26 +1,29 @@
 package ast;
 
+import java.io.PrintStream;
+
 public class ForNode extends Node {
         private final String varName;
         private final Node start;
         private final Node cond;
-        private final Node body;
+        private final Node block;
 
-        public ForNode(String varName, Node start, Node cond, Node body) {
+        public ForNode(String varName, Node start, Node cond, Node block) {
             this.varName = varName;
             this.start = start;
             this.cond = cond;
-            this.body = body;
+            this.block = block;
         }
 
         @Override
-        public void print(String padding) {
-            System.out.println(padding + "FOR "  + varName);
-            System.out.println(padding + "Inicio:");
-            start.print(padding + "\t");
-            System.out.println(padding + "Condicion:");
-            cond.print(padding + "\t");
-            System.out.println(padding + "Cuerpo:");
-            body.print(padding + "\t");
+        public void print(String padding, PrintStream out) {
+            out.println(padding + "for->");
+            out.println(padding + "  "  + varName);
+            out.println(padding + "start ->");
+            start.print(padding + "  ", out);
+            out.println(padding + "cond ->");
+            cond.print(padding + "  ", out);
+            out.println(padding + "block ->");
+            block.print(padding + "  ", out);
         }
     }

@@ -1,5 +1,7 @@
 package ast;
 
+import java.io.PrintStream;
+
 public class ParenNode extends Node {
         private final Node expr;
 
@@ -8,9 +10,9 @@ public class ParenNode extends Node {
         }
 
         @Override
-        public void print(String padding) {
-            System.out.println(padding + "(");
-            expr.print(padding + "\t");
-            System.out.println(padding + ")");
+        public void print(String padding, PrintStream out) {
+            out.println(padding + "(");
+            expr.print(padding + "  ", out);
+            out.println(padding + ")");
         }
     }

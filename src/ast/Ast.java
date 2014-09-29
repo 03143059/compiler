@@ -19,9 +19,11 @@ public class Ast {
         ParseTree tree = cc4Parser.parse();
 
         AstVisitor visitor = new AstVisitor();
-        Root root = (Root)visitor.visit(tree);
+        Node root = (Node)visitor.visit(tree);
 
-        root.print();
+        root.print("  ", compilerOptions.out);
+        if (compilerOptions.isDebbuggingActiveFor(this))
+            root.print("  ", System.out);
 
         if (!compilerOptions.stopAt(this))
             new Semantic(this);

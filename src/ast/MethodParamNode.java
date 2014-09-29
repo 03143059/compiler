@@ -1,5 +1,7 @@
 package ast;
 
+import java.io.PrintStream;
+
 public class MethodParamNode extends Node {
         private final Node type;
         private final String name;
@@ -10,8 +12,9 @@ public class MethodParamNode extends Node {
         }
 
         @Override
-        public void print(String padding) {
-            type.print(padding + "\t");
-            System.out.println(padding + name);
+        public void print(String padding, PrintStream out) {
+            out.println(padding + "type ->");
+            type.print(padding + "  ", out);
+            out.println(padding + "  " + name);
         }
     }

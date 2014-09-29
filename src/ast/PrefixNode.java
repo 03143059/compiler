@@ -1,5 +1,7 @@
 package ast;
 
+import java.io.PrintStream;
+
 public class PrefixNode extends Node {
         private final String prefix;
         private final Node expr;
@@ -10,8 +12,8 @@ public class PrefixNode extends Node {
         }
 
         @Override
-        public void print(String padding) {
-            System.out.println(padding + prefix);
-            expr.print(padding + "\t");
+        public void print(String padding, PrintStream out) {
+            out.println(padding + prefix);
+            expr.print(padding + "  ", out);
         }
     }

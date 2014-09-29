@@ -1,5 +1,7 @@
 package ast;
 
+import java.io.PrintStream;
+
 public class LocArrayNode extends Node {
         private final String name;
         private final Node expr;
@@ -10,10 +12,10 @@ public class LocArrayNode extends Node {
         }
 
         @Override
-        public void print(String padding) {
-            System.out.println(padding + name);
-            System.out.println(padding + "[");
-            expr.print(padding + "\t");
-            System.out.println(padding + "]");
+        public void print(String padding, PrintStream out) {
+            out.println(padding + name);
+            out.println(padding + "[");
+            expr.print(padding + "  ", out);
+            out.println(padding + "]");
         }
     }

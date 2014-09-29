@@ -19,12 +19,20 @@ public class AstVisitor
 
     @Override
     public Node visitStart(@NotNull DecafParser.StartContext ctx) {
-        Root root = new Root();
-        root.add(visit(ctx.CLASS()));
-        root.add(visit(ctx.PROGRAM()));
-        for (DecafParser.Field_declsContext e : ctx.field_decls()) root.add(visit(e));
-        for (DecafParser.Method_declContext e : ctx.method_decl()) root.add(visit(e));
-        return root;
+        // CLASS PROGRAM LCURLY ( field_decls )*? ( method_decl )*? RCURLY
+        Root fields = null;
+        if (ctx.field_decls() != null) {
+            fields = new Root();
+            for (DecafParser.Field_declsContext v : ctx.field_decls())
+                fields.add(visit(v));
+        }
+        Root methods = null;
+        if (ctx.method_decl() != null) {
+            methods = new Root();
+            for (DecafParser.Method_declContext v : ctx.method_decl())
+                methods.add(visit(v));
+        }
+        return new ProgramNode(fields, methods);
     }
 
     @Override
@@ -50,10 +58,16 @@ public class AstVisitor
     public Node visitMethod_decl(@NotNull DecafParser.Method_declContext ctx) {
         // ( type | VOID ) ID LPAREN ( method_param ( COMMA method_param )*? )? RPAREN block
         String name = ctx.ID().getText();
-        Root params = new Root("param");
-        for (DecafParser.Method_paramContext param : ctx.method_param())
-            params.add(visit(param));
-        return new MethodNode(visit(ctx.type()), name, params, visit(ctx.block()));
+        Root params = null;
+        if (ctx.method_param() != null) {
+            params = new Root("param");
+            for (DecafParser.Method_paramContext param : ctx.method_param())
+                params.add(visit(param));
+        }
+        if (ctx.VOID() != null)
+            return new MethodNode(ctx.VOID().getText(), name, params, visit(ctx.block()));
+        else
+            return new MethodNode(visit(ctx.type()), name, params, visit(ctx.block()));
     }
 
     @Override
@@ -228,7 +242,7 @@ public class AstVisitor
     @Override
     public Node visitIfstmt(@NotNull DecafParser.IfstmtContext ctx) {
         // IF LPAREN expr RPAREN ifs=block ( ELSE els=block )?
-        return new IfNode(visit(ctx.expr()), visit(ctx.ifs), visit(ctx.els));
+        return new IfNode(visit(ctx.expr()), visit(ctx.ifs), ctx.els != null?visit(ctx.els):null);
     }
 
     @Override
