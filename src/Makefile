@@ -3,7 +3,7 @@ make: scanner\DecafLexer.class parser\DecafParser.class Compiler.class ast\Ast.c
 Compiler.class: Compiler.java
 	javac Compiler.java
 
-ast\Ast.class: ast\Ast.java ast\AstVisitor.java ast\BinOp.java ast\FloatLiteral.java ast\IntLiteral.java ast\Node.java ast\Root.java
+ast\Ast.class: ast\Ast.java ast\AstVisitor.java ast\Node.java ast\Root.java
 	javac ast\*.java
 
 codegen\Codegen.class: codegen\Codegen.java
