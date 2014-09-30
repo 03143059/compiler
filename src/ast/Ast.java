@@ -8,6 +8,11 @@ import semantic.Semantic;
 public class Ast {
 
     private final CC4Parser cc4Parser;
+    private final Node start;
+
+    public Node getStartNode() {
+        return start;
+    }
 
     public Ast(CC4Parser cc4Parser) {
         this.cc4Parser = cc4Parser;
@@ -19,11 +24,11 @@ public class Ast {
         ParseTree tree = cc4Parser.parse();
 
         AstVisitor visitor = new AstVisitor();
-        Node root = (Node)visitor.visit(tree);
+        start = visitor.visit(tree);
 
-        root.print("  ", compilerOptions.out);
+        start.print("  ", compilerOptions.out);
         if (compilerOptions.isDebbuggingActiveFor(this))
-            root.print("  ", System.out);
+            start.print("  ", System.out);
 
         if (!compilerOptions.stopAt(this))
             new Semantic(this);

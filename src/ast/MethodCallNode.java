@@ -4,9 +4,9 @@ import java.io.PrintStream;
 
 public class MethodCallNode extends Node {
         private final Node name;
-        private final Node exprs;
+        private final NodeList exprs;
 
-        public MethodCallNode(Node name, Node exprs) {
+        public MethodCallNode(Node name, NodeList exprs) {
             this.name = name;
             this.exprs = exprs;
         }
@@ -15,7 +15,9 @@ public class MethodCallNode extends Node {
         public void print(String padding, PrintStream out) {
             out.println(padding + "Name ->");
             name.print(padding + "  ", out);
-            out.println(padding + "Exprs ->");
-            exprs.print(padding + "  ", out);
+            if (exprs.size() > 0) {
+                out.println(padding + "Exprs ->");
+                exprs.print(padding + "  ", out);
+            }
         }
     }

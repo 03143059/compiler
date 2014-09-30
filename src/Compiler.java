@@ -111,7 +111,9 @@ public class Compiler {
                 compilerOptions.setTarget(target);
                 argCount -= 2;
             } else {
-                compilerOptions.setTarget("parse"); // default parser
+                /****************** SET DEFAULT MODE *************************/
+                compilerOptions.setTarget("ast"); // default ast
+                /****************** SET DEFAULT MODE *************************/
             }
 
             if (cmdLine.hasOption("opt")) {

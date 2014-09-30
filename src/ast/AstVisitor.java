@@ -1,13 +1,8 @@
 package ast;
 
 import org.antlr.v4.runtime.misc.NotNull;
-import org.antlr.v4.runtime.tree.TerminalNode;
 import parser.DecafParser;
 import parser.DecafParserBaseVisitor;
-import parser.DecafParserVisitor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Werner on 9/29/2014.
@@ -20,15 +15,15 @@ public class AstVisitor
     @Override
     public Node visitStart(@NotNull DecafParser.StartContext ctx) {
         // CLASS PROGRAM LCURLY ( field_decls )*? ( method_decl )*? RCURLY
-        Root fields = null;
+        NodeList fields = null;
         if (ctx.field_decls() != null) {
-            fields = new Root();
+            fields = new NodeList();
             for (DecafParser.Field_declsContext v : ctx.field_decls())
                 fields.add(visit(v));
         }
-        Root methods = null;
+        NodeList methods = null;
         if (ctx.method_decl() != null) {
-            methods = new Root();
+            methods = new NodeList();
             for (DecafParser.Method_declContext v : ctx.method_decl())
                 methods.add(visit(v));
         }
@@ -58,16 +53,16 @@ public class AstVisitor
     public Node visitMethod_decl(@NotNull DecafParser.Method_declContext ctx) {
         // ( type | VOID ) ID LPAREN ( method_param ( COMMA method_param )*? )? RPAREN block
         String name = ctx.ID().getText();
-        Root params = null;
+        NodeList params = null;
         if (ctx.method_param() != null) {
-            params = new Root("param");
+            params = new NodeList();
             for (DecafParser.Method_paramContext param : ctx.method_param())
                 params.add(visit(param));
         }
         if (ctx.VOID() != null)
-            return new MethodNode(ctx.VOID().getText(), name, params, visit(ctx.block()));
-        else
-            return new MethodNode(visit(ctx.type()), name, params, visit(ctx.block()));
+            return new VoidMethodNode(name, params, visit(ctx.block()));
+        else return (ctx.type().BOOLEAN() != null)? new BooleanMethodNode(name, params, visit(ctx.block())) :
+                (ctx.type().INT() != null) ?  new BooleanMethodNode(name, params, visit(ctx.block())) : null; // no deberia de suceder
     }
 
     @Override
@@ -79,12 +74,6 @@ public class AstVisitor
     @Override
     public Node visitMinexpr(@NotNull DecafParser.MinexprContext ctx) {
         return new PrefixNode(ctx.MINUS().getText(), visit(ctx.expr()));
-    }
-
-    @Override
-    public Node visitVar_decl(@NotNull DecafParser.Var_declContext ctx) {
-        // type ID (COMMA ID)*? SEMI
-        return new VarNode(visit(ctx.type()), ctx.ID());
     }
 
     @Override
@@ -103,11 +92,33 @@ public class AstVisitor
     @Override
     public Node visitField_decls(@NotNull DecafParser.Field_declsContext ctx) {
         // type field_decl ( COMMA field_decl )*? SEMI
-        Root fields = new Root("field");
+        NodeList fields = new NodeList();
         for (DecafParser.Field_declContext field : ctx.field_decl()) {
             fields.add(visit(field));
         }
-        return new FieldNode(visit(ctx.type()), fields);
+       return (ctx.type().BOOLEAN() != null)? new BooleanFieldNode(fields) :
+        (ctx.type().INT() != null) ?  new IntFieldNode(fields) : null; // no deberia de suceder
+    }
+
+    //region field_decl
+    @Override
+    public Node visitSingleid(@NotNull DecafParser.SingleidContext ctx) {
+        return new StringLiteral(ctx.getText());
+    }
+
+    @Override
+    public Node visitArray(@NotNull DecafParser.ArrayContext ctx) {
+        // ID LSQUARE INT_LITERAL RSQUARE
+        // TODO: add array handling
+        return new StringLiteral(ctx.ID().getText() + "[" + ctx.INT_LITERAL().getText() + "]");
+    }
+    //endregion
+
+    @Override
+    public Node visitVar_decl(@NotNull DecafParser.Var_declContext ctx) {
+        // type ID (COMMA ID)*? SEMI
+        return (ctx.type().BOOLEAN() != null)? new BooleanVarNode(ctx.ID()) :
+                (ctx.type().INT() != null) ?  new IntVarNode(ctx.ID()) : null; // no deberia de suceder
     }
 
     @Override
@@ -118,7 +129,7 @@ public class AstVisitor
     @Override
     public Node visitCallout(@NotNull DecafParser.CalloutContext ctx) {
         // CALLOUT LPAREN STRING_LITERAL ( COMMA callout_arg )*? RPAREN
-        Root args = new Root("args");
+        NodeList args = new NodeList();
         for (DecafParser.Callout_argContext arg : ctx.callout_arg()) {
             args.add(visit(arg));
         }
@@ -131,14 +142,9 @@ public class AstVisitor
     }
 
     @Override
-    public Node visitSingleid(@NotNull DecafParser.SingleidContext ctx) {
-        return new StringLiteral(ctx.getText());
-    }
-
-    @Override
     public Node visitMetcall(@NotNull DecafParser.MetcallContext ctx) {
         // method_name LPAREN ( expr ( COMMA expr )*? )? RPAREN
-        Root exprs = new Root("exprs");
+        NodeList exprs = new NodeList();
         for (DecafParser.ExprContext expr : ctx.expr()) {
             exprs.add(visit(expr));
         }
@@ -171,20 +177,14 @@ public class AstVisitor
     }
 
     @Override
-    public Node visitArray(@NotNull DecafParser.ArrayContext ctx) {
-        // ID LSQUARE INT_LITERAL RSQUARE
-        // TODO: add array handling
-        return new StringLiteral(ctx.ID().getText() + "[" + ctx.INT_LITERAL().getText() + "]");
-    }
-
-    @Override
     public Node visitMethod_name(@NotNull DecafParser.Method_nameContext ctx) {
         return new StringLiteral(ctx.ID().getText());
     }
 
     @Override
     public Node visitMethod_param(@NotNull DecafParser.Method_paramContext ctx) {
-        return new MethodParamNode(visit(ctx.type()), ctx.ID().getText());
+        return (ctx.type().BOOLEAN() != null)? new BooleanMethodParamNode(ctx.ID().getText()) :
+                (ctx.type().INT() != null) ?  new IntMethodParamNode(ctx.ID().getText()) : null; // no deberia de suceder
     }
 
     @Override
@@ -205,10 +205,10 @@ public class AstVisitor
     @Override
     public Node visitBlock(@NotNull DecafParser.BlockContext ctx) {
         // LCURLY ( var_decl )*? ( statement )* RCURLY
-        Root vars = new Root("vars");
+        NodeList vars = new NodeList();
         for (DecafParser.Var_declContext var : ctx.var_decl())
             vars.add(visit(var));
-        Root stmts = new Root("stmts");
+        NodeList stmts = new NodeList();
         for (DecafParser.StatementContext stmt : ctx.statement())
             stmts.add(visit(stmt));
         return new BlockNode(vars, stmts);

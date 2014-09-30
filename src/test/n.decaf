@@ -1,0 +1,9 @@
+class Program {
+  int a, b;
+  boolean c;
+  void t() {
+    int e, d;
+    boolean f,g;
+    c = true;
+  }
+}

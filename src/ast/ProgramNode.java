@@ -16,7 +16,7 @@ public class ProgramNode extends Node {
 
     @Override
     public void print(String padding, PrintStream out) {
-        out.println("start ->");
+        out.println("Start ->");
         out.println(padding + "class");
         out.println(padding + "Program");
         out.println(padding + "Fields ->");

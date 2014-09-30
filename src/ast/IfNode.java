@@ -16,12 +16,16 @@ public class IfNode extends Node {
         @Override
         public void print(String padding, PrintStream out) {
             out.println(padding + "if ->");
+            out.println(padding + "(");
             expr.print(padding + "  ", out);
-            out.println(padding + "block ->");
+            out.println(padding + ")");
+            out.println(padding + "then {");
             ifs.print(padding + "  ", out);
+            out.println(padding + "}");
             if (els != null) {
-                out.println(padding + "block ->");
+                out.println(padding + "else {");
                 els.print(padding + "  ", out);
+                out.println(padding + "}");
             }
         }
     }
