@@ -17,9 +17,7 @@ public class LocationNode extends Node {
         public void print(String padding, PrintStream out) {
             out.println(padding + "location ->");
             location.print(padding + "  ", out);
-            out.println(padding + "op ->");
             op.print(padding + "  ", out);
-            out.println(padding + "expr ->");
             expr.print(padding + "  ", out);
         }
     }

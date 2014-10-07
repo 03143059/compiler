@@ -6,6 +6,8 @@ Proyectos de CC4
 GitHub: https://github.com/03143059/compiler
 
 CHANGELOG:
+- 29/09/2014 Added semantic analyzer
+- 29/09/2014 Fixed symbol table class
 - 29/09/2014 Fixed output from Ast
 - 21/09/2014 Extracted classes from Ast
 - 14/09/2014 Added more methods to visitor

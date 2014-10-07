@@ -8,10 +8,10 @@ import semantic.Semantic;
 public class Ast {
 
     private final CC4Parser cc4Parser;
-    private final Node start;
+    private final ParseTree tree;
 
-    public Node getStartNode() {
-        return start;
+    public ParseTree getTree() {
+        return tree;
     }
 
     public Ast(CC4Parser cc4Parser) {
@@ -21,11 +21,10 @@ public class Ast {
         if (compilerOptions.isDebbuggingActiveFor(this))
             System.out.println("Debbugging AST");
 
-        ParseTree tree = cc4Parser.parse();
+        tree = cc4Parser.parse();
 
         AstVisitor visitor = new AstVisitor();
-        start = visitor.visit(tree);
-
+        Node start = visitor.visit(tree);
         start.print("  ", compilerOptions.out);
         if (compilerOptions.isDebbuggingActiveFor(this))
             start.print("  ", System.out);

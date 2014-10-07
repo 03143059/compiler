@@ -1,5 +1,7 @@
 package ast;
 
+import lib.CompilerOptions;
+
 import java.io.PrintStream;
 
 /**
@@ -24,4 +26,5 @@ public class ProgramNode extends Node {
         out.println(padding + "Methods ->");
         methods.print(padding + "  ", out);
     }
+
 }

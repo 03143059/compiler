@@ -15,8 +15,8 @@ irt\Irt.class: irt\Irt.java
 lib\Debug.class: lib\Debug.java
 	javac lib\Debug.java
 
-lib\SymbolTable.class: lib\SymbolTable.java
-	javac lib\SymbolTable.java
+lib\SymbolTable.class: lib\SymbolTable.java lib\Symbol.java
+	javac lib\Symbol*.java
 
 lib\ErrorHandler.class: lib\ErrorHandler.java
 	javac lib\ErrorHandler.java
@@ -51,8 +51,8 @@ parser\CC4Parser.class: parser\CC4Parser.java parser\MyErrorStrategy.java
 scanner\Scanner.class: scanner\Scanner.java scanner\DescriptiveErrorListener.java
 	javac scanner\Scanner.java scanner\DescriptiveErrorListener.java
 	
-semantic\Semantic.class: semantic\Semantic.java
-	javac semantic\Semantic.java
+semantic\Semantic.class: semantic\Semantic.java semantic\SemNode.java semantic\SemNodeList.java semantic\SemCheckVisitor.java
+	javac semantic\*.java
 
 scanner\DecafLexer.class: scanner\DecafLexer.java
 	javac scanner\DecafLexer.java
