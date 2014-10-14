@@ -1,10 +1,24 @@
 class Program {
-  int a, b;
-  int a;
-  boolean c;
-  void t() {
-    int e, d;
-    boolean f,g;
-    c = true;
-  }
+    int a, b;
+    int d[10], x[2];
+    boolean c;
+    void t(int c, boolean h, boolean i) {
+        int e, d;
+        boolean f,g;
+        c = true;
+        for f = 1, f < 10 {
+            int c;
+            callout("printf", "%d", f);
+        }
+    }
+
+    int d(){ return 0; }
+
+    //int e(){ int a; a = false; return a; }
+    //void main(int x) {}
+    //void main(int y) {}
+
+    int main() {
+        t(1, false, true);
+    }
 }

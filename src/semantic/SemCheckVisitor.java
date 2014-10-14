@@ -1,8 +1,10 @@
 package semantic;
 
-import lib.*;
+import lib.Symbol;
+import lib.SymbolTable;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.TerminalNode;
+import org.omg.CORBA.Environment;
 import parser.DecafParser;
 import parser.DecafParserBaseVisitor;
 
@@ -20,7 +22,7 @@ public class SemCheckVisitor
     public SemNode visitStart(@NotNull DecafParser.StartContext ctx) {
         // CLASS PROGRAM LCURLY ( field_decls )*? ( method_decl )*? RCURLY
         // add global scope
-        SymbolTable.addScope(ScopeHeap);
+        SymbolTable.addScope(ScopeHeap, BaseScope, ctx.start.getText());
         if (ctx.field_decls() != null) {
             for (DecafParser.Field_declsContext v : ctx.field_decls())
                 visit(v);
@@ -29,6 +31,18 @@ public class SemCheckVisitor
             for (DecafParser.Method_declContext v : ctx.method_decl())
                 visit(v);
         }
+        // check for method main in symbol table
+        Symbol s = SymbolTable.lookup("main()", 1, false);
+        if (s == null || (s.getParams() != null && s.getParams().length() > 0)) { // no existe
+            System.err.println("ERROR: method main is missing from program at line " + ctx.getStop().getLine());
+            return new SemNode() {
+                @Override
+                public boolean ok() {
+                    return false;
+                }
+            };
+        }
+
         return new SemNode() {
             @Override
             public boolean ok() {
@@ -42,7 +56,7 @@ public class SemCheckVisitor
         // type field_decl ( COMMA field_decl )*? SEMI
         for (DecafParser.Field_declContext field : ctx.field_decl()) {
             // check if var is already defined
-            Symbol s = SymbolTable.lookup(field.getText(), ScopeHeap);
+            Symbol s = SymbolTable.lookup(field.getText(), ScopeHeap, false);
             if (s != null) { // existe
                 System.err.println("ERROR: " + field.getText() + " is already declared at line " + ctx.getStart().getLine());
                 return new SemNode() {
@@ -51,10 +65,11 @@ public class SemCheckVisitor
                         return false;
                     }
                 };
-            } else {
-                // add variable to global scope
-                SymbolTable.store(field.getText(), ctx.type().getText(), ScopeHeap);
             }
+
+            // add variable to global scope
+            SymbolTable.store(field.getText(), ctx.type().getText(), ScopeHeap);
+
             visit(field);
         }
         return new SemNode() {
@@ -79,10 +94,10 @@ public class SemCheckVisitor
                         return false;
                     }
                 };
-            } else {
-                // add variable to global scope
-                SymbolTable.store(id.getText(), ctx.type().getText(), ScopeHeap);
             }
+            // add variable to global scope
+            SymbolTable.store(id.getText(), ctx.type().getText(), ScopeHeap);
+
         }
         return new SemNode() {
             @Override
@@ -93,9 +108,370 @@ public class SemCheckVisitor
     }
 
     @Override
-    public SemNode visitBlkstmt(@NotNull DecafParser.BlkstmtContext ctx) {
+    public SemNode visitMethod_param(@NotNull DecafParser.Method_paramContext ctx) {
+        // type ID
+        // check if var is already defined
+        Symbol s = SymbolTable.lookup(ctx.ID().getText(), ScopeHeap, false);
+        if (s != null) { // existe
+            System.err.println("ERROR: " + ctx.ID().getText() + " is already declared at line " + ctx.getStart().getLine());
+            return new SemNode() {
+                @Override
+                public boolean ok() {
+                    return false;
+                }
+            };
+        }
+
+        // add variable to global scope
+        SymbolTable.store(ctx.ID().getText(), ctx.type().getText(), ScopeHeap);
+
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return true;
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitForstmt(@NotNull DecafParser.ForstmtContext ctx) {
+        // FOR ID ASSIGNEQ init=expr COMMA cond=expr block
+
+        // check if var is already defined
+        Symbol s = SymbolTable.lookup(ctx.ID().getText(), ScopeHeap);
+        if (s == null) { // no existe
+            System.err.println("ERROR: " + ctx.ID().getText() + " has not been declared at line " + ctx.getStart().getLine());
+            return new SemNode() {
+                @Override
+                public boolean ok() {
+                    return false;
+                }
+            };
+        }
+
+        int oldScope = BaseScope;
         BaseScope = ScopeHeap;
-        return visit(ctx.block());
+
+        final SemNode v1 = visit(ctx.init);
+        final SemNode v2 = visit(ctx.cond);
+        final SemNode v3 = visit(ctx.block());
+
+        BaseScope = oldScope;
+
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok() && v2.ok() && v3.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitIfstmt(@NotNull DecafParser.IfstmtContext ctx) {
+        // IF LPAREN expr RPAREN ifs=block ( ELSE els=block )?
+        int oldScope = BaseScope;
+        BaseScope = ScopeHeap;
+
+        final SemNode v1 = visit(ctx.expr());
+        final SemNode v2 = visit(ctx.ifs);
+        boolean r = true;
+        if (ctx.els != null) {
+            SemNode v3 = visit(ctx.els);
+            r = v3.ok();
+
+        }
+        final boolean finalR = r;
+        BaseScope = oldScope;
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok() && v2.ok() && finalR;
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitMethod_decl(@NotNull DecafParser.Method_declContext ctx) {
+        // ( type | VOID ) ID LPAREN ( method_param ( COMMA method_param )*? )? RPAREN block
+
+        // build param signature
+        StringBuilder params = new StringBuilder();
+        if (ctx.method_param() != null) {
+            for (DecafParser.Method_paramContext param : ctx.method_param()) {
+                if (params.length() > 0) params.append(",");
+                params.append(param.type().getText());
+            }
+        }
+
+        // check if method is already defined
+        String methodID = ctx.ID().getText() + "(" + params.toString() + ")";
+        Symbol s = SymbolTable.lookup(methodID, BaseScope);
+        if (s != null && s.getParams() != null && s.getParams().equals(params.toString())) { // ya existe
+            System.err.println("ERROR: " + ctx.ID().getText() + " is already declared at line " + ctx.getStart().getLine());
+            return new SemNode() {
+                @Override
+                public boolean ok() {
+                    return false;
+                }
+            };
+        }
+
+        // add method to global scope
+        SymbolTable.store(methodID, ctx.VOID()==null?ctx.type().getText():"void", params.toString(), BaseScope);
+
+        ScopeHeap++;
+        SymbolTable.addScope(ScopeHeap, BaseScope, ctx.ID().getText());
+
+        boolean r = true;
+        if (ctx.method_param() != null) {
+            for (DecafParser.Method_paramContext param : ctx.method_param()) {
+                SemNode v1 = visit(param);
+                r = r && v1.ok();
+            }
+        }
+
+        int oldScope = BaseScope;
+        BaseScope = ScopeHeap;
+
+        final SemNode v2 = visit(ctx.block());
+        final boolean finalR = r;
+
+        BaseScope = oldScope;
+
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v2.ok() && finalR;
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitBlock(@NotNull DecafParser.BlockContext ctx) {
+        // LCURLY ( var_decl )*? ( statement )* RCURLY
+        ScopeHeap++;
+        SymbolTable.addScope(ScopeHeap, BaseScope, ctx.getText());
+
+        boolean r = true;
+        for (DecafParser.Var_declContext var : ctx.var_decl()) {
+            SemNode v1 = visit(var);
+            r = r && v1.ok();
+        }
+
+        int oldScope = BaseScope;
+        BaseScope = ScopeHeap;
+
+        boolean s = true;
+        for (DecafParser.StatementContext stmt : ctx.statement()) {
+            SemNode v1 = visit(stmt);
+            s = s && v1.ok();
+        }
+
+        BaseScope = oldScope;
+
+        final boolean finalR = r;
+        final boolean finalS = s;
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return finalR && finalS;
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitBlkstmt(@NotNull DecafParser.BlkstmtContext ctx) {
+        int oldScope = BaseScope;
+        BaseScope = ScopeHeap;
+        SemNode node = visit(ctx.block());
+        BaseScope = oldScope;
+        return node;
+    }
+
+    //region simple rules
+
+    @Override
+    public SemNode visitMetcall(@NotNull DecafParser.MetcallContext ctx) {
+        // method_name LPAREN ( expr ( COMMA expr )*? )? RPAREN
+
+        // build param signature using types from each expr
+        StringBuilder params = new StringBuilder();
+        if (ctx.expr() != null) {
+            for (DecafParser.ExprContext param : ctx.expr()) {
+                if (params.length() > 0) params.append(",");
+              //  params.append(param.getText());
+            }
+        }
+
+        // check if method is already defined
+        Symbol s = SymbolTable.lookup(ctx.method_name().getText(), ScopeHeap);
+        if (s == null) { // no existe
+            System.err.println("ERROR: " + ctx.method_name().getText() + " has not been declared at line " + ctx.getStart().getLine());
+            return new SemNode() {
+                @Override
+                public boolean ok() {
+                    return false;
+                }
+            };
+        }
+        boolean r = true;
+        for (DecafParser.ExprContext expr : ctx.expr()) {
+            SemNode v1 = visit(expr);
+            r = r && v1.ok();
+        }
+        final SemNode v2 = visit(ctx.method_name());
+        final boolean finalR = r;
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v2.ok() && finalR;
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitCallout(@NotNull DecafParser.CalloutContext ctx) {
+        // CALLOUT LPAREN STRING_LITERAL ( COMMA callout_arg )*? RPAREN
+        boolean r = true;
+        for (DecafParser.Callout_argContext arg : ctx.callout_arg()) {
+            SemNode v1 = visit(arg);
+            r = r && v1.ok();
+        }
+        final boolean finalR = r;
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return finalR;
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitMinexpr(@NotNull DecafParser.MinexprContext ctx) {
+        final SemNode v1 = visit(ctx.expr());
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitLocstmt(@NotNull DecafParser.LocstmtContext ctx) {
+        // location assign_op expr SEMI
+        // check if var is already defined
+        Symbol s = SymbolTable.lookup(ctx.location().getText(), ScopeHeap);
+        if (s == null) { // no existe
+            System.err.println("ERROR: " + ctx.location().getText() + " has not been declared at line " + ctx.getStart().getLine());
+            return new SemNode() {
+                @Override
+                public boolean ok() {
+                    return false;
+                }
+            };
+        }
+        final SemNode v1 = visit(ctx.location());
+        final SemNode v2 = visit(ctx.assign_op());
+        final SemNode v3 = visit(ctx.expr());
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok() && v2.ok() && v3.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitAritexpr(@NotNull DecafParser.AritexprContext ctx) {
+        final SemNode v1 = visit(ctx.left);
+        final SemNode v2 = visit(ctx.right);
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok() && v2.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitRetstmt(@NotNull DecafParser.RetstmtContext ctx) {
+        final SemNode v1 = visit(ctx.expr());
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitRelexpr(@NotNull DecafParser.RelexprContext ctx) {
+        final SemNode v1 = visit(ctx.left);
+        final SemNode v2 = visit(ctx.right);
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok() && v2.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitLocarray(@NotNull DecafParser.LocarrayContext ctx) {
+        final SemNode v1 = visit(ctx.expr());
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitCondexpr(@NotNull DecafParser.CondexprContext ctx) {
+        final SemNode v1 = visit(ctx.left);
+        final SemNode v2 = visit(ctx.right);
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok() && v2.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitParenexpr(@NotNull DecafParser.ParenexprContext ctx) {
+        final SemNode v1 = visit(ctx.expr());
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitEqexpr(@NotNull DecafParser.EqexprContext ctx) {
+        final SemNode v1 = visit(ctx.left);
+        final SemNode v2 = visit(ctx.right);
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok() && v2.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitNotexpr(@NotNull DecafParser.NotexprContext ctx) {
+        final SemNode v1 = visit(ctx.expr());
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok();
+            }
+        };
     }
 
     @Override
@@ -131,10 +507,15 @@ public class SemCheckVisitor
     @Override
     public SemNode visitArray(@NotNull DecafParser.ArrayContext ctx) {
         // ID LSQUARE INT_LITERAL RSQUARE
+        int n = Integer.parseInt(ctx.INT_LITERAL().getText());
+        final boolean r = n > 0;
+        if (!r) {
+            System.err.println("ERROR: array size must be greater than zero at line " + ctx.getStart().getLine());
+        }
         return new SemNode() {
             @Override
             public boolean ok() {
-                return true;
+                return r;
             }
         };
     }
@@ -223,252 +604,7 @@ public class SemCheckVisitor
         };
     }
 
-    @Override
-    public SemNode visitForstmt(@NotNull DecafParser.ForstmtContext ctx) {
-        // FOR ID ASSIGNEQ init=expr COMMA cond=expr block
-        final SemNode v1 = visit(ctx.init);
-        final SemNode v2 = visit(ctx.cond);
-        BaseScope = ScopeHeap;
-        final SemNode v3 = visit(ctx.block());
-
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                return v1.ok() && v2.ok() && v3.ok();
-            }
-        };
-    }
-
-    @Override
-    public SemNode visitMinexpr(@NotNull DecafParser.MinexprContext ctx) {
-        final SemNode v1 = visit(ctx.expr());
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                return v1.ok();
-            }
-        };
-    }
-
-    @Override
-    public SemNode visitLocstmt(@NotNull DecafParser.LocstmtContext ctx) {
-        // location assign_op expr SEMI
-        final SemNode v1 = visit(ctx.location());
-        final SemNode v2 = visit(ctx.assign_op());
-        final SemNode v3 = visit(ctx.expr());
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                return v1.ok() && v2.ok() && v3.ok();
-            }
-        };
-    }
-
-    @Override
-    public SemNode visitAritexpr(@NotNull DecafParser.AritexprContext ctx) {
-        final SemNode v1 = visit(ctx.left);
-        final SemNode v2 = visit(ctx.right);
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                return v1.ok() && v2.ok();
-            }
-        };
-    }
-
-    @Override
-    public SemNode visitRetstmt(@NotNull DecafParser.RetstmtContext ctx) {
-        final SemNode v1 = visit(ctx.expr());
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                return v1.ok();
-            }
-        };
-    }
-
-    @Override
-    public SemNode visitRelexpr(@NotNull DecafParser.RelexprContext ctx) {
-        final SemNode v1 = visit(ctx.left);
-        final SemNode v2 = visit(ctx.right);
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                return v1.ok() && v2.ok();
-            }
-        };
-    }
-
-    @Override
-    public SemNode visitMethod_param(@NotNull DecafParser.Method_paramContext ctx) {
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                return true;
-            }
-        };
-    }
-
-    @Override
-    public SemNode visitLocarray(@NotNull DecafParser.LocarrayContext ctx) {
-        final SemNode v1 = visit(ctx.expr());
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                return v1.ok();
-            }
-        };
-    }
-
-    @Override
-    public SemNode visitCondexpr(@NotNull DecafParser.CondexprContext ctx) {
-        final SemNode v1 = visit(ctx.left);
-        final SemNode v2 = visit(ctx.right);
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                return v1.ok() && v2.ok();
-            }
-        };
-    }
-
-    @Override
-    public SemNode visitParenexpr(@NotNull DecafParser.ParenexprContext ctx) {
-        final SemNode v1 = visit(ctx.expr());
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                return v1.ok();
-            }
-        };
-    }
-
-    @Override
-    public SemNode visitEqexpr(@NotNull DecafParser.EqexprContext ctx) {
-        final SemNode v1 = visit(ctx.left);
-        final SemNode v2 = visit(ctx.right);
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                return v1.ok() && v2.ok();
-            }
-        };
-    }
-
-    @Override
-    public SemNode visitNotexpr(@NotNull DecafParser.NotexprContext ctx) {
-        final SemNode v1 = visit(ctx.expr());
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                return v1.ok();
-            }
-        };
-    }
-
-    @Override
-    public SemNode visitIfstmt(@NotNull DecafParser.IfstmtContext ctx) {
-        // IF LPAREN expr RPAREN ifs=block ( ELSE els=block )?
-        final SemNode v1 = visit(ctx.expr());
-        BaseScope = ScopeHeap;
-        final SemNode v2 = visit(ctx.ifs);
-        boolean r = true;
-        if (ctx.els != null){
-            BaseScope = ScopeHeap;
-            SemNode v3 = visit(ctx.els);
-            r = v3.ok();
-        }
-        final boolean finalR = r;
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                return v1.ok() && v2.ok() && finalR;
-            }
-        };
-    }
-
-    @Override
-    public SemNode visitMethod_decl(@NotNull DecafParser.Method_declContext ctx) {
-        // ( type | VOID ) ID LPAREN ( method_param ( COMMA method_param )*? )? RPAREN block
-        boolean r = true;
-        if (ctx.method_param() != null) {
-            for (DecafParser.Method_paramContext param : ctx.method_param()) {
-                SemNode v1 = visit(param);
-                r = r && v1.ok();
-            }
-        }
-        BaseScope = ScopeHeap;
-        final SemNode v2 = visit(ctx.block());
-        final boolean finalR = r;
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                return v2.ok() && finalR;
-            }
-        };
-    }
-
-    @Override
-    public SemNode visitMetcall(@NotNull DecafParser.MetcallContext ctx) {
-        // method_name LPAREN ( expr ( COMMA expr )*? )? RPAREN
-        boolean r = true;
-        for (DecafParser.ExprContext expr : ctx.expr()) {
-            SemNode v1 = visit(expr);
-            r = r && v1.ok();
-        }
-        final SemNode v2 = visit(ctx.method_name());
-        final boolean finalR = r;
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                return v2.ok() && finalR;
-            }
-        };
-    }
-
-    @Override
-    public SemNode visitCallout(@NotNull DecafParser.CalloutContext ctx) {
-        // CALLOUT LPAREN STRING_LITERAL ( COMMA callout_arg )*? RPAREN
-        boolean r = true;
-        for (DecafParser.Callout_argContext arg : ctx.callout_arg()) {
-            SemNode v1 = visit(arg);
-            r = r && v1.ok();
-        }
-        final boolean finalR = r;
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                return finalR;
-            }
-        };
-    }
-
-    @Override
-    public SemNode visitBlock(@NotNull DecafParser.BlockContext ctx) {
-        // LCURLY ( var_decl )*? ( statement )* RCURLY
-        int BlockScope = BaseScope + 1;
-        while (ScopeHeap < BlockScope) ScopeHeap++;
-        SymbolTable.addScope(ScopeHeap);
-        boolean r = true;
-        for (DecafParser.Var_declContext var : ctx.var_decl()) {
-            SemNode v1 = visit(var);
-            r = r && v1.ok();
-        }
-        boolean s = true;
-        for (DecafParser.StatementContext stmt : ctx.statement()) {
-            SemNode v1 = visit(stmt);
-            s = s && v1.ok();
-        }
-        while (ScopeHeap > BlockScope) ScopeHeap--;
-        final boolean finalR = r;
-        final boolean finalS = s;
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                return finalR && finalS;
-            }
-        };
-    }
+    //endregion
 
 }
 

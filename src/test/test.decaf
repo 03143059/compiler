@@ -18,6 +18,7 @@ class Program {
 
     // function that computes the greatest common divisor
     int gcd(int a, int b) {
+    int b;
         if (b == 0) { return(a); }
         else { return( gcd(b, a % b) ); }
     }

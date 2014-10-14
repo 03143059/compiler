@@ -23,14 +23,18 @@ public class Ast {
 
         tree = cc4Parser.parse();
 
-        AstVisitor visitor = new AstVisitor();
-        Node start = visitor.visit(tree);
-        start.print("  ", compilerOptions.out);
-        if (compilerOptions.isDebbuggingActiveFor(this))
-            start.print("  ", System.out);
+        try{
+            AstVisitor visitor = new AstVisitor();
+            Node start = visitor.visit(tree);
+            start.print("  ", compilerOptions.out);
 
-        if (!compilerOptions.stopAt(this))
-            new Semantic(this);
+            if (compilerOptions.isDebbuggingActiveFor(this))
+                start.print("  ", System.out);
+
+            if (!compilerOptions.stopAt(this))
+                new Semantic(this);
+        } catch(Exception e){}
+
     }
 
     public CC4Parser getCc4Parser() {

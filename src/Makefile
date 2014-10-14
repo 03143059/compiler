@@ -3,7 +3,7 @@ make: scanner\DecafLexer.class parser\DecafParser.class Compiler.class ast\Ast.c
 Compiler.class: Compiler.java
 	javac Compiler.java
 
-ast\Ast.class: ast\Ast.java ast\AstVisitor.java ast\Node.java ast\NodeList.java ast\BinOp.java ast\BlockNode.java ast\BoolLiteral.java ast\CalloutNode.java ast\CharLiteral.java ast\FieldNode.java ast\IntFieldNode.java ast\BooleanFieldNode.java ast\ForNode.java ast\IfNode.java ast\IntLiteral.java ast\LocArrayNode.java ast\LocationNode.java ast\MethodCallNode.java ast\MethodNode.java ast\BooleanMethodNode.java ast\IntMethodNode.java ast\VoidMethodNode.java ast\MethodParamNode.java ast\BooleanMethodParamNode.java ast\IntMethodParamNode.java ast\ParenNode.java ast\PrefixNode.java ast\ProgramNode.java ast\StringLiteral.java ast\VarNode.java ast\IntVarNode.java ast\BooleanVarNode.java
+ast\Ast.class: ast\*.java
 	javac ast\*.java
 
 codegen\Codegen.class: codegen\Codegen.java
@@ -15,7 +15,7 @@ irt\Irt.class: irt\Irt.java
 lib\Debug.class: lib\Debug.java
 	javac lib\Debug.java
 
-lib\SymbolTable.class: lib\SymbolTable.java lib\Symbol.java
+lib\SymbolTable.class: lib\SymbolTable.java lib\Symbol.java lib\Scope.java
 	javac lib\Symbol*.java
 
 lib\ErrorHandler.class: lib\ErrorHandler.java
