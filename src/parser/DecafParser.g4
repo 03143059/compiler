@@ -53,7 +53,7 @@ assign_op	    : ASSIGNEQ
                 | ASSIGNMINUSEQ
                 ;
 
-method_call	    : method_expr          #metcall
+method_call	    : method_name LPAREN ( expr ( COMMA expr )*? )? RPAREN          #metcall
                 | CALLOUT LPAREN STRING_LITERAL ( COMMA callout_arg )*? RPAREN  #callout
                 ;
 
@@ -80,11 +80,8 @@ location	    : ID                        #locid
    ||
 */
 
-method_expr     : method_name LPAREN ( expr ( COMMA expr )*? )? RPAREN
-                ;
-
 expr	        : location      #locexpr
-                | method_expr   #metexpr
+                | method_call   #metexpr
                 | literal       #litexpr
                 | MINUS expr    #minexpr
                 | NOT expr      #notexpr

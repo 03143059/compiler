@@ -53,7 +53,7 @@ public class SemCheckVisitor
     }
 
     @Override
-    public SemNode visitMethod_expr(@NotNull DecafParser.Method_exprContext ctx) {
+    public SemNode visitMetcall(@NotNull final DecafParser.MetcallContext ctx) {
         // method_name LPAREN ( expr ( COMMA expr )*? )? RPAREN
 
         // build param signature using types from each expr
@@ -335,11 +335,6 @@ public class SemCheckVisitor
     //region simple rules
 
     @Override
-    public SemNode visitMetcall(@NotNull final DecafParser.MetcallContext ctx) {
-        return visit(ctx.method_expr());
-    }
-
-    @Override
     public SemNode visitCallout(@NotNull DecafParser.CalloutContext ctx) {
         // CALLOUT LPAREN STRING_LITERAL ( COMMA callout_arg )*? RPAREN
         boolean r = true;
@@ -348,25 +343,11 @@ public class SemCheckVisitor
             r = r && v1.ok();
         }
         final boolean finalR = r;
-        return new SemNode() {
+        // callout returns int always
+        return new SemNode("int") {
             @Override
             public boolean ok() {
                 return finalR;
-            }
-        };
-    }
-
-    @Override
-    public SemNode visitMinexpr(@NotNull DecafParser.MinexprContext ctx) {
-        final SemNode v1 = visit(ctx.expr());
-        final boolean r = v1.getType().equals("int");
-        if (!r) {
-            System.err.println("ERROR: minus expression is only valid for integer types at line " + ctx.getStart().getLine());
-        }
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                return r && v1.ok();
             }
         };
     }
@@ -463,6 +444,21 @@ public class SemCheckVisitor
     }
 
     @Override
+    public SemNode visitMinexpr(@NotNull DecafParser.MinexprContext ctx) {
+        final SemNode v1 = visit(ctx.expr());
+        final boolean r = v1.getType().equals("int");
+        if (!r) {
+            System.err.println("ERROR: negative expression is only valid for integer types at line " + ctx.getStart().getLine());
+        }
+        return new SemNode("int") {
+            @Override
+            public boolean ok() {
+                return r && v1.ok();
+            }
+        };
+    }
+
+    @Override
     public SemNode visitRelexpr(@NotNull DecafParser.RelexprContext ctx) {
         final SemNode v1 = visit(ctx.left);
         final SemNode v2 = visit(ctx.right);
@@ -554,7 +550,7 @@ public class SemCheckVisitor
     @Override
     public SemNode visitMetexpr(@NotNull DecafParser.MetexprContext ctx) {
         // check for the return type
-        SemNode node = visit(ctx.method_expr());
+        SemNode node = visit(ctx.method_call());
         if (node.getType() == null) {
             return new SemNode() {
                 @Override

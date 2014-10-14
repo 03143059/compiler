@@ -216,13 +216,6 @@ public interface DecafParserVisitor<T> extends ParseTreeVisitor<T> {
 	T visitStart(@NotNull DecafParser.StartContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link DecafParser#method_expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMethod_expr(@NotNull DecafParser.Method_exprContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link DecafParser#callout_arg}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

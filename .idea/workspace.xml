@@ -2,10 +2,69 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f8dfea22-b6cf-486e-9ed7-1cfff20dcdb7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/Ast.class" afterPath="$PROJECT_DIR$/src/ast/Ast.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/AstVisitor.class" afterPath="$PROJECT_DIR$/src/ast/AstVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$AritexprContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$AritexprContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$ArrayContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$ArrayContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$Assign_opContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$Assign_opContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$Bad_field_declContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$Bad_field_declContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$BlkstmtContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$BlkstmtContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$BlockContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$BlockContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$BrkstmtContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$BrkstmtContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$CalloutContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$CalloutContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$Callout_argContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$Callout_argContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$CntstmtContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$CntstmtContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$CondexprContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$CondexprContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$EqexprContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$EqexprContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$ErrordeclContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$ErrordeclContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$ExprContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$ExprContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$Field_declContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$Field_declContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$Field_declsContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$Field_declsContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$ForstmtContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$ForstmtContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$IfstmtContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$IfstmtContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$LiteralContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$LiteralContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$LitexprContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$LitexprContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$LocarrayContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$LocarrayContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$LocationContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$LocationContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$LocexprContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$LocexprContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$LocidContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$LocidContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$LocstmtContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$LocstmtContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$MetcallContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$MetcallContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$MetexprContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$MetexprContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$Method_callContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$Method_callContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$Method_declContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$Method_declContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$Method_nameContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$Method_nameContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$Method_paramContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$Method_paramContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$MetstmtContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$MetstmtContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$MinexprContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$MinexprContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$NotexprContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$NotexprContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$ParenexprContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$ParenexprContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$RelexprContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$RelexprContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$RetstmtContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$RetstmtContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$SingleidContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$SingleidContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$StartContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$StartContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$StatementContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$StatementContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$TypeContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$TypeContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser$Var_declContext.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser$Var_declContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser.class" afterPath="$PROJECT_DIR$/src/parser/DecafParser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParserBaseListener.class" afterPath="$PROJECT_DIR$/src/parser/DecafParserBaseListener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParserBaseVisitor.class" afterPath="$PROJECT_DIR$/src/parser/DecafParserBaseVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParserListener.class" afterPath="$PROJECT_DIR$/src/parser/DecafParserListener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParserVisitor.class" afterPath="$PROJECT_DIR$/src/parser/DecafParserVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$16.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$16.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$17.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$17.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$18.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$18.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$19.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$19.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$20.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$20.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$21.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$21.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$22.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$22.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$23.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$23.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$24.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$24.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$25.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$25.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$26.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$26.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$27.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$27.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$28.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$28.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$29.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$29.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$3.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$30.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$30.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$31.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$31.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$32.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$32.class" />
@@ -16,14 +75,20 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$37.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$37.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$38.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$38.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$39.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$39.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$4.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$4.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$40.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$40.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/Semantic.class" afterPath="$PROJECT_DIR$/src/semantic/Semantic.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/Ast.java" afterPath="$PROJECT_DIR$/src/ast/Ast.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/SymbolTable.class" afterPath="$PROJECT_DIR$/src/lib/SymbolTable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/AstVisitor.java" afterPath="$PROJECT_DIR$/src/ast/AstVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser.g4" afterPath="$PROJECT_DIR$/src/parser/DecafParser.g4" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParser.java" afterPath="$PROJECT_DIR$/src/parser/DecafParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParserBaseListener.java" afterPath="$PROJECT_DIR$/src/parser/DecafParserBaseListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParserBaseVisitor.java" afterPath="$PROJECT_DIR$/src/parser/DecafParserBaseVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParserListener.java" afterPath="$PROJECT_DIR$/src/parser/DecafParserListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/DecafParserVisitor.java" afterPath="$PROJECT_DIR$/src/parser/DecafParserVisitor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor.java" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/Semantic.java" afterPath="$PROJECT_DIR$/src/semantic/Semantic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/test.decaf" afterPath="$PROJECT_DIR$/src/test/test.decaf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/test.s" afterPath="$PROJECT_DIR$/src/test/test.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/SymbolTable.java" afterPath="$PROJECT_DIR$/src/lib/SymbolTable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/test2.decaf" afterPath="$PROJECT_DIR$/src/test/test2.decaf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/test2.s" afterPath="$PROJECT_DIR$/src/test/test2.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -88,21 +153,69 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="SemCheckVisitor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/semantic/SemCheckVisitor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="6005" max-vertical-offset="10523">
+              <caret line="450" column="32" selection-start-line="450" selection-start-column="32" selection-end-line="450" selection-end-column="32" />
+              <folding>
+                <element signature="e#11791#11792#0" expanded="true" />
+                <element signature="e#11836#11837#0" expanded="true" />
+                <element signature="e#15417#15418#0" expanded="true" />
+                <element signature="e#15468#15469#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="test2.decaf" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/test2.decaf">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="595" max-vertical-offset="1547">
-              <caret line="68" column="19" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="1547">
+              <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DecafParser.g4" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Semantic.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/semantic/Semantic.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
+              <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DecafParser.g4" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/parser/DecafParser.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.3309659" vertical-offset="845" max-vertical-offset="1819">
-              <caret line="36" column="21" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="709" max-vertical-offset="1768">
+              <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SymbolTable.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lib/SymbolTable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1224" max-vertical-offset="3213">
+              <caret line="105" column="32" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test2.s" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/test2.s">
+          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -130,7 +243,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/ast/BinOp.java" />
         <option value="$PROJECT_DIR$/src/ast/StringLiteral.java" />
         <option value="$PROJECT_DIR$/src/ast/PrefixNode.java" />
         <option value="$PROJECT_DIR$/src/ast/ParenNode.java" />
@@ -171,16 +283,17 @@
         <option value="$PROJECT_DIR$/src/ast/Node.java" />
         <option value="$PROJECT_DIR$/src/lib/Symbol.java" />
         <option value="$PROJECT_DIR$/src/semantic/SemNode.java" />
-        <option value="$PROJECT_DIR$/src/lib/SymbolTable.java" />
-        <option value="$PROJECT_DIR$/src/parser/DecafParser.g4" />
-        <option value="$PROJECT_DIR$/src/ast/AstVisitor.java" />
         <option value="$PROJECT_DIR$/src/Makefile" />
         <option value="$PROJECT_DIR$/src/test/n.decaf" />
-        <option value="$PROJECT_DIR$/src/semantic/SemCheckVisitor.java" />
         <option value="$PROJECT_DIR$/src/test/test.decaf" />
         <option value="$PROJECT_DIR$/src/semantic/Semantic.java" />
         <option value="$PROJECT_DIR$/src/ast/Ast.java" />
         <option value="$PROJECT_DIR$/src/test/test.s" />
+        <option value="$PROJECT_DIR$/src/parser/DecafParser.g4" />
+        <option value="$PROJECT_DIR$/src/ast/AstVisitor.java" />
+        <option value="$PROJECT_DIR$/src/semantic/SemCheckVisitor.java" />
+        <option value="$PROJECT_DIR$/src/test/test2.decaf" />
+        <option value="$PROJECT_DIR$/src/lib/SymbolTable.java" />
       </list>
     </option>
   </component>
@@ -298,7 +411,43 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="semantic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="parser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -634,7 +783,7 @@
       <workItem from="1412190778418" duration="16000" />
       <workItem from="1412657394377" duration="3882000" />
       <workItem from="1413252143335" duration="37952000" />
-      <workItem from="1413311141355" duration="492000" />
+      <workItem from="1413311141355" duration="1311000" />
     </task>
     <task id="LOCAL-00001" summary="changed project settings">
       <created>1407979735465</created>
@@ -748,11 +897,15 @@
       <created>1413289921037</created>
       <updated>1413289921037</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="- disabled debugging options">
+      <created>1413311669788</created>
+      <updated>1413311669788</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="172215000" />
+    <option name="totallyTimeSpent" value="173034000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="886" extended-state="6" />
@@ -772,20 +925,20 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4945055" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32846716" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2445055" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24967907" sideWeight="0.32328767" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24967907" sideWeight="0.3228022" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24967907" sideWeight="0.67671233" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24967907" sideWeight="0.67582417" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924694" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909092" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32846716" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909092" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -805,7 +958,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="changed project settings" />
     <MESSAGE value="Updated Lexer" />
     <MESSAGE value="Updated Parser Grammar" />
     <MESSAGE value="Fixed Parser Grammar" />
@@ -830,7 +982,8 @@
     <MESSAGE value="- Fixed return check" />
     <MESSAGE value="- Double checked all semantic rules. All are working" />
     <MESSAGE value="- Added missing files in version control" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added missing files in version control" />
+    <MESSAGE value="- disabled debugging options" />
+    <option name="LAST_COMMIT_MESSAGE" value="- disabled debugging options" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -842,13 +995,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../6035decafcompiler-read-only/Compiler/src/decaf/ir/ast/ClassDecl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3148148" vertical-offset="0" max-vertical-offset="850">
-          <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../6035decafcompiler-read-only/Compiler/src/decaf/ir/ASTVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.38746437" vertical-offset="0" max-vertical-offset="702">
@@ -1084,10 +1230,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
           <caret line="30" column="68" selection-start-line="30" selection-start-column="68" selection-end-line="30" selection-end-column="68" />
           <folding>
-            <element signature="e#383#384#0" expanded="true" />
-            <element signature="e#408#409#0" expanded="true" />
-            <element signature="e#516#517#0" expanded="true" />
-            <element signature="e#595#596#0" expanded="true" />
+            <element signature="e#383#384#0" expanded="false" />
+            <element signature="e#408#409#0" expanded="false" />
+            <element signature="e#516#517#0" expanded="false" />
+            <element signature="e#595#596#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1110,6 +1256,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="21766" max-vertical-offset="31943">
           <caret line="1422" column="0" selection-start-line="1422" selection-start-column="0" selection-end-line="1422" selection-end-column="0" />
+          <folding>
+            <element signature="e#30928#30929#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1118,8 +1267,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
-            <element signature="e#252#253#0" expanded="true" />
-            <element signature="e#278#279#0" expanded="true" />
+            <element signature="e#252#253#0" expanded="false" />
+            <element signature="e#278#279#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1128,32 +1277,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.460114" vertical-offset="12" max-vertical-offset="2074">
           <caret line="61" column="12" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ast/AstVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="854" max-vertical-offset="4505">
-          <caret line="70" column="77" selection-start-line="70" selection-start-column="77" selection-end-line="70" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/semantic/SemCheckVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="7269" max-vertical-offset="10472">
-          <caret line="563" column="14" selection-start-line="563" selection-start-column="14" selection-end-line="563" selection-end-column="14" />
-          <folding>
-            <element signature="e#18804#18949#0" expanded="true" />
-            <element signature="e#18934#18935#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/semantic/Semantic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
-          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1203,14 +1326,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/SymbolTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="182" max-vertical-offset="3298">
-          <caret line="42" column="21" selection-start-line="42" selection-start-column="15" selection-end-line="42" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Makefile">
       <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
         <state />
@@ -1222,18 +1337,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/test2.decaf">
+    <entry file="file://$PROJECT_DIR$/src/ast/AstVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="595" max-vertical-offset="1547">
-          <caret line="68" column="19" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="1789" max-vertical-offset="4284">
+          <caret line="129" column="16" selection-start-line="129" selection-start-column="16" selection-end-line="129" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/parser/DecafParser.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.3309659" vertical-offset="845" max-vertical-offset="1819">
-          <caret line="36" column="21" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="828" max-vertical-offset="1768">
+          <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/test2.decaf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="1547">
+          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/semantic/SemCheckVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6005" max-vertical-offset="10523">
+          <caret line="450" column="32" selection-start-line="450" selection-start-column="32" selection-end-line="450" selection-end-column="32" />
+          <folding>
+            <element signature="e#11791#11792#0" expanded="true" />
+            <element signature="e#11836#11837#0" expanded="true" />
+            <element signature="e#15417#15418#0" expanded="true" />
+            <element signature="e#15468#15469#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/semantic/Semantic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
+          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/SymbolTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1224" max-vertical-offset="3213">
+          <caret line="105" column="32" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/test2.s">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

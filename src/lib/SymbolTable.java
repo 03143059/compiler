@@ -102,7 +102,8 @@ public class SymbolTable {
     }
 
     public static void print(PrintStream out) {
-        out.println("Tabla de simbolos:");
+        out.println("SIMBOL TABLE");
+        out.println("============");
         String pad = "";
         int base = 0;
         for(Map.Entry<Integer, Scope> entry : scopes.entrySet()) {
