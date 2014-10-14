@@ -6,6 +6,7 @@ Proyectos de CC4
 GitHub: https://github.com/03143059/compiler
 
 CHANGELOG:
+- 06/10/2014 Added more semantic rules, and a new SymbolTable structure
 - 29/09/2014 Added semantic analyzer
 - 29/09/2014 Fixed symbol table class
 - 29/09/2014 Fixed output from Ast

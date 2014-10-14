@@ -3,6 +3,7 @@ package semantic;
 import ast.*;
 import lib.*;
 import org.antlr.v4.runtime.misc.NotNull;
+import org.antlr.v4.runtime.tree.TerminalNode;
 import parser.DecafParser;
 import parser.DecafParserBaseVisitor;
 
@@ -13,13 +14,13 @@ public class SemCheckVisitor
         extends DecafParserBaseVisitor<SemNode>
 //        implements DecafParserVisitor<SemNode>
 {
-    private static final int GLOBAL_SCOPE = 1;
+    private static int SCOPE_HEAP = 1; // control de scopes usando una pila
 
     @Override
     public SemNode visitStart(@NotNull DecafParser.StartContext ctx) {
         // CLASS PROGRAM LCURLY ( field_decls )*? ( method_decl )*? RCURLY
         // add global scope
-        SymbolTable.addScope(GLOBAL_SCOPE);
+        SymbolTable.addScope(SCOPE_HEAP);
         if (ctx.field_decls() != null) {
             for (DecafParser.Field_declsContext v : ctx.field_decls())
                 visit(v);
@@ -41,7 +42,7 @@ public class SemCheckVisitor
         // type field_decl ( COMMA field_decl )*? SEMI
         for (DecafParser.Field_declContext field : ctx.field_decl()) {
             // check if var is already defined
-            Symbol s = SymbolTable.lookup(field.getText(), GLOBAL_SCOPE);
+            Symbol s = SymbolTable.lookup(field.getText(), SCOPE_HEAP);
             if (s != null) { // existe
                 System.err.println("ERROR: " + field.getText() + " is already declared at line " + ctx.getStart().getLine());
                 return new SemNode() {
@@ -52,7 +53,7 @@ public class SemCheckVisitor
                 };
             } else {
                 // add variable to global scope
-                SymbolTable.store(field.getText(), ctx.type().getText(), GLOBAL_SCOPE);
+                SymbolTable.store(field.getText(), ctx.type().getText(), SCOPE_HEAP);
             }
             visit(field);
         }
@@ -63,14 +64,37 @@ public class SemCheckVisitor
             }
         };
     }
-/*
+
     @Override
-    public SemNode visitCallout_arg(@NotNull DecafParser.Callout_argContext ctx) {
-        if (ctx.expr() != null)
-            return visit(ctx.expr());
-        else if (ctx.STRING_LITERAL() != null)
-            return new StringLiteral(ctx.STRING_LITERAL().getText());
-        return null;
+    public SemNode visitVar_decl(@NotNull DecafParser.Var_declContext ctx) {
+        // type ID (COMMA ID)*? SEMI
+        for (TerminalNode id : ctx.ID()) {
+            // check if var is already defined
+            Symbol s = SymbolTable.lookup(id.getText(), SCOPE_HEAP);
+            if (s != null) { // existe
+                System.err.println("ERROR: " + id.getText() + " is already declared at line " + ctx.getStart().getLine());
+                return new SemNode() {
+                    @Override
+                    public boolean ok() {
+                        return false;
+                    }
+                };
+            } else {
+                // add variable to global scope
+                SymbolTable.store(id.getText(), ctx.type().getText(), SCOPE_HEAP);
+            }
+        }
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return true;
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitBlkstmt(@NotNull DecafParser.BlkstmtContext ctx) {
+        return visit(ctx.block());
     }
 
     @Override
@@ -79,9 +103,288 @@ public class SemCheckVisitor
     }
 
     @Override
-    public SemNode visitBlkstmt(@NotNull DecafParser.BlkstmtContext ctx) {
-        return visit(ctx.block());
+    public SemNode visitLocexpr(@NotNull DecafParser.LocexprContext ctx) {
+        return visit(ctx.location());
     }
+
+    @Override
+    public SemNode visitMetstmt(@NotNull DecafParser.MetstmtContext ctx) {
+        return visit(ctx.method_call());
+    }
+
+    @Override
+    public SemNode visitMetexpr(@NotNull DecafParser.MetexprContext ctx) {
+        return visit(ctx.method_call());
+    }
+
+    @Override
+    public SemNode visitSingleid(@NotNull DecafParser.SingleidContext ctx) {
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return true;
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitArray(@NotNull DecafParser.ArrayContext ctx) {
+        // ID LSQUARE INT_LITERAL RSQUARE
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return true;
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitLocid(@NotNull DecafParser.LocidContext ctx) {
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return true;
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitMethod_name(@NotNull DecafParser.Method_nameContext ctx) {
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return true;
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitCallout_arg(@NotNull DecafParser.Callout_argContext ctx) {
+        if (ctx.expr() != null)
+            return visit(ctx.expr());
+        else if (ctx.STRING_LITERAL() != null)
+            return new SemNode() {
+                @Override
+                public boolean ok() {
+                    return true;
+                }
+            };
+        return null;
+    }
+
+    @Override
+    public SemNode visitAssign_op(@NotNull DecafParser.Assign_opContext ctx) {
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return true;
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitType(@NotNull DecafParser.TypeContext ctx) {
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return true;
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitLiteral(@NotNull DecafParser.LiteralContext ctx) {
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return true;
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitBrkstmt(@NotNull DecafParser.BrkstmtContext ctx) {
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return true;
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitCntstmt(@NotNull DecafParser.CntstmtContext ctx) {
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return true;
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitForstmt(@NotNull DecafParser.ForstmtContext ctx) {
+        // FOR ID ASSIGNEQ init=expr COMMA cond=expr block
+        final SemNode v1 = visit(ctx.init);
+        final SemNode v2 = visit(ctx.cond);
+        final SemNode v3 = visit(ctx.block());
+
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok() && v2.ok() && v3.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitMinexpr(@NotNull DecafParser.MinexprContext ctx) {
+        final SemNode v1 = visit(ctx.expr());
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitLocstmt(@NotNull DecafParser.LocstmtContext ctx) {
+        // location assign_op expr SEMI
+        final SemNode v1 = visit(ctx.location());
+        final SemNode v2 = visit(ctx.assign_op());
+        final SemNode v3 = visit(ctx.expr());
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok() && v2.ok() && v3.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitAritexpr(@NotNull DecafParser.AritexprContext ctx) {
+        final SemNode v1 = visit(ctx.left);
+        final SemNode v2 = visit(ctx.right);
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok() && v2.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitRetstmt(@NotNull DecafParser.RetstmtContext ctx) {
+        final SemNode v1 = visit(ctx.expr());
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitRelexpr(@NotNull DecafParser.RelexprContext ctx) {
+        final SemNode v1 = visit(ctx.left);
+        final SemNode v2 = visit(ctx.right);
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok() && v2.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitMethod_param(@NotNull DecafParser.Method_paramContext ctx) {
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return true;
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitLocarray(@NotNull DecafParser.LocarrayContext ctx) {
+        final SemNode v1 = visit(ctx.expr());
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitCondexpr(@NotNull DecafParser.CondexprContext ctx) {
+        final SemNode v1 = visit(ctx.left);
+        final SemNode v2 = visit(ctx.right);
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok() && v2.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitParenexpr(@NotNull DecafParser.ParenexprContext ctx) {
+        final SemNode v1 = visit(ctx.expr());
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitEqexpr(@NotNull DecafParser.EqexprContext ctx) {
+        final SemNode v1 = visit(ctx.left);
+        final SemNode v2 = visit(ctx.right);
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok() && v2.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitNotexpr(@NotNull DecafParser.NotexprContext ctx) {
+        final SemNode v1 = visit(ctx.expr());
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok();
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitIfstmt(@NotNull DecafParser.IfstmtContext ctx) {
+        // IF LPAREN expr RPAREN ifs=block ( ELSE els=block )?
+        final SemNode v1 = visit(ctx.expr());
+        final SemNode v2 = visit(ctx.ifs);
+        boolean r = true;
+        if (ctx.els != null){
+            SemNode v3 = visit(ctx.els);
+            r = v3.ok();
+        }
+        final SemNode v3 = visit(ctx.expr());
+        final boolean finalR = r;
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v1.ok() && v2.ok() && finalR;
+            }
+        };
+    }
+
+/*
 
     @Override
     public SemNode visitMethod_decl(@NotNull DecafParser.Method_declContext ctx) {
@@ -100,73 +403,6 @@ public class SemCheckVisitor
     }
 
     @Override
-    public SemNode visitForstmt(@NotNull DecafParser.ForstmtContext ctx) {
-        // FOR ID ASSIGNEQ init=expr COMMA cond=expr block
-        return new ForNode(ctx.ID().getText(), visit(ctx.init), visit(ctx.cond), visit(ctx.block()));
-    }
-
-    @Override
-    public SemNode visitMinexpr(@NotNull DecafParser.MinexprContext ctx) {
-        return new PrefixNode(ctx.MINUS().getText(), visit(ctx.expr()));
-    }
-
-    @Override
-    public SemNode visitLocstmt(@NotNull DecafParser.LocstmtContext ctx) {
-        // location assign_op expr SEMI
-        return new LocationNode(visit(ctx.location()), visit(ctx.assign_op()), visit(ctx.expr()));
-    }
-
-    @Override
-    public SemNode visitAssign_op(@NotNull DecafParser.Assign_opContext ctx) {
-        return new StringLiteral(ctx.ASSIGNEQ() != null ? ctx.ASSIGNEQ().getText() :
-                ctx.ASSIGNMINUSEQ() != null ? ctx.ASSIGNMINUSEQ().getText() :
-                        ctx.ASSIGNPLUSEQ() != null ? ctx.ASSIGNPLUSEQ().getText() : null);
-    }
-
-
-
-    //region field_decl
-    @Override
-    public SemNode visitSingleid(@NotNull DecafParser.SingleidContext ctx) {
-        return new StringLiteral(ctx.getText());
-    }
-
-    @Override
-    public SemNode visitArray(@NotNull DecafParser.ArrayContext ctx) {
-        // ID LSQUARE INT_LITERAL RSQUARE
-        // TODO: add array handling
-        return new StringLiteral(ctx.ID().getText() + "[" + ctx.INT_LITERAL().getText() + "]");
-    }
-    //endregion
-
-    @Override
-    public SemNode visitVar_decl(@NotNull DecafParser.Var_declContext ctx) {
-        // type ID (COMMA ID)*? SEMI
-        return (ctx.type().BOOLEAN() != null)? new BooleanVarNode(ctx.ID()) :
-                (ctx.type().INT() != null) ?  new IntVarNode(ctx.ID()) : null; // no deberia de suceder
-    }
-
-    @Override
-    public SemNode visitLocid(@NotNull DecafParser.LocidContext ctx) {
-        return new StringLiteral(ctx.ID().getText());
-    }
-
-    @Override
-    public SemNode visitCallout(@NotNull DecafParser.CalloutContext ctx) {
-        // CALLOUT LPAREN STRING_LITERAL ( COMMA callout_arg )*? RPAREN
-        SemNodeList args = new SemNodeList();
-        for (DecafParser.Callout_argContext arg : ctx.callout_arg()) {
-            args.add(visit(arg));
-        }
-        return new CalloutNode(ctx.STRING_LITERAL().getText(), args);
-    }
-
-    @Override
-    public SemNode visitAritexpr(@NotNull DecafParser.AritexprContext ctx) {
-        return new BinOp(ctx.op.getText(), visit(ctx.left), visit(ctx.right));
-    }
-
-    @Override
     public SemNode visitMetcall(@NotNull DecafParser.MetcallContext ctx) {
         // method_name LPAREN ( expr ( COMMA expr )*? )? RPAREN
         SemNodeList exprs = new SemNodeList();
@@ -177,54 +413,13 @@ public class SemCheckVisitor
     }
 
     @Override
-    public SemNode visitType(@NotNull DecafParser.TypeContext ctx) {
-        return new StringLiteral(
-                (ctx.INT() != null) ? ctx.INT().getText() :
-                        (ctx.BOOLEAN() != null) ? ctx.BOOLEAN().getText() : null);
-    }
-
-    @Override
-    public SemNode visitRelexpr(@NotNull DecafParser.RelexprContext ctx) {
-        return new BinOp(ctx.op.getText(), visit(ctx.left), visit(ctx.right));
-    }
-
-    @Override
-    public SemNode visitLiteral(@NotNull DecafParser.LiteralContext ctx) {
-        if (ctx.BOOL_LITERAL() != null) return new BoolLiteral(ctx.BOOL_LITERAL().getText());
-        else if (ctx.CHAR_LITERAL() != null) return new CharLiteral(ctx.CHAR_LITERAL().getText());
-        else if (ctx.INT_LITERAL() != null) return new IntLiteral(ctx.INT_LITERAL().getText());
-        return null;
-    }
-
-    @Override
-    public SemNode visitRetstmt(@NotNull DecafParser.RetstmtContext ctx) {
-        return new PrefixNode(ctx.RETURN().getText(), visit(ctx.expr()));
-    }
-
-    @Override
-    public SemNode visitMethod_name(@NotNull DecafParser.Method_nameContext ctx) {
-        return new StringLiteral(ctx.ID().getText());
-    }
-
-    @Override
-    public SemNode visitMethod_param(@NotNull DecafParser.Method_paramContext ctx) {
-        return (ctx.type().BOOLEAN() != null)? new BooleanMethodParamNode(ctx.ID().getText()) :
-                (ctx.type().INT() != null) ?  new IntMethodParamNode(ctx.ID().getText()) : null; // no deberia de suceder
-    }
-
-    @Override
-    public SemNode visitLocarray(@NotNull DecafParser.LocarrayContext ctx) {
-        return new LocArrayNode(ctx.ID().getText(), visit(ctx.expr()));
-    }
-
-    @Override
-    public SemNode visitLocexpr(@NotNull DecafParser.LocexprContext ctx) {
-        return visit(ctx.location());
-    }
-
-    @Override
-    public SemNode visitCondexpr(@NotNull DecafParser.CondexprContext ctx) {
-        return new BinOp(ctx.op.getText(), visit(ctx.left), visit(ctx.right));
+    public SemNode visitCallout(@NotNull DecafParser.CalloutContext ctx) {
+        // CALLOUT LPAREN STRING_LITERAL ( COMMA callout_arg )*? RPAREN
+        SemNodeList args = new SemNodeList();
+        for (DecafParser.Callout_argContext arg : ctx.callout_arg()) {
+            args.add(visit(arg));
+        }
+        return new CalloutNode(ctx.STRING_LITERAL().getText(), args);
     }
 
     @Override
@@ -239,46 +434,9 @@ public class SemCheckVisitor
         return new BlockNode(vars, stmts);
     }
 
-    @Override
-    public SemNode visitMetstmt(@NotNull DecafParser.MetstmtContext ctx) {
-        return visit(ctx.method_call());
-    }
 
-    @Override
-    public SemNode visitParenexpr(@NotNull DecafParser.ParenexprContext ctx) {
-        return new ParenNode(visit(ctx.expr()));
-    }
 
-    @Override
-    public SemNode visitEqexpr(@NotNull DecafParser.EqexprContext ctx) {
-        return new BinOp(ctx.op.getText(), visit(ctx.left), visit(ctx.right));
-    }
 
-    @Override
-    public SemNode visitNotexpr(@NotNull DecafParser.NotexprContext ctx) {
-        return new PrefixNode(ctx.NOT().getText(), visit(ctx.expr()));
-    }
-
-    @Override
-    public SemNode visitMetexpr(@NotNull DecafParser.MetexprContext ctx) {
-        return visit(ctx.method_call());
-    }
-
-    @Override
-    public SemNode visitIfstmt(@NotNull DecafParser.IfstmtContext ctx) {
-        // IF LPAREN expr RPAREN ifs=block ( ELSE els=block )?
-        return new IfNode(visit(ctx.expr()), visit(ctx.ifs), ctx.els != null?visit(ctx.els):null);
-    }
-
-    @Override
-    public SemNode visitBrkstmt(@NotNull DecafParser.BrkstmtContext ctx) {
-        return new StringLiteral(ctx.BREAK().getText());
-    }
-
-    @Override
-    public SemNode visitCntstmt(@NotNull DecafParser.CntstmtContext ctx) {
-        return new StringLiteral(ctx.CONTINUE().getText());
-    }
 */
 }
 
