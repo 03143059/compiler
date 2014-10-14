@@ -4,7 +4,6 @@ import lib.Symbol;
 import lib.SymbolTable;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.TerminalNode;
-import org.omg.CORBA.Environment;
 import parser.DecafParser;
 import parser.DecafParserBaseVisitor;
 
@@ -13,10 +12,11 @@ import parser.DecafParserBaseVisitor;
  */
 public class SemCheckVisitor
         extends DecafParserBaseVisitor<SemNode>
-//        implements DecafParserVisitor<SemNode>
+        //       implements DecafParserVisitor<SemNode>
 {
     private int ScopeHeap = 1; // control de scopes usando una pila
     private int BaseScope = 1; // Control de scopes multiples en otro scope
+    private String currMethodIDForReturn = "";
 
     @Override
     public SemNode visitStart(@NotNull DecafParser.StartContext ctx) {
@@ -35,6 +35,40 @@ public class SemCheckVisitor
         final Symbol s = SymbolTable.lookup("main()", 1, false);
         if (s == null || (s.getParams() != null && s.getParams().length() > 0)) { // no existe
             System.err.println("ERROR: method main is missing from program at line " + ctx.getStop().getLine());
+            return new SemNode("null") {
+                @Override
+                public boolean ok() {
+                    return false;
+                }
+            };
+        }
+
+        return new SemNode(s.getType()) { // return type is main return type
+            @Override
+            public boolean ok() {
+                return true;
+            }
+        };
+    }
+
+    @Override
+    public SemNode visitMethod_expr(@NotNull DecafParser.Method_exprContext ctx) {
+        // method_name LPAREN ( expr ( COMMA expr )*? )? RPAREN
+
+        // build param signature using types from each expr
+        StringBuilder params = new StringBuilder();
+        if (ctx.expr() != null) {
+            for (DecafParser.ExprContext expr : ctx.expr()) {
+                if (params.length() > 0) params.append(",");
+                params.append(visit(expr).getType());
+            }
+        }
+
+        // check if method is already defined
+        String methodId = ctx.method_name().getText() + "(" + params + ")";
+        final Symbol s = SymbolTable.locate(methodId, ScopeHeap);
+        if (s == null) { // no existe
+            System.err.println("ERROR: " + methodId + " has not been declared at line " + ctx.getStart().getLine());
             return new SemNode() {
                 @Override
                 public boolean ok() {
@@ -43,11 +77,17 @@ public class SemCheckVisitor
             };
         }
 
-        return new SemNode() {
+        boolean r = true;
+        for (DecafParser.ExprContext expr : ctx.expr()) {
+            SemNode v1 = visit(expr);
+            r = r && v1.ok();
+        }
+        final SemNode v2 = visit(ctx.method_name());
+        final boolean finalR = r;
+        return new SemNode(s.getType()) { // return type is method return type
             @Override
             public boolean ok() {
-                type = s.getType(); // return type is main return type
-                return true;
+                return finalR && v2.ok();
             }
         };
     }
@@ -139,7 +179,7 @@ public class SemCheckVisitor
         // FOR ID ASSIGNEQ init=expr COMMA cond=expr block
 
         // check if var is already defined
-        Symbol s = SymbolTable.lookup(ctx.ID().getText(), ScopeHeap);
+        Symbol s = SymbolTable.locate(ctx.ID().getText(), ScopeHeap);
         if (s == null) { // no existe
             System.err.println("ERROR: " + ctx.ID().getText() + " has not been declared at line " + ctx.getStart().getLine());
             return new SemNode() {
@@ -218,7 +258,9 @@ public class SemCheckVisitor
         }
 
         // add method to global scope
-        SymbolTable.store(methodID, ctx.VOID()==null?ctx.type().getText():"void", params.toString(), BaseScope);
+        SymbolTable.store(methodID, ctx.VOID() == null ? ctx.type().getText() : "void", params.toString(), BaseScope);
+
+        currMethodIDForReturn = methodID;
 
         ScopeHeap++;
         SymbolTable.addScope(ScopeHeap, BaseScope, ctx.ID().getText());
@@ -293,45 +335,7 @@ public class SemCheckVisitor
 
     @Override
     public SemNode visitMetcall(@NotNull final DecafParser.MetcallContext ctx) {
-        // method_name LPAREN ( expr ( COMMA expr )*? )? RPAREN
-
-        // build param signature using types from each expr
-        StringBuilder params = new StringBuilder();
-        if (ctx.expr() != null) {
-            for (DecafParser.ExprContext expr : ctx.expr()) {
-                if (params.length() > 0) params.append(",");
-                //params.append(expr.getText());
-               // visit(expr);
-            }
-        }
-
-        // check if method is already defined
-        String methodId = ctx.method_name().getText() + "(" + params + ")";
-        final Symbol s = SymbolTable.lookup(methodId, ScopeHeap);
-        if (s == null) { // no existe
-            System.err.println("ERROR: " + ctx.method_name().getText() + " has not been declared at line " + ctx.getStart().getLine());
-            return new SemNode() {
-                @Override
-                public boolean ok() {
-                    return false;
-                }
-            };
-        }
-
-        boolean r = true;
-        for (DecafParser.ExprContext expr : ctx.expr()) {
-            SemNode v1 = visit(expr);
-            r = r && v1.ok();
-        }
-        final SemNode v2 = visit(ctx.method_name());
-        final boolean finalR = r;
-        return new SemNode() {
-            @Override
-            public boolean ok() {
-                type = s.getType(); // return type is method return type
-                return finalR && v2.ok();
-            }
-        };
+        return visit(ctx.method_expr());
     }
 
     @Override
@@ -374,12 +378,11 @@ public class SemCheckVisitor
         final SemNode v3 = visit(ctx.expr());
         final boolean r = v1.getType().equals(v3.getType());
         if (!r) {
-            System.err.println("ERROR: mismatch types at line " + ctx.getStart().getLine());
+            System.err.printf("ERROR: mismatch types (%s, %s) at line %d\n", v1.getType(), v3.getType(), ctx.getStart().getLine());
         }
-        return new SemNode() {
+        return new SemNode(v1.getType()) { // return type is left side type
             @Override
             public boolean ok() {
-                type = v1.getType();
                 return r && v1.ok() && v2.ok() && v3.ok();
             }
         };
@@ -393,10 +396,9 @@ public class SemCheckVisitor
         if (!r) {
             System.err.println("ERROR: arithmetic expression is only valid for integer types at line " + ctx.getStart().getLine());
         }
-        return new SemNode() {
+        return new SemNode("int") {
             @Override
             public boolean ok() {
-                type = "int";
                 return r && v1.ok() && v2.ok();
             }
         };
@@ -404,12 +406,36 @@ public class SemCheckVisitor
 
     @Override
     public SemNode visitRetstmt(@NotNull DecafParser.RetstmtContext ctx) {
-        final SemNode v1 = visit(ctx.expr());
-        return new SemNode() {
+        Symbol s = SymbolTable.locate(currMethodIDForReturn, BaseScope); // look in parent scope too
+        String rt = s.getType();
+        boolean r = true;
+        if (rt.equals("void") && ctx.expr() != null) {
+            System.err.println("ERROR: void methods can't have return values at line " + ctx.getStart().getLine());
+            r = false;
+        }
+
+        if (!rt.equals("void") && ctx.expr() == null) {
+            System.err.println("ERROR: non void methods must have return values at line " + ctx.getStart().getLine());
+            r = false;
+        }
+
+        if (ctx.expr() != null) {
+            SemNode v1 = visit(ctx.expr());
+
+            r = v1.ok();
+
+            if (!rt.equals(v1.getType())) {
+                System.err.println("ERROR: return value must match method type at line " + ctx.getStart().getLine());
+                r = false;
+            }
+        }
+
+        final boolean finalR = r;
+
+        return new SemNode(rt) {
             @Override
             public boolean ok() {
-                type = v1.getType();
-                return v1.ok();
+                return finalR;
             }
         };
     }
@@ -418,14 +444,13 @@ public class SemCheckVisitor
     public SemNode visitRelexpr(@NotNull DecafParser.RelexprContext ctx) {
         final SemNode v1 = visit(ctx.left);
         final SemNode v2 = visit(ctx.right);
-        final boolean r = v1.getType().equals("boolean") && v2.getType().equals("boolean");
+        final boolean r = v1.getType().equals("int") && v2.getType().equals("int");
         if (!r) {
-            System.err.println("ERROR: relation expression is only valid for boolean types at line " + ctx.getStart().getLine());
+            System.err.println("ERROR: relation expression is only valid for integer types at line " + ctx.getStart().getLine());
         }
-        return new SemNode() {
+        return new SemNode("boolean") {
             @Override
             public boolean ok() {
-                type = "boolean";
                 return r && v1.ok() && v2.ok();
             }
         };
@@ -434,14 +459,14 @@ public class SemCheckVisitor
     @Override
     public SemNode visitCondexpr(@NotNull DecafParser.CondexprContext ctx) {
         final SemNode v1 = visit(ctx.left);
-        final SemNode v2 = visit(ctx.right);final boolean r = v1.getType().equals("boolean") && v2.getType().equals("boolean");
+        final SemNode v2 = visit(ctx.right);
+        final boolean r = v1.getType().equals("boolean") && v2.getType().equals("boolean");
         if (!r) {
             System.err.println("ERROR: conditional expression is only valid for boolean types at line " + ctx.getStart().getLine());
         }
-        return new SemNode() {
+        return new SemNode("boolean") {
             @Override
             public boolean ok() {
-                type = "boolean";
                 return r && v1.ok() && v2.ok();
             }
         };
@@ -450,10 +475,9 @@ public class SemCheckVisitor
     @Override
     public SemNode visitParenexpr(@NotNull DecafParser.ParenexprContext ctx) {
         final SemNode v1 = visit(ctx.expr());
-        return new SemNode() {
+        return new SemNode(v1.getType()) {
             @Override
             public boolean ok() {
-                type = v1.getType();
                 return v1.ok();
             }
         };
@@ -463,14 +487,13 @@ public class SemCheckVisitor
     public SemNode visitEqexpr(@NotNull DecafParser.EqexprContext ctx) {
         final SemNode v1 = visit(ctx.left);
         final SemNode v2 = visit(ctx.right);
-        final boolean r = v1.getType().equals("boolean") && v2.getType().equals("boolean");
+        final boolean r = v1.getType().equals(v2.getType());
         if (!r) {
-            System.err.println("ERROR: equality expression is only valid for boolean types at line " + ctx.getStart().getLine());
+            System.err.println("ERROR: equality expression is only valid for same types at line " + ctx.getStart().getLine());
         }
-        return new SemNode() {
+        return new SemNode("boolean") {
             @Override
             public boolean ok() {
-                type = "boolean";
                 return r && v1.ok() && v2.ok();
             }
         };
@@ -483,10 +506,9 @@ public class SemCheckVisitor
         if (!r) {
             System.err.println("ERROR: not expression is only valid for boolean types at line " + ctx.getStart().getLine());
         }
-        return new SemNode() {
+        return new SemNode("boolean") {
             @Override
             public boolean ok() {
-                type = "boolean";
                 return r && v1.ok();
             }
         };
@@ -509,7 +531,18 @@ public class SemCheckVisitor
 
     @Override
     public SemNode visitMetexpr(@NotNull DecafParser.MetexprContext ctx) {
-        return visit(ctx.method_call());
+        // check for the return type
+        SemNode node = visit(ctx.method_expr());
+        final boolean r = node.getType().equals("void");
+        if (r) {
+            System.err.println("ERROR: method call used as expression must return a result at line " + ctx.getStart().getLine());
+        }
+        return new SemNode(node.getType()) {
+            @Override
+            public boolean ok() {
+                return !r;
+            }
+        };
     }
 
     @Override
@@ -543,7 +576,7 @@ public class SemCheckVisitor
         // ID LSQUARE expr RSQUARE
 
         // check if var is already defined
-        final Symbol s = SymbolTable.lookup(ctx.getText(), ScopeHeap);
+        final Symbol s = SymbolTable.locate(ctx.getText(), ScopeHeap);
         if (s == null) { // no existe
             System.err.println("ERROR: " + ctx.getText() + " has not been declared at line " + ctx.getStart().getLine());
             return new SemNode() {
@@ -555,10 +588,9 @@ public class SemCheckVisitor
         }
 
         final SemNode v1 = visit(ctx.expr());
-        return new SemNode() {
+        return new SemNode(s.getType()) {
             @Override
             public boolean ok() {
-                type = s.getType();
                 return v1.ok();
             }
         };
@@ -567,7 +599,7 @@ public class SemCheckVisitor
     @Override
     public SemNode visitLocid(@NotNull DecafParser.LocidContext ctx) {
         // check if var is already defined
-        final Symbol s = SymbolTable.lookup(ctx.ID().getText(), ScopeHeap);
+        final Symbol s = SymbolTable.locate(ctx.ID().getText(), ScopeHeap);
         if (s == null) { // no existe
             System.err.println("ERROR: " + ctx.ID().getText() + " has not been declared at line " + ctx.getStart().getLine());
             return new SemNode() {
@@ -577,10 +609,9 @@ public class SemCheckVisitor
                 }
             };
         }
-        return new SemNode() {
+        return new SemNode(s.getType()) {
             @Override
             public boolean ok() {
-                type = s.getType();
                 return true;
             }
         };
@@ -632,11 +663,10 @@ public class SemCheckVisitor
 
     @Override
     public SemNode visitLiteral(@NotNull final DecafParser.LiteralContext ctx) {
-        return new SemNode() {
+        return new SemNode(ctx.BOOL_LITERAL() != null ? "boolean" :
+                ctx.INT_LITERAL() != null ? "int" : null) {
             @Override
             public boolean ok() {
-                type = ctx.BOOL_LITERAL() != null? "boolean" :
-                        ctx.INT_LITERAL() != null? "int" : null;
                 return true;
             }
         };

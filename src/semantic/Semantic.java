@@ -18,15 +18,20 @@ public class Semantic {
         if (compilerOptions.isDebbuggingActiveFor(this))
             System.out.println("Debbugging semantic");
 
-        SemCheckVisitor visitor = new SemCheckVisitor();
-        visitor.visit(ast.getTree());
+        try {
+            SemCheckVisitor visitor = new SemCheckVisitor();
+            visitor.visit(ast.getTree());
 
-        SymbolTable.print(compilerOptions.out);
-        if (compilerOptions.isDebbuggingActiveFor(this))
-            SymbolTable.print(System.out);
-
-        if (!compilerOptions.stopAt(this))
-            new Irt(this);
+            SymbolTable.print(compilerOptions.out);
+            if (compilerOptions.isDebbuggingActiveFor(this))
+                SymbolTable.print(System.out);
+        } catch (Exception e){
+            System.err.println("ERROR: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            if (!compilerOptions.stopAt(this))
+                new Irt(this);
+        }
     }
 
     public Ast getAst() {

@@ -142,13 +142,18 @@ public class AstVisitor
     }
 
     @Override
-    public Node visitMetcall(@NotNull DecafParser.MetcallContext ctx) {
+    public Node visitMethod_expr(@NotNull DecafParser.Method_exprContext ctx) {
         // method_name LPAREN ( expr ( COMMA expr )*? )? RPAREN
         NodeList exprs = new NodeList();
         for (DecafParser.ExprContext expr : ctx.expr()) {
             exprs.add(visit(expr));
         }
         return new MethodCallNode(visit(ctx.method_name()), exprs);
+    }
+
+    @Override
+    public Node visitMetcall(@NotNull DecafParser.MetcallContext ctx) {
+        return visit(ctx.method_expr());
     }
 
     @Override
@@ -173,7 +178,9 @@ public class AstVisitor
 
     @Override
     public Node visitRetstmt(@NotNull DecafParser.RetstmtContext ctx) {
-        return new PrefixNode(ctx.RETURN().getText(), visit(ctx.expr()));
+        if (ctx.expr()!=null)
+            return new PrefixNode(ctx.RETURN().getText(), visit(ctx.expr()));
+        return new StringLiteral(ctx.RETURN().getText());
     }
 
     @Override
@@ -236,7 +243,7 @@ public class AstVisitor
 
     @Override
     public Node visitMetexpr(@NotNull DecafParser.MetexprContext ctx) {
-        return visit(ctx.method_call());
+        return visit(ctx.method_expr());
     }
 
     @Override

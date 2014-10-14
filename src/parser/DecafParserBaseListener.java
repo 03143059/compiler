@@ -358,6 +358,19 @@ public class DecafParserBaseListener implements DecafParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMethod_expr(@NotNull DecafParser.Method_exprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMethod_expr(@NotNull DecafParser.Method_exprContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCallout_arg(@NotNull DecafParser.Callout_argContext ctx) { }
 	/**
 	 * {@inheritDoc}

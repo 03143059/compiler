@@ -29,14 +29,14 @@ Start ->
             location ->
               c
               =
-              true
+              2
             for->
-              f
+              e
             start ->
               1
             cond ->
               expr ->
-                f
+                e
               op ->
                 <
               expr ->
@@ -56,20 +56,49 @@ Start ->
       {
         Stmts ->
             return
-              0
+              1
+      }
+      VOID p ->
+      {
+        Stmts ->
+            return
       }
       BOOLEAN main ->
       {
         Stmts ->
+            location ->
+              a
+              =
+              expr ->
+                1
+              op ->
+                +
+              expr ->
+                1
+            Name ->
+              p
             Name ->
               t
             Exprs ->
-                1
-                false
-                true
+                expr ->
+                  Name ->
+                    d
+                op ->
+                  *
+                expr ->
+                  2
+                !
+                  false
+                expr ->
+                  1
+                op ->
+                  ==
+                expr ->
+                  2
       }
 Tabla de simbolos:
  Scope ID: 1 (Parent: 1)
+  ID: p()	Type: void
   ID: a	Type: int
   ID: b	Type: int
   ID: main()	Type: int
@@ -93,3 +122,5 @@ Tabla de simbolos:
      Scope ID: 6 (Parent: 5)
       Scope ID: 7 (Parent: 1)
        Scope ID: 8 (Parent: 7)
+        Scope ID: 9 (Parent: 1)
+         Scope ID: 10 (Parent: 9)

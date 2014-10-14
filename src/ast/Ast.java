@@ -31,9 +31,12 @@ public class Ast {
             if (compilerOptions.isDebbuggingActiveFor(this))
                 start.print("  ", System.out);
 
+        } catch(Exception e){
+            e.printStackTrace();
+        } finally {
             if (!compilerOptions.stopAt(this))
                 new Semantic(this);
-        } catch(Exception e){}
+        }
 
     }
 
