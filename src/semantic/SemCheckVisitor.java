@@ -17,6 +17,7 @@ public class SemCheckVisitor
     private int ScopeHeap = 1; // control de scopes usando una pila
     private int BaseScope = 1; // Control de scopes multiples en otro scope
     private String currMethodIDForReturn = "";
+    private boolean isForBreakAndContinue = false;
 
     @Override
     public SemNode visitStart(@NotNull DecafParser.StartContext ctx) {
@@ -96,21 +97,6 @@ public class SemCheckVisitor
     public SemNode visitField_decls(@NotNull DecafParser.Field_declsContext ctx) {
         // type field_decl ( COMMA field_decl )*? SEMI
         for (DecafParser.Field_declContext field : ctx.field_decl()) {
-            // check if var is already defined
-            Symbol s = SymbolTable.lookup(field.getText(), ScopeHeap, false);
-            if (s != null) { // existe
-                System.err.println("ERROR: " + field.getText() + " is already declared at line " + ctx.getStart().getLine());
-                return new SemNode() {
-                    @Override
-                    public boolean ok() {
-                        return false;
-                    }
-                };
-            }
-
-            // add variable to global scope
-            SymbolTable.store(field.getText(), ctx.type().getText(), ScopeHeap);
-
             visit(field);
         }
         return new SemNode() {
@@ -177,7 +163,7 @@ public class SemCheckVisitor
     @Override
     public SemNode visitForstmt(@NotNull DecafParser.ForstmtContext ctx) {
         // FOR ID ASSIGNEQ init=expr COMMA cond=expr block
-
+        isForBreakAndContinue = true;
         // check if var is already defined
         Symbol s = SymbolTable.locate(ctx.ID().getText(), ScopeHeap);
         if (s == null) { // no existe
@@ -192,17 +178,27 @@ public class SemCheckVisitor
 
         int oldScope = BaseScope;
         BaseScope = ScopeHeap;
-
+        boolean r = true;
         final SemNode v1 = visit(ctx.init);
-        final SemNode v2 = visit(ctx.cond);
+        if (v1.getType() != null && !v1.getType().equals("int")) {
+            System.err.println("ERROR: the initial expression of for must be of type integer at line " + ctx.getStart().getLine());
+            r = false;
+        }
+        final SemNode v2 = visit(ctx.end);
+        if (v2.getType() != null && !v2.getType().equals("int")) {
+            System.err.println("ERROR: the ending expression of for must be of type integer at line " + ctx.getStart().getLine());
+            r = false;
+        }
         final SemNode v3 = visit(ctx.block());
 
         BaseScope = oldScope;
 
+        final boolean finalR = r;
+        isForBreakAndContinue = false;
         return new SemNode() {
             @Override
             public boolean ok() {
-                return v1.ok() && v2.ok() && v3.ok();
+                return finalR && v1.ok() && v2.ok() && v3.ok();
             }
         };
     }
@@ -212,13 +208,18 @@ public class SemCheckVisitor
         // IF LPAREN expr RPAREN ifs=block ( ELSE els=block )?
         int oldScope = BaseScope;
         BaseScope = ScopeHeap;
+        boolean r = true;
 
         final SemNode v1 = visit(ctx.expr());
+        if (v1.getType() != null && !v1.getType().equals("boolean")) {
+            System.err.println("ERROR: the expression of an if statement must be of type boolean at line " + ctx.getStart().getLine());
+            r = false;
+        }
+
         final SemNode v2 = visit(ctx.ifs);
-        boolean r = true;
         if (ctx.els != null) {
             SemNode v3 = visit(ctx.els);
-            r = v3.ok();
+            r = r && v3.ok();
 
         }
         final boolean finalR = r;
@@ -226,7 +227,7 @@ public class SemCheckVisitor
         return new SemNode() {
             @Override
             public boolean ok() {
-                return v1.ok() && v2.ok() && finalR;
+                return finalR && v1.ok() && v2.ok();
             }
         };
     }
@@ -376,14 +377,35 @@ public class SemCheckVisitor
         final SemNode v1 = visit(ctx.location());
         final SemNode v2 = visit(ctx.assign_op());
         final SemNode v3 = visit(ctx.expr());
-        final boolean r = v1.getType().equals(v3.getType());
-        if (!r) {
-            System.err.printf("ERROR: mismatch types (%s, %s) at line %d\n", v1.getType(), v3.getType(), ctx.getStart().getLine());
+
+        if (v1.getType()==null || v3.getType()==null){
+            return new SemNode(null) {
+                @Override
+                public boolean ok() {
+                    return false;
+                }
+            };
         }
+
+        boolean r = true;
+
+        if (ctx.assign_op().ASSIGNEQ()!= null) {
+            r = v1.getType().equals(v3.getType());
+            if (!r) {
+                System.err.printf("ERROR: mismatch types (%s, %s) at line %d\n", v1.getType(), v3.getType(), ctx.getStart().getLine());
+            }
+        } else {
+            r = v1.getType().equals("int") && v3.getType().equals("int");
+            if (!r) {
+                System.err.printf("ERROR: both sides of incremental assignments must be of type int at line %d\n", ctx.getStart().getLine());
+            }
+        }
+
+        final boolean finalR = r;
         return new SemNode(v1.getType()) { // return type is left side type
             @Override
             public boolean ok() {
-                return r && v1.ok() && v2.ok() && v3.ok();
+                return finalR && v1.ok() && v2.ok() && v3.ok();
             }
         };
     }
@@ -415,7 +437,7 @@ public class SemCheckVisitor
         }
 
         if (!rt.equals("void") && ctx.expr() == null) {
-            System.err.println("ERROR: non void methods must have return values at line " + ctx.getStart().getLine());
+            System.err.printf("ERROR: %s method must have %s return value at line %d\n", rt, rt, ctx.getStart().getLine());
             r = false;
         }
 
@@ -547,6 +569,17 @@ public class SemCheckVisitor
 
     @Override
     public SemNode visitSingleid(@NotNull DecafParser.SingleidContext ctx) {
+        // check if var is already defined
+        Symbol s = SymbolTable.lookup(ctx.ID().getText(), ScopeHeap, false);  // these are only defined in main body
+        if (s != null) { // existe
+            System.err.println("ERROR: " + ctx.ID().getText() + " is already declared at line " + ctx.getStart().getLine());
+        }
+
+        String type = ((DecafParser.Field_declsContext) ctx.getParent()).type().getText();
+
+        // add variable to global scope
+        SymbolTable.store(ctx.ID().getText(), type, ScopeHeap);
+
         return new SemNode() {
             @Override
             public boolean ok() {
@@ -563,10 +596,23 @@ public class SemCheckVisitor
         if (!r) {
             System.err.println("ERROR: array size must be greater than zero at line " + ctx.getStart().getLine());
         }
+
+        // check if var is already defined
+        String id = ctx.ID().getText() + "[]";
+        Symbol s = SymbolTable.lookup(id, ScopeHeap, false); // arrays are only defined in main body
+        if (s != null) { // existe
+            System.err.println("ERROR: " + id + " is already declared at line " + ctx.getStart().getLine());
+        }
+
+        String type = ((DecafParser.Field_declsContext) ctx.getParent()).type().getText();
+
+        // add variable to global scope
+        SymbolTable.store(id, type, ScopeHeap);
+
         return new SemNode() {
             @Override
             public boolean ok() {
-                return r;
+                return false;
             }
         };
     }
@@ -575,10 +621,11 @@ public class SemCheckVisitor
     public SemNode visitLocarray(@NotNull DecafParser.LocarrayContext ctx) {
         // ID LSQUARE expr RSQUARE
 
-        // check if var is already defined
-        final Symbol s = SymbolTable.locate(ctx.getText(), ScopeHeap);
+        // check if array var is already defined. Must find a way to search without size
+        String id = ctx.ID().getText() + "[]";
+        final Symbol s = SymbolTable.locate(id, ScopeHeap);
         if (s == null) { // no existe
-            System.err.println("ERROR: " + ctx.getText() + " has not been declared at line " + ctx.getStart().getLine());
+            System.err.println("ERROR: " + id + " has not been declared at line " + ctx.getStart().getLine());
             return new SemNode() {
                 @Override
                 public boolean ok() {
@@ -587,11 +634,20 @@ public class SemCheckVisitor
             };
         }
 
-        final SemNode v1 = visit(ctx.expr());
+        // check if id is of type array
+        System.err.println("DEBUG array " + s.getType());
+
+        SemNode v1 = visit(ctx.expr());
+        boolean r = v1.ok();
+        if (!v1.getType().equals("int")) {
+            System.err.println("ERROR: " + ctx.getText() + " array index must be of type integer at line " + ctx.getStart().getLine());
+            r = false;
+        }
+        final boolean finalR = r;
         return new SemNode(s.getType()) {
             @Override
             public boolean ok() {
-                return v1.ok();
+                return finalR;
             }
         };
     }
@@ -674,20 +730,32 @@ public class SemCheckVisitor
 
     @Override
     public SemNode visitBrkstmt(@NotNull DecafParser.BrkstmtContext ctx) {
+        boolean r = true;
+        if (!isForBreakAndContinue){
+            System.err.println("ERROR: all break statements bust be inside a for body at line " + ctx.getStart().getLine());
+            r = false;
+        }
+        final boolean finalR = r;
         return new SemNode() {
             @Override
             public boolean ok() {
-                return true;
+                return finalR;
             }
         };
     }
 
     @Override
     public SemNode visitCntstmt(@NotNull DecafParser.CntstmtContext ctx) {
+        boolean r = true;
+        if (!isForBreakAndContinue){
+            System.err.println("ERROR: all continue statements bust be inside a for body at line " + ctx.getStart().getLine());
+            r = false;
+        }
+        final boolean finalR = r;
         return new SemNode() {
             @Override
             public boolean ok() {
-                return true;
+                return finalR;
             }
         };
     }

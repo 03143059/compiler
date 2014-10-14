@@ -68,7 +68,7 @@ public class AstVisitor
     @Override
     public Node visitForstmt(@NotNull DecafParser.ForstmtContext ctx) {
         // FOR ID ASSIGNEQ init=expr COMMA cond=expr block
-        return new ForNode(ctx.ID().getText(), visit(ctx.init), visit(ctx.cond), visit(ctx.block()));
+        return new ForNode(ctx.ID().getText(), visit(ctx.init), visit(ctx.end), visit(ctx.block()));
     }
 
     @Override

@@ -50,8 +50,8 @@ parser\CC4Parser.class: parser\CC4Parser.java parser\MyErrorStrategy.java
 
 scanner\Scanner.class: scanner\Scanner.java scanner\DescriptiveErrorListener.java
 	javac scanner\Scanner.java scanner\DescriptiveErrorListener.java
-	
-semantic\Semantic.class: semantic\Semantic.java semantic\SemNode.java semantic\SemNodeList.java semantic\SemCheckVisitor.java
+
+semantic\Semantic.class: semantic\*.java
 	javac semantic\*.java
 
 scanner\DecafLexer.class: scanner\DecafLexer.java

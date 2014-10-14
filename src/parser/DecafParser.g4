@@ -41,7 +41,7 @@ type            : INT
 statement	    : location assign_op expr SEMI                          #locstmt
                 | method_call SEMI                                      #metstmt
                 | IF LPAREN expr RPAREN ifs=block ( ELSE els=block )?   #ifstmt
-                | FOR ID ASSIGNEQ init=expr COMMA cond=expr block       #forstmt
+                | FOR ID ASSIGNEQ init=expr COMMA end=expr block        #forstmt
                 | RETURN ( expr )? SEMI                                 #retstmt
                 | BREAK SEMI                                            #brkstmt
                 | CONTINUE SEMI                                         #cntstmt

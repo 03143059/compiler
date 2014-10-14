@@ -787,7 +787,7 @@ public class DecafParser extends Parser {
 	}
 	public static class ForstmtContext extends StatementContext {
 		public ExprContext init;
-		public ExprContext cond;
+		public ExprContext end;
 		public TerminalNode ID() { return getToken(DecafParser.ID, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
@@ -1006,7 +1006,7 @@ public class DecafParser extends Parser {
 				setState(146); match(ASSIGNEQ);
 				setState(147); ((ForstmtContext)_localctx).init = expr(0);
 				setState(148); match(COMMA);
-				setState(149); ((ForstmtContext)_localctx).cond = expr(0);
+				setState(149); ((ForstmtContext)_localctx).end = expr(0);
 				setState(150); block();
 				}
 				break;

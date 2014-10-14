@@ -35,12 +35,7 @@ Start ->
             start ->
               1
             cond ->
-              expr ->
-                e
-              op ->
-                <
-              expr ->
-                10
+              10
             block ->
               Vars ->
                   INT ->
@@ -51,6 +46,8 @@ Start ->
                   args ->
                       "%d"
                       f
+                  continue
+                  break
       }
       BOOLEAN d ->
       {
@@ -95,6 +92,36 @@ Start ->
                   ==
                 expr ->
                   2
+            location ->
+              x
+              [
+                a
+              ]
+              =
+              1
+            location ->
+              d
+              [
+                2
+              ]
+              =
+              2
+            if ->
+            (
+              !
+                c
+            )
+            then {
+              Stmts ->
+                  location ->
+                    a
+                    +=
+                    2
+                  location ->
+                    a
+                    -=
+                    1
+            }
       }
 Tabla de simbolos:
  Scope ID: 1 (Parent: 1)
@@ -104,9 +131,9 @@ Tabla de simbolos:
   ID: main()	Type: int
   ID: c	Type: boolean
   ID: d()	Type: int
-  ID: x[2]	Type: int
+  ID: d[]	Type: int
   ID: t(int,boolean,boolean)	Type: void
-  ID: d[10]	Type: int
+  ID: x[]	Type: int
  Scope ID: 2 (Parent: 1)
   ID: c	Type: int
   ID: h	Type: boolean
@@ -124,3 +151,4 @@ Tabla de simbolos:
        Scope ID: 8 (Parent: 7)
         Scope ID: 9 (Parent: 1)
          Scope ID: 10 (Parent: 9)
+          Scope ID: 11 (Parent: 10)
