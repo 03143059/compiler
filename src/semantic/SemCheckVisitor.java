@@ -555,6 +555,14 @@ public class SemCheckVisitor
     public SemNode visitMetexpr(@NotNull DecafParser.MetexprContext ctx) {
         // check for the return type
         SemNode node = visit(ctx.method_expr());
+        if (node.getType() == null) {
+            return new SemNode() {
+                @Override
+                public boolean ok() {
+                    return false;
+                }
+            };
+        }
         final boolean r = node.getType().equals("void");
         if (r) {
             System.err.println("ERROR: method call used as expression must return a result at line " + ctx.getStart().getLine());
@@ -635,8 +643,6 @@ public class SemCheckVisitor
         }
 
         // check if id is of type array
-        System.err.println("DEBUG array " + s.getType());
-
         SemNode v1 = visit(ctx.expr());
         boolean r = v1.ok();
         if (!v1.getType().equals("int")) {

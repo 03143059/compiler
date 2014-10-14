@@ -22,12 +22,13 @@ public class Semantic {
             SemCheckVisitor visitor = new SemCheckVisitor();
             visitor.visit(ast.getTree());
 
-            SymbolTable.print(compilerOptions.out);
+            if (compilerOptions.stopAt(this))
+                SymbolTable.print(compilerOptions.out);
             if (compilerOptions.isDebbuggingActiveFor(this))
                 SymbolTable.print(System.out);
         } catch (Exception e){
             System.err.println("ERROR: " + e.getMessage());
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             if (!compilerOptions.stopAt(this))
                 new Irt(this);
