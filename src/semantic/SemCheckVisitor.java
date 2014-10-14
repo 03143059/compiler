@@ -1,6 +1,5 @@
 package semantic;
 
-import ast.*;
 import lib.*;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -14,13 +13,14 @@ public class SemCheckVisitor
         extends DecafParserBaseVisitor<SemNode>
 //        implements DecafParserVisitor<SemNode>
 {
-    private static int SCOPE_HEAP = 1; // control de scopes usando una pila
+    private int ScopeHeap = 1; // control de scopes usando una pila
+    private int BaseScope = 1; // Control de scopes multiples en otro scope
 
     @Override
     public SemNode visitStart(@NotNull DecafParser.StartContext ctx) {
         // CLASS PROGRAM LCURLY ( field_decls )*? ( method_decl )*? RCURLY
         // add global scope
-        SymbolTable.addScope(SCOPE_HEAP);
+        SymbolTable.addScope(ScopeHeap);
         if (ctx.field_decls() != null) {
             for (DecafParser.Field_declsContext v : ctx.field_decls())
                 visit(v);
@@ -42,7 +42,7 @@ public class SemCheckVisitor
         // type field_decl ( COMMA field_decl )*? SEMI
         for (DecafParser.Field_declContext field : ctx.field_decl()) {
             // check if var is already defined
-            Symbol s = SymbolTable.lookup(field.getText(), SCOPE_HEAP);
+            Symbol s = SymbolTable.lookup(field.getText(), ScopeHeap);
             if (s != null) { // existe
                 System.err.println("ERROR: " + field.getText() + " is already declared at line " + ctx.getStart().getLine());
                 return new SemNode() {
@@ -53,7 +53,7 @@ public class SemCheckVisitor
                 };
             } else {
                 // add variable to global scope
-                SymbolTable.store(field.getText(), ctx.type().getText(), SCOPE_HEAP);
+                SymbolTable.store(field.getText(), ctx.type().getText(), ScopeHeap);
             }
             visit(field);
         }
@@ -70,7 +70,7 @@ public class SemCheckVisitor
         // type ID (COMMA ID)*? SEMI
         for (TerminalNode id : ctx.ID()) {
             // check if var is already defined
-            Symbol s = SymbolTable.lookup(id.getText(), SCOPE_HEAP);
+            Symbol s = SymbolTable.lookup(id.getText(), ScopeHeap);
             if (s != null) { // existe
                 System.err.println("ERROR: " + id.getText() + " is already declared at line " + ctx.getStart().getLine());
                 return new SemNode() {
@@ -81,7 +81,7 @@ public class SemCheckVisitor
                 };
             } else {
                 // add variable to global scope
-                SymbolTable.store(id.getText(), ctx.type().getText(), SCOPE_HEAP);
+                SymbolTable.store(id.getText(), ctx.type().getText(), ScopeHeap);
             }
         }
         return new SemNode() {
@@ -94,6 +94,7 @@ public class SemCheckVisitor
 
     @Override
     public SemNode visitBlkstmt(@NotNull DecafParser.BlkstmtContext ctx) {
+        BaseScope = ScopeHeap;
         return visit(ctx.block());
     }
 
@@ -227,6 +228,7 @@ public class SemCheckVisitor
         // FOR ID ASSIGNEQ init=expr COMMA cond=expr block
         final SemNode v1 = visit(ctx.init);
         final SemNode v2 = visit(ctx.cond);
+        BaseScope = ScopeHeap;
         final SemNode v3 = visit(ctx.block());
 
         return new SemNode() {
@@ -368,13 +370,14 @@ public class SemCheckVisitor
     public SemNode visitIfstmt(@NotNull DecafParser.IfstmtContext ctx) {
         // IF LPAREN expr RPAREN ifs=block ( ELSE els=block )?
         final SemNode v1 = visit(ctx.expr());
+        BaseScope = ScopeHeap;
         final SemNode v2 = visit(ctx.ifs);
         boolean r = true;
         if (ctx.els != null){
+            BaseScope = ScopeHeap;
             SemNode v3 = visit(ctx.els);
             r = v3.ok();
         }
-        final SemNode v3 = visit(ctx.expr());
         final boolean finalR = r;
         return new SemNode() {
             @Override
@@ -384,60 +387,89 @@ public class SemCheckVisitor
         };
     }
 
-/*
-
     @Override
     public SemNode visitMethod_decl(@NotNull DecafParser.Method_declContext ctx) {
         // ( type | VOID ) ID LPAREN ( method_param ( COMMA method_param )*? )? RPAREN block
-        String name = ctx.ID().getText();
-        SemNodeList params = null;
+        boolean r = true;
         if (ctx.method_param() != null) {
-            params = new SemNodeList();
-            for (DecafParser.Method_paramContext param : ctx.method_param())
-                params.add(visit(param));
+            for (DecafParser.Method_paramContext param : ctx.method_param()) {
+                SemNode v1 = visit(param);
+                r = r && v1.ok();
+            }
         }
-        if (ctx.VOID() != null)
-            return new VoidMethodNode(name, params, visit(ctx.block()));
-        else return (ctx.type().BOOLEAN() != null)? new BooleanMethodNode(name, params, visit(ctx.block())) :
-                (ctx.type().INT() != null) ?  new BooleanMethodNode(name, params, visit(ctx.block())) : null; // no deberia de suceder
+        BaseScope = ScopeHeap;
+        final SemNode v2 = visit(ctx.block());
+        final boolean finalR = r;
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v2.ok() && finalR;
+            }
+        };
     }
 
     @Override
     public SemNode visitMetcall(@NotNull DecafParser.MetcallContext ctx) {
         // method_name LPAREN ( expr ( COMMA expr )*? )? RPAREN
-        SemNodeList exprs = new SemNodeList();
+        boolean r = true;
         for (DecafParser.ExprContext expr : ctx.expr()) {
-            exprs.add(visit(expr));
+            SemNode v1 = visit(expr);
+            r = r && v1.ok();
         }
-        return new MethodCallNode(visit(ctx.method_name()), exprs);
+        final SemNode v2 = visit(ctx.method_name());
+        final boolean finalR = r;
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return v2.ok() && finalR;
+            }
+        };
     }
 
     @Override
     public SemNode visitCallout(@NotNull DecafParser.CalloutContext ctx) {
         // CALLOUT LPAREN STRING_LITERAL ( COMMA callout_arg )*? RPAREN
-        SemNodeList args = new SemNodeList();
+        boolean r = true;
         for (DecafParser.Callout_argContext arg : ctx.callout_arg()) {
-            args.add(visit(arg));
+            SemNode v1 = visit(arg);
+            r = r && v1.ok();
         }
-        return new CalloutNode(ctx.STRING_LITERAL().getText(), args);
+        final boolean finalR = r;
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return finalR;
+            }
+        };
     }
 
     @Override
     public SemNode visitBlock(@NotNull DecafParser.BlockContext ctx) {
         // LCURLY ( var_decl )*? ( statement )* RCURLY
-        SemNodeList vars = new SemNodeList();
-        for (DecafParser.Var_declContext var : ctx.var_decl())
-            vars.add(visit(var));
-        SemNodeList stmts = new SemNodeList();
-        for (DecafParser.StatementContext stmt : ctx.statement())
-            stmts.add(visit(stmt));
-        return new BlockNode(vars, stmts);
+        int BlockScope = BaseScope + 1;
+        while (ScopeHeap < BlockScope) ScopeHeap++;
+        SymbolTable.addScope(ScopeHeap);
+        boolean r = true;
+        for (DecafParser.Var_declContext var : ctx.var_decl()) {
+            SemNode v1 = visit(var);
+            r = r && v1.ok();
+        }
+        boolean s = true;
+        for (DecafParser.StatementContext stmt : ctx.statement()) {
+            SemNode v1 = visit(stmt);
+            s = s && v1.ok();
+        }
+        while (ScopeHeap > BlockScope) ScopeHeap--;
+        final boolean finalR = r;
+        final boolean finalS = s;
+        return new SemNode() {
+            @Override
+            public boolean ok() {
+                return finalR && finalS;
+            }
+        };
     }
 
-
-
-
-*/
 }
 
 

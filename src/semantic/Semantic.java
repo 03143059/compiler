@@ -19,7 +19,8 @@ public class Semantic {
             System.out.println("Debbugging semantic");
 
         SemCheckVisitor visitor = new SemCheckVisitor();
-        SemNode start = visitor.visit(ast.getTree());
+        visitor.visit(ast.getTree());
+
         SymbolTable.print(compilerOptions.out);
         if (compilerOptions.isDebbuggingActiveFor(this))
             SymbolTable.print(System.out);
