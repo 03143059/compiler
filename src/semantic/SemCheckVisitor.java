@@ -18,6 +18,7 @@ public class SemCheckVisitor
     private int BaseScope = 1; // Control de scopes multiples en otro scope
     private String currMethodIDForReturn = "";
     private boolean isForBreakAndContinue = false;
+    private boolean returnExpected = false; // para funciones que retornan un valor
 
     @Override
     public SemNode visitStart(@NotNull DecafParser.StartContext ctx) {
@@ -33,6 +34,7 @@ public class SemCheckVisitor
                 visit(v);
         }
         // check for method main in symbol table
+        // TODO: comparar parametros e indicar error si varian
         final Symbol s = SymbolTable.lookup("main()", 1, false);
         if (s == null || (s.getParams() != null && s.getParams().length() > 0)) { // no existe
             System.err.println("ERROR: method main is missing from program at line " + ctx.getStop().getLine());
@@ -66,6 +68,7 @@ public class SemCheckVisitor
         }
 
         // check if method is already defined
+        //TODO: buscar metodos con el mismo nombre y mostrar sugerencias
         String methodId = ctx.method_name().getText() + "(" + params + ")";
         final Symbol s = SymbolTable.locate(methodId, ScopeHeap);
         if (s == null) { // no existe
@@ -259,7 +262,8 @@ public class SemCheckVisitor
         }
 
         // add method to global scope
-        SymbolTable.store(methodID, ctx.VOID() == null ? ctx.type().getText() : "void", params.toString(), BaseScope);
+        String type = (ctx.VOID() == null)? ctx.type().getText() : "void";
+        SymbolTable.store(methodID, type, params.toString(), BaseScope);
 
         currMethodIDForReturn = methodID;
 
@@ -277,15 +281,24 @@ public class SemCheckVisitor
         int oldScope = BaseScope;
         BaseScope = ScopeHeap;
 
+        // set return expected flag
+        returnExpected = !type.equals("void");
+
         final SemNode v2 = visit(ctx.block());
-        final boolean finalR = r;
+
+        // check for return type
+        if (returnExpected) { 
+            System.err.println("ERROR: missing return value at line " + ctx.getStop().getLine());
+            r = false;
+        }
 
         BaseScope = oldScope;
+        final boolean finalR = r;
 
-        return new SemNode() {
+        return new SemNode(type) {
             @Override
             public boolean ok() {
-                return v2.ok() && finalR;
+                return finalR && v2.ok();
             }
         };
     }
@@ -412,6 +425,10 @@ public class SemCheckVisitor
         Symbol s = SymbolTable.locate(currMethodIDForReturn, BaseScope); // look in parent scope too
         String rt = s.getType();
         boolean r = true;
+
+        // uncheck return expected flag
+        returnExpected = false;
+
         if (rt.equals("void") && ctx.expr() != null) {
             System.err.println("ERROR: void methods can't have return values at line " + ctx.getStart().getLine());
             r = false;

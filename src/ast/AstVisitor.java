@@ -109,7 +109,6 @@ public class AstVisitor
     @Override
     public Node visitArray(@NotNull DecafParser.ArrayContext ctx) {
         // ID LSQUARE INT_LITERAL RSQUARE
-        // TODO: add array handling
         return new StringLiteral(ctx.ID().getText() + "[" + ctx.INT_LITERAL().getText() + "]");
     }
     //endregion
