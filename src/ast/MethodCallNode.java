@@ -7,6 +7,7 @@ public class MethodCallNode extends Node {
         private final NodeList exprs;
 
         public MethodCallNode(Node name, NodeList exprs) {
+            Ast.ast.add(this);
             this.name = name;
             this.exprs = exprs;
         }

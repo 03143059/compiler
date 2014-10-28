@@ -7,6 +7,7 @@ public class CharLiteral extends Node {
         private String value;
 
         public CharLiteral(String v){
+            Ast.ast.add(this);
             value = v;
         }
 

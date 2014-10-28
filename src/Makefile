@@ -9,8 +9,8 @@ ast\Ast.class: ast\*.java
 codegen\Codegen.class: codegen\Codegen.java
 	javac codegen\Codegen.java
 
-irt\Irt.class: irt\Irt.java
-	javac irt\Irt.java
+irt\Irt.class: irt\*.java
+	javac irt\*.java
 
 lib\Debug.class: lib\Debug.java
 	javac lib\Debug.java

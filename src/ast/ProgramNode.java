@@ -12,6 +12,7 @@ public class ProgramNode extends Node {
     private final Node methods;
 
     public ProgramNode(Node fields, Node methods) {
+        Ast.ast.add(this);
         this.fields = fields;
         this.methods = methods;
     }

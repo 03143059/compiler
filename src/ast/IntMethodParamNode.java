@@ -6,5 +6,6 @@ package ast;
 public class IntMethodParamNode extends MethodParamNode {
     public IntMethodParamNode(String name) {
         super("INT", name);
+        Ast.ast.add(this);
     }
 }

@@ -7,6 +7,7 @@ public class LocArrayNode extends Node {
         private final Node expr;
 
         public LocArrayNode(String name, Node expr) {
+            Ast.ast.add(this);
             this.name = name;
             this.expr = expr;
         }

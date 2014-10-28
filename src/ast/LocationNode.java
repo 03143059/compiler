@@ -8,6 +8,7 @@ public class LocationNode extends Node {
         private final Node expr;
 
         public LocationNode(Node location, Node op, Node expr) {
+            Ast.ast.add(this);
             this.location = location;
             this.op = op;
             this.expr = expr;

@@ -8,7 +8,8 @@ import semantic.Semantic;
 public class Ast {
 
     private final CC4Parser cc4Parser;
-    private final ParseTree tree;
+    public static NodeList ast = new NodeList();
+    private ParseTree tree;
 
     public ParseTree getTree() {
         return tree;

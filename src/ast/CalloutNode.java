@@ -7,6 +7,7 @@ public class CalloutNode extends Node {
         private final Node args;
 
         public CalloutNode(String func, Node args) {
+            Ast.ast.add(this);
             this.func = func;
             this.args = args;
         }

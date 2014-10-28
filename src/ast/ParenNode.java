@@ -7,6 +7,7 @@ public class ParenNode extends Node {
 
         public ParenNode(Node expr) {
             this.expr = expr;
+            Ast.ast.add(this);
         }
 
         @Override

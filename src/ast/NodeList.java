@@ -19,6 +19,8 @@ public class NodeList extends Node{
 	public void add(Node node){
 		list.add(node);
 	}
+
+    public List<Node> getList() { return list; }
 	
 	public void print(String padding, PrintStream out){
         this.out = out;

@@ -8,6 +8,7 @@ public class IfNode extends Node {
         private final Node els;
 
         public IfNode(Node expr, Node ifs, Node els) {
+            Ast.ast.add(this);
             this.expr = expr;
             this.ifs = ifs;
             this.els = els;

@@ -17,10 +17,10 @@ public class Semantic {
         System.out.println("stage: semantic");
         if (compilerOptions.isDebbuggingActiveFor(this))
             System.out.println("Debbugging semantic");
-
+        SemNode result = null;
         try {
             SemCheckVisitor visitor = new SemCheckVisitor();
-            visitor.visit(ast.getTree());
+            result = visitor.visit(ast.getTree());
 
             if (compilerOptions.stopAt(this))
                 SymbolTable.print(compilerOptions.out);
@@ -30,8 +30,12 @@ public class Semantic {
             System.err.println("ERROR: " + e.getMessage());
             //e.printStackTrace();
         } finally {
-            if (!compilerOptions.stopAt(this))
-                new Irt(this);
+            if (!compilerOptions.stopAt(this)) {
+                if (result != null && result.ok())
+                    new Irt(this);
+                else
+                    System.err.println("There were semantic errors. IRT was not generated");
+            }
         }
     }
 

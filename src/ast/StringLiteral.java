@@ -7,6 +7,7 @@ public class StringLiteral extends Node {
 
         public StringLiteral(String v){
             value = v;
+            Ast.ast.add(this);
         }
 
         public void print(String padding, PrintStream out){

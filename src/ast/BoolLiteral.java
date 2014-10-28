@@ -7,6 +7,7 @@ public class BoolLiteral extends Node {
 
         public BoolLiteral(String v){
             value = Boolean.parseBoolean(v);
+            Ast.ast.add(this);
         }
 
         public void print(String padding, PrintStream out){

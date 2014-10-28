@@ -7,6 +7,7 @@ public class BlockNode extends Node {
         private final NodeList stmts;
 
         public BlockNode(NodeList vars, NodeList stmts) {
+            Ast.ast.add(this);
             this.vars = vars;
             this.stmts = stmts;
         }

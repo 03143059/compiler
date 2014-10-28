@@ -1,0 +1,93 @@
+Start ->
+  class
+  Program
+  Fields ->
+      INT ->
+          a
+      INT ->
+          b
+  Methods ->
+      BOOLEAN gcd ->
+      (
+          INT a
+          INT b
+      )
+      {
+        Stmts ->
+            if ->
+            (
+              expr ->
+                b
+              op ->
+                ==
+              expr ->
+                0
+            )
+            then {
+              Stmts ->
+                  return
+                    (
+                      a
+                    )
+            }
+            else {
+              Stmts ->
+                  return
+                    (
+                      Name ->
+                        gcd
+                      Exprs ->
+                          b
+                          expr ->
+                            a
+                          op ->
+                            %
+                          expr ->
+                            b
+                    )
+            }
+      }
+      BOOLEAN main ->
+      {
+        Vars ->
+            INT ->
+              x
+              y
+              z
+        Stmts ->
+            location ->
+              a
+              =
+              'd'
+            location ->
+              b
+              =
+              20
+            location ->
+              x
+              =
+              a
+            location ->
+              y
+              =
+              b
+            location ->
+              z
+              =
+              Name ->
+                gcd
+              Exprs ->
+                  x
+                  y
+            callout 
+              "printf"
+            args ->
+                "%c"
+                a
+            callout 
+              "print_int"
+            args ->
+                z
+            return
+              0
+      }

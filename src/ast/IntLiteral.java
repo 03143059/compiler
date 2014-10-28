@@ -7,6 +7,7 @@ public class IntLiteral extends Node {
 
     public IntLiteral(String v){
         value = Integer.parseInt(v);
+        Ast.ast.add(this);
     }
 
     public void print(String padding, PrintStream out){

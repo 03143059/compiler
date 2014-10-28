@@ -112,7 +112,7 @@ public class Compiler {
                 argCount -= 2;
             } else {
                 /****************** SET DEFAULT MODE *************************/
-                compilerOptions.setTarget("semantic"); // default ast
+                compilerOptions.setTarget("irt"); // default ast
                 /****************** SET DEFAULT MODE *************************/
             }
 

@@ -1,9 +1,14 @@
 package irt;
 
+import ast.Ast;
+import ast.Node;
+import ast.NodeList;
 import codegen.Codegen;
 import lib.CompilerOptions;
 import lib.SymbolTable;
 import semantic.Semantic;
+
+import java.util.List;
 
 public class Irt {
 
@@ -18,13 +23,18 @@ public class Irt {
             System.out.println("Debbugging IRT");
 
         try {
-            IrtVisitor visitor = new IrtVisitor();
-            visitor.visit(semantic.getAst().getTree());
+            printAst(Ast.ast.getList());
 
-            if (compilerOptions.stopAt(this))
-                SymbolTable.print(compilerOptions.out);
-            if (compilerOptions.isDebbuggingActiveFor(this))
-                SymbolTable.print(System.out);
+//            IrtVisitor visitor = new IrtVisitor();
+//            IrtList list = (IrtList) visitor.visit(semantic.getAst().getTree());
+//
+//            if (compilerOptions.stopAt(this))
+//                list.print(compilerOptions.out);
+//            if (compilerOptions.isDebbuggingActiveFor(this))
+//                list.print(System.out);
+
+
+
         } catch (Exception e){
             System.err.println("ERROR: " + e.getMessage());
             //e.printStackTrace();
@@ -33,6 +43,15 @@ public class Irt {
                 new Codegen(this);
         }
 
+    }
+
+    private void printAst(List<Node> list) {
+        for (Node node : list){
+            if (node instanceof NodeList){
+                printAst(((NodeList)node).getList());
+            } else
+                System.out.println(node.getClass().getName());
+        }
     }
 
     public Semantic getSemantic() {

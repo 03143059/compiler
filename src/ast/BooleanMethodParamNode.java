@@ -6,5 +6,6 @@ package ast;
 public class BooleanMethodParamNode extends MethodParamNode {
     public BooleanMethodParamNode(String name) {
         super("BOOLEAN", name);
+        Ast.ast.add(this);
     }
 }

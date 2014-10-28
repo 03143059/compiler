@@ -8,6 +8,7 @@ public class BinOp extends Node{
         private Node right;
 
         public BinOp(String op, Node l, Node r){
+            Ast.ast.add(this);
             operator = op;
             left = l;
             right = r;

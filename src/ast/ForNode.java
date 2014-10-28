@@ -9,6 +9,7 @@ public class ForNode extends Node {
         private final Node block;
 
         public ForNode(String varName, Node start, Node cond, Node block) {
+            Ast.ast.add(this);
             this.varName = varName;
             this.start = start;
             this.cond = cond;

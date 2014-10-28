@@ -4,6 +4,7 @@ public class IntFieldNode extends FieldNode {
 
     public IntFieldNode(Node fields) {
         super("INT", fields);
+        Ast.ast.add(this);
     }
 
 }

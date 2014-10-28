@@ -9,6 +9,7 @@ public class PrefixNode extends Node {
         public PrefixNode(String prefix, Node expr) {
             this.prefix = prefix;
             this.expr = expr;
+            Ast.ast.add(this);
         }
 
         @Override
