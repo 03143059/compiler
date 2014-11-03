@@ -18,16 +18,28 @@ public class IfNode extends Node {
         public void print(String padding, PrintStream out) {
             out.println(padding + "<If>");
             out.println(padding + "  <Expression>");
-            expr.print(padding + "    ", out);
+            getExpr().print(padding + "    ", out);
             out.println(padding + "  </Expression>");
             out.println(padding + "  <Then>");
-            ifs.print(padding + "    ", out);
+            getIfs().print(padding + "    ", out);
             out.println(padding + "  </Then>");
-            if (els != null) {
+            if (getEls() != null) {
                 out.println(padding + "  <Else>");
-                els.print(padding + "    ", out);
+                getEls().print(padding + "    ", out);
                 out.println(padding + "  </Else>");
             }
             out.println(padding + "</If>");
         }
+
+    public Node getExpr() {
+        return expr;
     }
+
+    public Node getIfs() {
+        return ifs;
+    }
+
+    public Node getEls() {
+        return els;
+    }
+}

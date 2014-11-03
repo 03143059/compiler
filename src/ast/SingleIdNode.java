@@ -2,7 +2,7 @@ package ast;
 
 import java.io.PrintStream;
 
-public class SingleIdNode extends Node {
+public class SingleIdNode extends FieldTypeNode {
 
     private final String id;
     private final FieldType type;

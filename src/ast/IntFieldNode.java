@@ -1,9 +1,9 @@
 package ast;
 
-public class IntFieldNode extends FieldNode {
+public class IntFieldNode extends FieldNode<FieldTypeNode> {
 
-    public IntFieldNode(Node fields) {
-        super("INT", fields);
+    public IntFieldNode(NodeList<FieldTypeNode> fields) {
+        super(FieldType.Int, fields);
 
     }
 

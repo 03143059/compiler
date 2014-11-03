@@ -3,10 +3,10 @@ package ast;
 import java.io.PrintStream;
 
 public class BlockNode extends Node {
-        private final NodeList vars;
-        private final NodeList stmts;
+        private final NodeList<VarNode> vars;
+        private final NodeList<Node> stmts;
 
-        public BlockNode(NodeList vars, NodeList stmts) {
+        public BlockNode(NodeList<VarNode> vars, NodeList<Node> stmts) {
 
             this.vars = vars;
             this.stmts = stmts;
@@ -26,11 +26,11 @@ public class BlockNode extends Node {
             }
         }
 
-    public NodeList getVars() {
+    public NodeList<VarNode> getVars() {
         return vars;
     }
 
-    public NodeList getStmts() {
+    public NodeList<Node> getStmts() {
         return stmts;
     }
 }

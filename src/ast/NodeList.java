@@ -4,8 +4,8 @@ import java.io.PrintStream;
 import java.util.*;
 import java.util.function.Consumer;
 
-public class NodeList extends Node implements Iterable<Node>{
-    private List<Node> list;
+public class NodeList<T> extends Node implements Iterable<T>{
+    private List<T> list;
     PrintStream out;
 
     public int size() {
@@ -13,23 +13,23 @@ public class NodeList extends Node implements Iterable<Node>{
     }
 
 	public NodeList(){
-        list = new LinkedList<Node>();
+        list = new LinkedList<T>();
 	}
 	
-	public void add(Node node){
+	public void add(T node){
 		list.add(node);
 	}
 
-    public void insert(Node node){
+    public void insert(T node){
         list.add(0, node);
     }
 
-    public List<Node> getList() { return list; }
+    public List<T> getList() { return list; }
 	
 	public void print(String padding, PrintStream out){
         this.out = out;
-		for(Node n : list){
-			n.print(padding + "  ", out);
+		for(T n : list){
+            ((Node)n).print(padding + "  ", out);
 		}
 	}
 	
@@ -39,17 +39,17 @@ public class NodeList extends Node implements Iterable<Node>{
 
 
     @Override
-    public Iterator<Node> iterator() {
+    public Iterator<T> iterator() {
         return list.iterator();
     }
 
     @Override
-    public void forEach(Consumer<? super Node> action) {
+    public void forEach(Consumer<? super T> action) {
         list.forEach(action);
     }
 
     @Override
-    public Spliterator<Node> spliterator() {
+    public Spliterator<T> spliterator() {
         return list.spliterator();
     }
 }

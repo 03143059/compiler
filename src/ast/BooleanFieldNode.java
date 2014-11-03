@@ -1,9 +1,9 @@
 package ast;
 
-public class BooleanFieldNode extends FieldNode {
+public class BooleanFieldNode extends FieldNode<FieldTypeNode> {
 
-    public BooleanFieldNode(Node fields) {
-        super("BOOLEAN", fields);
+    public BooleanFieldNode(NodeList<FieldTypeNode> fields) {
+        super(FieldType.Boolean, fields);
 
     }
 

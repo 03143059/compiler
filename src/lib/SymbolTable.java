@@ -113,8 +113,8 @@ public class SymbolTable {
             for(Map.Entry<String, Symbol> entry2 : value.entrySet()) {
                 String id = entry2.getKey();
                 Symbol s = entry2.getValue();
-                out.println(pad + pad + "ID: " + id + "\tType: " + s.getType());
-                // (s.getParams()==null?"":"\tParams: " + s.getParams())
+                String params = (s.getParams() == null || s.getParams().isEmpty())?"":"\tParams: " + s.getParams();
+                out.println(pad + pad + "ID: " + id + "\tType: " + s.getType()+ params);
             }
         }
     }

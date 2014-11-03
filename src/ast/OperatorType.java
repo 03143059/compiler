@@ -1,0 +1,10 @@
+package ast;
+
+/**
+ * Created by Werner on 11/3/2014.
+ */
+public enum OperatorType {
+    Equal,
+    PlusEqual,
+    MinusEqual
+}

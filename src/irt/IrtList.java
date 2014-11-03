@@ -9,6 +9,7 @@ public class IrtList extends IrtNode {
     public IrtNode start, end;
 
     public IrtList(IrtNode start, IrtNode end) {
+        super("");
         this.start = start;
         this.end = end;
     }
@@ -16,7 +17,7 @@ public class IrtList extends IrtNode {
     public void print(PrintStream out) {
         IrtNode n = start;
         while (n != null) {
-            out.println(n.getClass().getName());
+            out.println(n.getName());
             n = n.next;
         }
     }

@@ -1,42 +1,40 @@
 package irt;
 
-import org.antlr.v4.runtime.misc.NotNull;
-import parser.DecafParser;
-import parser.DecafParserBaseVisitor;
+import ast.*;
 
 /**
  * Created by Werner on 10/20/2014.
  */
-public class IrtVisitor extends DecafParserBaseVisitor<IrtNode> {
+public class IrtVisitor {
 
-    @Override
-    public IrtNode visitStart(@NotNull DecafParser.StartContext ctx) {
+
+    public IrtNode visitStart(ProgramNode ctx) {
         // CLASS PROGRAM LCURLY ( field_decls )*? ( method_decl )*? RCURLY
         IrtNode end = new NopNode();
-        IrtNode fd = new IrtNode();
+        IrtNode fd = new NopNode();
         IrtList list = new IrtList(fd, end);
-        if (ctx.field_decls() != null) {
-            for (DecafParser.Field_declsContext v : ctx.field_decls()) {
-                fd = visit(v);
+        if (ctx.getFields() != null) {
+            for (FieldNode v : ctx.getFields()) {
+                fd = visitField_decls(v);
                 if (!(fd instanceof NopNode)) fd = fd.next;
             }
         }
-        if (ctx.method_decl() != null) {
-            for (DecafParser.Method_declContext v : ctx.method_decl()) {
-                fd = visit(v);
+        if (ctx.getMethods() != null) {
+            for (MethodNode v : ctx.getMethods()) {
+                fd = visitMethod_decl(v);
                 if (!(fd instanceof NopNode)) fd = fd.next;
             }
         }
         return list;
     }
 
-    @Override
-    public IrtNode visitIfstmt(@NotNull DecafParser.IfstmtContext ctx) {
+
+    public IrtNode visitIfstmt(IfNode ctx) {
         // IF LPAREN expr RPAREN ifs=block ( ELSE els=block )?
         IrtNode end = new NopNode();
-        IfList cList = new IfList(visit(ctx.expr()), end);
-        IrtList ifList = (IrtList) visit(ctx.ifs);
-        IrtList elseList = ctx.els == null ? new IrtList(end, end) : (IrtList) visit(ctx.els);
+        IfList cList = new IfList(visit(ctx.getExpr()), end);
+        IrtList ifList = (IrtList) visit(ctx.getIfs());
+        IrtList elseList = ctx.getEls() == null ? new IrtList(end, end) : (IrtList) visit(ctx.getEls());
         ifList.end.next = end;
         elseList.end.next = end;
         cList.true_end.next = ifList.start;
@@ -44,184 +42,187 @@ public class IrtVisitor extends DecafParserBaseVisitor<IrtNode> {
         return new IrtList(cList.start, end);
     }
 
-    @Override
-    public IrtNode visitForstmt(@NotNull DecafParser.ForstmtContext ctx) {
+
+    public IrtNode visitForstmt(ForNode ctx) {
         // FOR ID ASSIGNEQ init=expr COMMA end=expr block
         IrtNode end = new NopNode();
-        ForList forList = new ForList(visit(ctx.init), visit(ctx.end));
-        IrtList blockList = (IrtList) visit(ctx.block());
+        ForList forList = new ForList(visit(ctx.getStart()), visit(ctx.getEnd()));
+        IrtList blockList = (IrtList) visit(ctx.getBlock());
         blockList.end.next = forList.start;
         forList.end.next = blockList.start;
         return new IrtList(forList.start, end);
     }
 
-    @Override
-    public IrtNode visitCallout(@NotNull DecafParser.CalloutContext ctx) {
+
+    public IrtNode visit(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitAritexpr(@NotNull DecafParser.AritexprContext ctx) {
+    public IrtNode visitCallout(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitSingleid(@NotNull DecafParser.SingleidContext ctx) {
+
+    public IrtNode visitAritexpr(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitMetcall(@NotNull DecafParser.MetcallContext ctx) {
+
+    public IrtNode visitSingleid(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitType(@NotNull DecafParser.TypeContext ctx) {
+
+    public IrtNode visitMetcall(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitRelexpr(@NotNull DecafParser.RelexprContext ctx) {
+
+    public IrtNode visitType(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitLiteral(@NotNull DecafParser.LiteralContext ctx) {
+
+    public IrtNode visitRelexpr(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitRetstmt(@NotNull DecafParser.RetstmtContext ctx) {
+
+    public IrtNode visitLiteral(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitArray(@NotNull DecafParser.ArrayContext ctx) {
+
+    public IrtNode visitRetstmt(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitMethod_name(@NotNull DecafParser.Method_nameContext ctx) {
+
+    public IrtNode visitArray(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitMethod_param(@NotNull DecafParser.Method_paramContext ctx) {
+
+    public IrtNode visitMethod_name(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitLocarray(@NotNull DecafParser.LocarrayContext ctx) {
+
+    public IrtNode visitMethod_param(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitLocexpr(@NotNull DecafParser.LocexprContext ctx) {
+
+    public IrtNode visitLocarray(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitErrordecl(@NotNull DecafParser.ErrordeclContext ctx) {
+
+    public IrtNode visitLocexpr(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitCondexpr(@NotNull DecafParser.CondexprContext ctx) {
+
+    public IrtNode visitErrordecl(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitBlock(@NotNull DecafParser.BlockContext ctx) {
+
+    public IrtNode visitCondexpr(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitMetstmt(@NotNull DecafParser.MetstmtContext ctx) {
+
+    public IrtNode visitBlock(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitParenexpr(@NotNull DecafParser.ParenexprContext ctx) {
+
+    public IrtNode visitMetstmt(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitEqexpr(@NotNull DecafParser.EqexprContext ctx) {
+
+    public IrtNode visitParenexpr(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitNotexpr(@NotNull DecafParser.NotexprContext ctx) {
+
+    public IrtNode visitEqexpr(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitMetexpr(@NotNull DecafParser.MetexprContext ctx) {
+
+    public IrtNode visitNotexpr(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitBad_field_decl(@NotNull DecafParser.Bad_field_declContext ctx) {
+
+    public IrtNode visitMetexpr(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitBrkstmt(@NotNull DecafParser.BrkstmtContext ctx) {
+
+    public IrtNode visitBad_field_decl(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitCntstmt(@NotNull DecafParser.CntstmtContext ctx) {
+
+    public IrtNode visitBrkstmt(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitCallout_arg(@NotNull DecafParser.Callout_argContext ctx) {
+
+    public IrtNode visitCntstmt(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitLitexpr(@NotNull DecafParser.LitexprContext ctx) {
+
+    public IrtNode visitCallout_arg(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitBlkstmt(@NotNull DecafParser.BlkstmtContext ctx) {
+
+    public IrtNode visitLitexpr(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitMethod_decl(@NotNull DecafParser.Method_declContext ctx) {
+
+    public IrtNode visitBlkstmt(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitMinexpr(@NotNull DecafParser.MinexprContext ctx) {
+
+    public IrtNode visitMethod_decl(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitVar_decl(@NotNull DecafParser.Var_declContext ctx) {
+
+    public IrtNode visitMinexpr(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitLocstmt(@NotNull DecafParser.LocstmtContext ctx) {
+    public IrtNode visitVar_decl(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitAssign_op(@NotNull DecafParser.Assign_opContext ctx) {
+
+    public IrtNode visitLocstmt(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitField_decls(@NotNull DecafParser.Field_declsContext ctx) {
+
+    public IrtNode visitAssign_op(Node ctx) {
         return new NopNode();
     }
 
-    @Override
-    public IrtNode visitLocid(@NotNull DecafParser.LocidContext ctx) {
+
+    public IrtNode visitField_decls(Node ctx) {
+        return new NopNode();
+    }
+
+
+    public IrtNode visitLocid(Node ctx) {
         return new NopNode();
     }
 }

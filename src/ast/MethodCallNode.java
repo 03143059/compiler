@@ -4,9 +4,9 @@ import java.io.PrintStream;
 
 public class MethodCallNode extends Node {
         private final String name;
-        private final NodeList exprs;
+        private final NodeList<Node> exprs;
 
-        public MethodCallNode(String name, NodeList exprs) {
+        public MethodCallNode(String name, NodeList<Node> exprs) {
 
             this.name = name;
             this.exprs = exprs;
@@ -27,7 +27,7 @@ public class MethodCallNode extends Node {
         return name;
     }
 
-    public NodeList getExprs() {
+    public NodeList<Node> getExprs() {
         return exprs;
     }
 }

@@ -5,10 +5,10 @@ import java.io.PrintStream;
 public abstract class MethodNode extends Node {
     private final String type;
     private final String name;
-    private final NodeList params;
+    private final NodeList<MethodParamNode> params;
     private final Node block;
 
-    public MethodNode(String type, String name, NodeList params, Node block) {
+    public MethodNode(String type, String name, NodeList<MethodParamNode> params, Node block) {
         this.type = type;
         this.name = name;
         this.params = params;
@@ -35,7 +35,7 @@ public abstract class MethodNode extends Node {
         return name;
     }
 
-    public NodeList getParams() {
+    public NodeList<MethodParamNode> getParams() {
         return params;
     }
 

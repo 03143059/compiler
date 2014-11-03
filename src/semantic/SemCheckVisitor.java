@@ -628,7 +628,7 @@ public class SemCheckVisitor
         String type = ((DecafParser.Field_declsContext) ctx.getParent()).type().getText();
 
         // add variable to global scope
-        SymbolTable.store(id, type, ScopeHeap);
+        SymbolTable.store(id, type, "size="+n, ScopeHeap);
 
         return new SemNode() {
             @Override

@@ -39,28 +39,32 @@ public class Irt {
     }
 
     private IrtList GenIntermediate(Node node) {
+        IrtNode end = new NopNode();
+        IrtNode fd = new NopNode();
+        IrtList list = new IrtList(fd, end);
         if (node instanceof ProgramNode){
+            System.out.println("DEBUG: entering program");
             ProgramNode ctx = (ProgramNode)node;
-            IrtNode end = new NopNode();
-            IrtNode fd = new IrtNode();
-            IrtList list = new IrtList(fd, end);
-            if (ctx.getFields() != null) {
-                for (Node v : ctx.getFields()) {
-                    FieldNode fn = (FieldNode)v;
-
-                   // fd = new LoadNode
-                    if (!(fd instanceof NopNode)) fd = fd.next;
-                }
+            for(MethodNode mn : ctx.getMethods()){
+                fd.next = GenIntermediate(mn);
+                if (!(fd instanceof NopNode)) fd = fd.next;
             }
-//            if (ctx.method_decl() != null) {
-//                for (Method_declContext v : ctx.method_decl()) {
-//                    fd = visit(v);
-//                    if (!(fd instanceof NopNode)) fd = fd.next;
-//                }
-//            }
-            return list;
+        } else if (node instanceof MethodNode){
+            MethodNode ctx = (MethodNode)node;
+            System.out.println("DEBUG: entering method " + ctx.getName() + ", returns " + ctx.getType());
+            for(MethodParamNode mn : ctx.getParams()){
+                System.out.println("DEBUG: param name " + mn.getName() + ", type " + mn.getType());
+            }
+            System.out.println("DEBUG: body:");
+            fd.next = GenIntermediate(ctx.getBlock());
+        } else if (node instanceof IfNode){
+            IfNode ctx = (IfNode)node;
+
+        } else if (node instanceof ForNode){
+            ForNode ctx = (ForNode)node;
+
         }
-        return null;
+        return list;
     }
 
     public Semantic getSemantic() {

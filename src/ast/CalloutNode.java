@@ -4,9 +4,9 @@ import java.io.PrintStream;
 
 public class CalloutNode extends Node {
         private String functionName;
-        private final Node functionArgs;
+        private final NodeList<CallArgNode> functionArgs;
 
-        public CalloutNode(String functionName, Node functionArgs) {
+        public CalloutNode(String functionName, NodeList<CallArgNode> functionArgs) {
 
             this.functionName = functionName;
             this.functionArgs = functionArgs;
@@ -28,7 +28,7 @@ public class CalloutNode extends Node {
         return functionName;
     }
 
-    public Node getFunctionArgs() {
+    public NodeList<CallArgNode> getFunctionArgs() {
         return functionArgs;
     }
 }

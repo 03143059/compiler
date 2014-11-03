@@ -2,7 +2,7 @@ package ast;
 
 import java.io.PrintStream;
 
-public class ArrayNode extends Node {
+public class ArrayNode extends FieldTypeNode {
 
     private final String id;
     private final int size;
