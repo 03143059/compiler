@@ -2,62 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f8dfea22-b6cf-486e-9ed7-1cfff20dcdb7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ast/ArrayNode.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ast/FieldType.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/ForList.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/IfList.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/IrtList.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/IrtNode.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/IrtVisitor.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/NopNode.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$41.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ast/SingleIdNode.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/antlr4_parse_tree.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/bad.s" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ast/BreakNode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ast/CallArgExprNode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ast/CallArgLitNode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ast/CallArgNode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ast/ContinueNode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ast/FieldTypeNode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ast/IdNode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ast/NotExprNode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ast/OperatorType.java" />
-      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\ast\PrefixNode.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/AstVisitor.class" afterPath="$PROJECT_DIR$/src/ast/AstVisitor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/BlockNode.class" afterPath="$PROJECT_DIR$/src/ast/BlockNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/BooleanFieldNode.class" afterPath="$PROJECT_DIR$/src/ast/BooleanFieldNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/CalloutNode.class" afterPath="$PROJECT_DIR$/src/ast/CalloutNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/FieldNode.class" afterPath="$PROJECT_DIR$/src/ast/FieldNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/IfNode.class" afterPath="$PROJECT_DIR$/src/ast/IfNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/IntFieldNode.class" afterPath="$PROJECT_DIR$/src/ast/IntFieldNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/Irt.class" afterPath="$PROJECT_DIR$/src/irt/Irt.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/MethodCallNode.class" afterPath="$PROJECT_DIR$/src/ast/MethodCallNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/MethodNode.class" afterPath="$PROJECT_DIR$/src/ast/MethodNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/NodeList.class" afterPath="$PROJECT_DIR$/src/ast/NodeList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/ProgramNode.class" afterPath="$PROJECT_DIR$/src/ast/ProgramNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/SymbolTable.class" afterPath="$PROJECT_DIR$/src/lib/SymbolTable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/ArrayNode.java" afterPath="$PROJECT_DIR$/src/ast/ArrayNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/AstVisitor.java" afterPath="$PROJECT_DIR$/src/ast/AstVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/BlockNode.java" afterPath="$PROJECT_DIR$/src/ast/BlockNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/BooleanFieldNode.java" afterPath="$PROJECT_DIR$/src/ast/BooleanFieldNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/CalloutNode.java" afterPath="$PROJECT_DIR$/src/ast/CalloutNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/FieldNode.java" afterPath="$PROJECT_DIR$/src/ast/FieldNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/IfNode.java" afterPath="$PROJECT_DIR$/src/ast/IfNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/IntFieldNode.java" afterPath="$PROJECT_DIR$/src/ast/IntFieldNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/Irt.java" afterPath="$PROJECT_DIR$/src/irt/Irt.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtList.java" afterPath="$PROJECT_DIR$/src/irt/IrtList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtNode.java" afterPath="$PROJECT_DIR$/src/irt/IrtNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtVisitor.java" afterPath="$PROJECT_DIR$/src/irt/IrtVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/MethodCallNode.java" afterPath="$PROJECT_DIR$/src/ast/MethodCallNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/MethodNode.java" afterPath="$PROJECT_DIR$/src/ast/MethodNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/NodeList.java" afterPath="$PROJECT_DIR$/src/ast/NodeList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/NopNode.java" afterPath="$PROJECT_DIR$/src/irt/NopNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor.java" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/SingleIdNode.java" afterPath="$PROJECT_DIR$/src/ast/SingleIdNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/SymbolTable.java" afterPath="$PROJECT_DIR$/src/lib/SymbolTable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/test.s" afterPath="$PROJECT_DIR$/src/test/test.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Compiler.iws" />
@@ -917,7 +861,7 @@
       <workItem from="1414103721666" duration="600000" />
       <workItem from="1414455263214" duration="3287000" />
       <workItem from="1414698433393" duration="37000" />
-      <workItem from="1414990841714" duration="20973000" />
+      <workItem from="1414990841714" duration="21005000" />
     </task>
     <task id="LOCAL-00001" summary="changed project settings">
       <created>1407979735465</created>
@@ -1059,11 +1003,15 @@
       <created>1415005795188</created>
       <updated>1415005795188</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Added generics to NodeList">
+      <created>1415011973006</created>
+      <updated>1415011973006</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="207456000" />
+    <option name="totallyTimeSpent" value="207488000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
