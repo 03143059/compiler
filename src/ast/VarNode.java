@@ -7,18 +7,26 @@ import java.util.List;
 
 public abstract class VarNode extends Node {
 
-        private final String varType;
+        private final String type;
         private final List<TerminalNode> varNames;
 
         public VarNode(String varType, List<TerminalNode> varNames) {
-            this.varType = varType;
+            this.type = varType;
             this.varNames = varNames;
         }
 
         @Override
         public void print(String padding, PrintStream out) {
-            out.println(padding + varType + " ->");
-            for(TerminalNode varName : varNames)
-                out.println(padding + "  " + varName.getText());
+            for(TerminalNode varName : getVarNames()) {
+                out.println(padding + "<Variable type=\"" + getType() + "\">" + varName.getText() + "</Variable>");
+            }
         }
+
+    public String getType() {
+        return type;
     }
+
+    public List<TerminalNode> getVarNames() {
+        return varNames;
+    }
+}

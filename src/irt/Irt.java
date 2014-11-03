@@ -1,11 +1,8 @@
 package irt;
 
-import ast.Ast;
-import ast.Node;
-import ast.NodeList;
+import ast.*;
 import codegen.Codegen;
 import lib.CompilerOptions;
-import lib.SymbolTable;
 import semantic.Semantic;
 
 import java.util.List;
@@ -23,19 +20,15 @@ public class Irt {
             System.out.println("Debbugging IRT");
 
         try {
-            printAst(Ast.ast.getList());
+            IrtList list = GenIntermediate(semantic.getAst().getStart());
 
-//            IrtVisitor visitor = new IrtVisitor();
-//            IrtList list = (IrtList) visitor.visit(semantic.getAst().getTree());
-//
-//            if (compilerOptions.stopAt(this))
-//                list.print(compilerOptions.out);
-//            if (compilerOptions.isDebbuggingActiveFor(this))
-//                list.print(System.out);
+            if (compilerOptions.stopAt(this))
+                list.print(compilerOptions.out);
+            if (compilerOptions.isDebbuggingActiveFor(this))
+                list.print(System.out);
 
 
-
-        } catch (Exception e){
+        } catch (Exception e) {
             System.err.println("ERROR: " + e.getMessage());
             //e.printStackTrace();
         } finally {
@@ -45,13 +38,29 @@ public class Irt {
 
     }
 
-    private void printAst(List<Node> list) {
-        for (Node node : list){
-            if (node instanceof NodeList){
-                printAst(((NodeList)node).getList());
-            } else
-                System.out.println(node.getClass().getName());
+    private IrtList GenIntermediate(Node node) {
+        if (node instanceof ProgramNode){
+            ProgramNode ctx = (ProgramNode)node;
+            IrtNode end = new NopNode();
+            IrtNode fd = new IrtNode();
+            IrtList list = new IrtList(fd, end);
+            if (ctx.getFields() != null) {
+                for (Node v : ctx.getFields()) {
+                    FieldNode fn = (FieldNode)v;
+
+                   // fd = new LoadNode
+                    if (!(fd instanceof NopNode)) fd = fd.next;
+                }
+            }
+//            if (ctx.method_decl() != null) {
+//                for (Method_declContext v : ctx.method_decl()) {
+//                    fd = visit(v);
+//                    if (!(fd instanceof NopNode)) fd = fd.next;
+//                }
+//            }
+            return list;
         }
+        return null;
     }
 
     public Semantic getSemantic() {

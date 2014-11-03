@@ -7,20 +7,30 @@ public class BlockNode extends Node {
         private final NodeList stmts;
 
         public BlockNode(NodeList vars, NodeList stmts) {
-            Ast.ast.add(this);
+
             this.vars = vars;
             this.stmts = stmts;
         }
 
         @Override
         public void print(String padding, PrintStream out) {
-            if (vars.size() > 0) {
-                out.println(padding + "Vars ->");
-                vars.print(padding + "  ", out);
+            if (getVars().size() > 0) {
+                out.println(padding + "<Variables>");
+                getVars().print(padding + "  ", out);
+                out.println(padding + "</Variables>");
             }
-            if (stmts.size() > 0) {
-                out.println(padding + "Stmts ->");
-                stmts.print(padding + "  ", out);
+            if (getStmts().size() > 0) {
+                out.println(padding + "<Statements>");
+                getStmts().print(padding + "  ", out);
+                out.println(padding + "</Statements>");
             }
         }
+
+    public NodeList getVars() {
+        return vars;
     }
+
+    public NodeList getStmts() {
+        return stmts;
+    }
+}

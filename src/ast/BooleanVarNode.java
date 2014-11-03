@@ -8,7 +8,7 @@ public class BooleanVarNode extends VarNode {
 
     public BooleanVarNode(List<TerminalNode> varNames) {
         super("BOOLEAN", varNames);
-        Ast.ast.add(this);
+
     }
 
 }

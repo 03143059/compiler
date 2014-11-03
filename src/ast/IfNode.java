@@ -8,7 +8,7 @@ public class IfNode extends Node {
         private final Node els;
 
         public IfNode(Node expr, Node ifs, Node els) {
-            Ast.ast.add(this);
+
             this.expr = expr;
             this.ifs = ifs;
             this.els = els;
@@ -16,17 +16,18 @@ public class IfNode extends Node {
 
         @Override
         public void print(String padding, PrintStream out) {
-            out.println(padding + "if ->");
-            out.println(padding + "(");
-            expr.print(padding + "  ", out);
-            out.println(padding + ")");
-            out.println(padding + "then {");
-            ifs.print(padding + "  ", out);
-            out.println(padding + "}");
+            out.println(padding + "<If>");
+            out.println(padding + "  <Expression>");
+            expr.print(padding + "    ", out);
+            out.println(padding + "  </Expression>");
+            out.println(padding + "  <Then>");
+            ifs.print(padding + "    ", out);
+            out.println(padding + "  </Then>");
             if (els != null) {
-                out.println(padding + "else {");
-                els.print(padding + "  ", out);
-                out.println(padding + "}");
+                out.println(padding + "  <Else>");
+                els.print(padding + "    ", out);
+                out.println(padding + "  </Else>");
             }
+            out.println(padding + "</If>");
         }
     }

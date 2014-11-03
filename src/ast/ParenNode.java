@@ -7,13 +7,17 @@ public class ParenNode extends Node {
 
         public ParenNode(Node expr) {
             this.expr = expr;
-            Ast.ast.add(this);
+
         }
 
         @Override
         public void print(String padding, PrintStream out) {
-            out.println(padding + "(");
-            expr.print(padding + "  ", out);
-            out.println(padding + ")");
+            out.println(padding + "<ExpressionGroup>");
+            getExpr().print(padding + "    ", out);
+            out.println(padding + "</ExpressionGroup>");
         }
+
+    public Node getExpr() {
+        return expr;
     }
+}

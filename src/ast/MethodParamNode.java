@@ -13,6 +13,14 @@ public abstract class MethodParamNode extends Node {
 
         @Override
         public void print(String padding, PrintStream out) {
-            out.println(padding + type + " " + name);
+            out.println(padding + "<MethodParam type=\"" + getType() + "\">" + getName() + "</MethodParam>");
         }
+
+    public String getType() {
+        return type;
     }
+
+    public String getName() {
+        return name;
+    }
+}

@@ -7,10 +7,17 @@ public class StringLiteral extends Node {
 
         public StringLiteral(String v){
             value = v;
-            Ast.ast.add(this);
+            // remove surrounding quotes
+            if (value.charAt(0) == '"') value = value.substring(1);
+            if (value.charAt(value.length() - 1) == '"') value = value.substring(0, value.length() - 1);
+
         }
 
         public void print(String padding, PrintStream out){
-            out.println(padding + value);
+            out.println(padding + getValue());
         }
+
+    public String getValue() {
+        return value;
     }
+}

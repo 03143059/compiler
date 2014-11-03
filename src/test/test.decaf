@@ -1,12 +1,24 @@
 class Program {
-    int a;
-    int b;
+    int a, b;
+    int c[3];
 
 // function that computes the greatest common divisor
     int gcd(int a, int b) {
    // int b;
         if (b == 0) { return(a); }
         else { return( gcd(b, a % b) ); }
+    }
+
+    boolean test(){
+        int i;
+        for i = 0, 2 {
+            c[i] = i*i;
+        }
+        return true;
+    }
+
+    void test2(){
+        return;
     }
 
     int main() {

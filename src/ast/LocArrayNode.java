@@ -7,16 +7,25 @@ public class LocArrayNode extends Node {
         private final Node expr;
 
         public LocArrayNode(String name, Node expr) {
-            Ast.ast.add(this);
+
             this.name = name;
             this.expr = expr;
         }
 
         @Override
         public void print(String padding, PrintStream out) {
-            out.println(padding + name);
-            out.println(padding + "[");
-            expr.print(padding + "  ", out);
-            out.println(padding + "]");
+            out.println(padding + "<Array name=\""+ getName() + "\">");
+            out.println(padding + "  <Index>");
+            getExpr().print(padding + "    ", out);
+            out.println(padding + "  </Index>");
+            out.println(padding + "</Array>");
         }
+
+    public String getName() {
+        return name;
     }
+
+    public Node getExpr() {
+        return expr;
+    }
+}

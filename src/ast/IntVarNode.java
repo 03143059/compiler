@@ -8,7 +8,7 @@ public class IntVarNode extends VarNode {
 
     public IntVarNode(List<TerminalNode> varNames) {
         super("INT", varNames);
-        Ast.ast.add(this);
+
     }
 
 }

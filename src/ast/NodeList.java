@@ -1,10 +1,10 @@
 package ast;
 
 import java.io.PrintStream;
-import java.util.List;
-import java.util.LinkedList;
+import java.util.*;
+import java.util.function.Consumer;
 
-public class NodeList extends Node{
+public class NodeList extends Node implements Iterable<Node>{
     private List<Node> list;
     PrintStream out;
 
@@ -20,6 +20,10 @@ public class NodeList extends Node{
 		list.add(node);
 	}
 
+    public void insert(Node node){
+        list.add(0, node);
+    }
+
     public List<Node> getList() { return list; }
 	
 	public void print(String padding, PrintStream out){
@@ -32,6 +36,22 @@ public class NodeList extends Node{
 	public void print(){
 		print("", out);
 	}
-} 
+
+
+    @Override
+    public Iterator<Node> iterator() {
+        return list.iterator();
+    }
+
+    @Override
+    public void forEach(Consumer<? super Node> action) {
+        list.forEach(action);
+    }
+
+    @Override
+    public Spliterator<Node> spliterator() {
+        return list.spliterator();
+    }
+}
  
  

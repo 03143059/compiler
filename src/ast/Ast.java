@@ -6,11 +6,13 @@ import parser.CC4Parser;
 import semantic.Semantic;
 
 public class Ast {
-
     private final CC4Parser cc4Parser;
-    public static NodeList ast = new NodeList();
+    private Node start;
     private ParseTree tree;
 
+    public Node getStart() {
+        return start;
+    }
     public ParseTree getTree() {
         return tree;
     }
@@ -26,7 +28,7 @@ public class Ast {
 
         try{
             AstVisitor visitor = new AstVisitor();
-            Node start = visitor.visit(tree);
+            start = visitor.visit(tree);
 
             if (compilerOptions.stopAt(this))
                 start.print("  ", compilerOptions.out);

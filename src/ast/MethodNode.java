@@ -17,14 +17,29 @@ public abstract class MethodNode extends Node {
 
     @Override
     public void print(String padding, PrintStream out) {
-        out.println(padding + type + " " + name + " ->");
-        if (params.size() > 0) {
-            out.println(padding + "(");
-            params.print(padding + "  ", out);
-            out.println(padding + ")");
+        out.println(padding + "<Method type=\""+ getType() + "\" name=\"" + getName() + "\">");
+        if (getParams().size() > 0) {
+            out.println(padding + "  <MethodParams>");
+            getParams().print(padding + "  ", out);
+            out.println(padding + "  </MethodParams>");
         }
-        out.println(padding + "{");
-        block.print(padding + "  ", out);
-        out.println(padding + "}");
+        getBlock().print(padding + "  ", out);
+        out.println(padding + "</Method>");
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public NodeList getParams() {
+        return params;
+    }
+
+    public Node getBlock() {
+        return block;
     }
 }

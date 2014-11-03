@@ -33,9 +33,9 @@ public class AstVisitor
     @Override
     public Node visitCallout_arg(@NotNull DecafParser.Callout_argContext ctx) {
         if (ctx.expr() != null)
-            return visit(ctx.expr());
+            return new CallArgExprNode(visit(ctx.expr()));
         else if (ctx.STRING_LITERAL() != null)
-            return new StringLiteral(ctx.STRING_LITERAL().getText());
+            return new CallArgLitNode(ctx.STRING_LITERAL().getText());
         return null;
     }
 
@@ -61,8 +61,8 @@ public class AstVisitor
         }
         if (ctx.VOID() != null)
             return new VoidMethodNode(name, params, visit(ctx.block()));
-        else return (ctx.type().BOOLEAN() != null)? new BooleanMethodNode(name, params, visit(ctx.block())) :
-                (ctx.type().INT() != null) ?  new BooleanMethodNode(name, params, visit(ctx.block())) : null; // no deberia de suceder
+        else return (ctx.type().BOOLEAN() != null) ? new BooleanMethodNode(name, params, visit(ctx.block())) :
+                (ctx.type().INT() != null) ? new BooleanMethodNode(name, params, visit(ctx.block())) : null; // no deberia de suceder
     }
 
     @Override
@@ -73,13 +73,16 @@ public class AstVisitor
 
     @Override
     public Node visitMinexpr(@NotNull DecafParser.MinexprContext ctx) {
-        return new PrefixNode(ctx.MINUS().getText(), visit(ctx.expr()));
+        return new NegExprNode(visit(ctx.expr()));
     }
 
     @Override
     public Node visitLocstmt(@NotNull DecafParser.LocstmtContext ctx) {
         // location assign_op expr SEMI
-        return new LocationNode(visit(ctx.location()), visit(ctx.assign_op()), visit(ctx.expr()));
+        OperatorType op = ctx.assign_op().ASSIGNEQ() != null ? OperatorType.Equal :
+                ctx.assign_op().ASSIGNMINUSEQ() != null ? OperatorType.MinusEqual :
+                        ctx.assign_op().ASSIGNPLUSEQ() != null ? OperatorType.PlusEqual : null;
+        return new LocationNode(visit(ctx.location()), op, visit(ctx.expr()));
     }
 
     @Override
@@ -92,37 +95,48 @@ public class AstVisitor
     @Override
     public Node visitField_decls(@NotNull DecafParser.Field_declsContext ctx) {
         // type field_decl ( COMMA field_decl )*? SEMI
+        //TODO: Add individual fields instead of one node with multiple members
         NodeList fields = new NodeList();
         for (DecafParser.Field_declContext field : ctx.field_decl()) {
             fields.add(visit(field));
         }
-       return (ctx.type().BOOLEAN() != null)? new BooleanFieldNode(fields) :
-        (ctx.type().INT() != null) ?  new IntFieldNode(fields) : null; // no deberia de suceder
+        return (ctx.type().BOOLEAN() != null) ? new BooleanFieldNode(fields) :
+                (ctx.type().INT() != null) ? new IntFieldNode(fields) : null; // no deberia de suceder
     }
 
     //region field_decl
     @Override
     public Node visitSingleid(@NotNull DecafParser.SingleidContext ctx) {
-        return new StringLiteral(ctx.getText());
+        DecafParser.Field_declsContext parentContext = (DecafParser.Field_declsContext) ctx.getParent();
+        FieldType type = (parentContext.type().BOOLEAN() != null) ? FieldType.Boolean : FieldType.Int;
+        return new SingleIdNode(ctx.getText(), type);
     }
 
     @Override
     public Node visitArray(@NotNull DecafParser.ArrayContext ctx) {
         // ID LSQUARE INT_LITERAL RSQUARE
-        return new StringLiteral(ctx.ID().getText() + "[" + ctx.INT_LITERAL().getText() + "]");
+        DecafParser.Field_declsContext parentContext = (DecafParser.Field_declsContext) ctx.getParent();
+        FieldType type = (parentContext.type().BOOLEAN() != null) ? FieldType.Boolean : FieldType.Int;
+        int size = 0;
+        try {
+            size = Integer.parseInt(ctx.INT_LITERAL().getText());
+        } catch (NumberFormatException ex) {
+
+        }
+        return new ArrayNode(ctx.ID().getText(), size, type);
     }
     //endregion
 
     @Override
     public Node visitVar_decl(@NotNull DecafParser.Var_declContext ctx) {
         // type ID (COMMA ID)*? SEMI
-        return (ctx.type().BOOLEAN() != null)? new BooleanVarNode(ctx.ID()) :
-                (ctx.type().INT() != null) ?  new IntVarNode(ctx.ID()) : null; // no deberia de suceder
+        return (ctx.type().BOOLEAN() != null) ? new BooleanVarNode(ctx.ID()) :
+                (ctx.type().INT() != null) ? new IntVarNode(ctx.ID()) : null; // no deberia de suceder
     }
 
     @Override
     public Node visitLocid(@NotNull DecafParser.LocidContext ctx) {
-        return new StringLiteral(ctx.ID().getText());
+        return new IdNode(ctx.ID().getText());
     }
 
     @Override
@@ -132,6 +146,7 @@ public class AstVisitor
         for (DecafParser.Callout_argContext arg : ctx.callout_arg()) {
             args.add(visit(arg));
         }
+
         return new CalloutNode(ctx.STRING_LITERAL().getText(), args);
     }
 
@@ -147,7 +162,8 @@ public class AstVisitor
         for (DecafParser.ExprContext expr : ctx.expr()) {
             exprs.add(visit(expr));
         }
-        return new MethodCallNode(visit(ctx.method_name()), exprs);
+        String name = ((StringLiteral)visit(ctx.method_name())).getValue();
+        return new MethodCallNode(name, exprs);
     }
 
     @Override
@@ -172,9 +188,8 @@ public class AstVisitor
 
     @Override
     public Node visitRetstmt(@NotNull DecafParser.RetstmtContext ctx) {
-        if (ctx.expr()!=null)
-            return new PrefixNode(ctx.RETURN().getText(), visit(ctx.expr()));
-        return new StringLiteral(ctx.RETURN().getText());
+        // RETURN ( expr )? SEMI
+        return new RetExprNode((ctx.expr() != null) ? visit(ctx.expr()) : null);
     }
 
     @Override
@@ -184,8 +199,8 @@ public class AstVisitor
 
     @Override
     public Node visitMethod_param(@NotNull DecafParser.Method_paramContext ctx) {
-        return (ctx.type().BOOLEAN() != null)? new BooleanMethodParamNode(ctx.ID().getText()) :
-                (ctx.type().INT() != null) ?  new IntMethodParamNode(ctx.ID().getText()) : null; // no deberia de suceder
+        return (ctx.type().BOOLEAN() != null) ? new BooleanMethodParamNode(ctx.ID().getText()) :
+                (ctx.type().INT() != null) ? new IntMethodParamNode(ctx.ID().getText()) : null; // no deberia de suceder
     }
 
     @Override
@@ -232,7 +247,7 @@ public class AstVisitor
 
     @Override
     public Node visitNotexpr(@NotNull DecafParser.NotexprContext ctx) {
-        return new PrefixNode(ctx.NOT().getText(), visit(ctx.expr()));
+        return new NotExprNode(visit(ctx.expr()));
     }
 
     @Override
@@ -243,17 +258,17 @@ public class AstVisitor
     @Override
     public Node visitIfstmt(@NotNull DecafParser.IfstmtContext ctx) {
         // IF LPAREN expr RPAREN ifs=block ( ELSE els=block )?
-        return new IfNode(visit(ctx.expr()), visit(ctx.ifs), ctx.els != null?visit(ctx.els):null);
+        return new IfNode(visit(ctx.expr()), visit(ctx.ifs), ctx.els != null ? visit(ctx.els) : null);
     }
 
     @Override
     public Node visitBrkstmt(@NotNull DecafParser.BrkstmtContext ctx) {
-        return new StringLiteral(ctx.BREAK().getText());
+        return new BreakNode();
     }
 
     @Override
     public Node visitCntstmt(@NotNull DecafParser.CntstmtContext ctx) {
-        return new StringLiteral(ctx.CONTINUE().getText());
+        return new ContinueNode();
     }
 
 }

@@ -14,8 +14,7 @@ public abstract class FieldNode extends Node {
 
         @Override
         public void print(String padding, PrintStream out) {
-            out.println(padding + fieldType + " ->");
-            fields.print(padding + "  ", out);
+            fields.print(padding, out);
         }
     }
 
