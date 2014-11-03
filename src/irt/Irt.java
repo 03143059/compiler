@@ -20,7 +20,8 @@ public class Irt {
             System.out.println("Debbugging IRT");
 
         try {
-            IrtList list = GenIntermediate(semantic.getAst().getStart());
+            IrtVisitor visitor = new IrtVisitor();
+            IrtList list = (IrtList) visitor.visitStart((ProgramNode)semantic.getAst().getStart());   //GenIntermediate(semantic.getAst().getStart());
 
             if (compilerOptions.stopAt(this))
                 list.print(compilerOptions.out);

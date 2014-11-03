@@ -17,10 +17,10 @@ public class BinOp extends Node{
         public void print(String padding, PrintStream out){
             out.println(padding + "<BinaryOperation operator=\""+ getOperator() +"\">");
             out.println(padding + "  <LeftExpression>");
-            getLeft().print(padding + "  ", out);
+            getLeft().print(padding + "    ", out);
             out.println(padding + "  </LeftExpression>");
             out.println(padding + "  <RightExpression>");
-            getRight().print(padding + "  ", out);
+            getRight().print(padding + "    ", out);
             out.println(padding + "  </RightExpression>");
             out.println(padding + "</BinaryOperation>");
         }

@@ -1,5 +1,7 @@
 package irt;
 
+import java.io.PrintStream;
+
 /**
  * Created by Werner on 10/20/2014.
  */
@@ -14,4 +16,6 @@ public abstract class IrtNode {
     public String getName() {
         return name;
     }
+
+    public abstract void print(PrintStream out);
 }
