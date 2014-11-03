@@ -14,5 +14,22 @@ public class Codegen {
         if (compilerOptions.isDebbuggingActiveFor(this))
             System.out.println("Debbugging Code Generation");
 
+        try {
+
+
+//            IrtVisitor visitor = new IrtVisitor();
+//            IrtList list = (IrtList) visitor.visit(semantic.getAst().getTree());
+//
+//            if (compilerOptions.stopAt(this))
+//                list.print(compilerOptions.out);
+//            if (compilerOptions.isDebbuggingActiveFor(this))
+//                list.print(System.out);
+
+
+
+        } catch (Exception e){
+            System.err.println("ERROR: " + e.getMessage());
+            //e.printStackTrace();
+        }
     }
 }
