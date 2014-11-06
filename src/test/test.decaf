@@ -1,6 +1,7 @@
 class Program {
     int a, b;
-    int c[3];
+    int c[3], d[10];
+    boolean e, f[2];
 
 // function that computes the greatest common divisor
     int gcd(int a, int b) {

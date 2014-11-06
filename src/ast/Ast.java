@@ -30,8 +30,9 @@ public class Ast {
             AstVisitor visitor = new AstVisitor();
             start = visitor.visit(tree);
 
-            if (compilerOptions.stopAt(this))
+            if (compilerOptions.stopAt(this)) {
                 start.print("  ", compilerOptions.out);
+            }
 
             if (compilerOptions.isDebbuggingActiveFor(this))
                 start.print("  ", System.out);

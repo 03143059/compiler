@@ -95,7 +95,6 @@ public class AstVisitor
     @Override
     public Node visitField_decls(@NotNull DecafParser.Field_declsContext ctx) {
         // type field_decl ( COMMA field_decl )*? SEMI
-        //TODO: Add individual fields instead of one node with multiple members
         if ((ctx.type().BOOLEAN() != null)){
             NodeList<FieldTypeNode> fields = new NodeList<FieldTypeNode>();
             for (DecafParser.Field_declContext field : ctx.field_decl()) {

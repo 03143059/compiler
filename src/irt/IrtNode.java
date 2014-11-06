@@ -7,15 +7,13 @@ import java.io.PrintStream;
  */
 public abstract class IrtNode {
     public IrtNode next = null;
-    private String name;
+    public String name;
 
     protected IrtNode(String name){
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public abstract void print(PrintStream out);
+    public abstract String getAssembler();
+
 }

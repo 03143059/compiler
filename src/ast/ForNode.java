@@ -18,7 +18,7 @@ public class ForNode extends Node {
 
         @Override
         public void print(String padding, PrintStream out) {
-            out.println(padding + "<For variable=\"" + getVarName() + ">");
+            out.println(padding + "<For variable=\"" + getVarName() + "\">");
             out.println(padding + "  <Start>");
             getStart().print(padding + "    ", out);
             out.println(padding + "  </Start>");

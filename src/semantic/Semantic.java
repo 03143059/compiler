@@ -28,7 +28,7 @@ public class Semantic {
                 SymbolTable.print(System.out);
         } catch (Exception e){
             System.err.println("ERROR: " + e.getMessage());
-            //e.printStackTrace();
+            e.printStackTrace();
         } finally {
             if (!compilerOptions.stopAt(this)) {
                 if (result != null && result.ok())

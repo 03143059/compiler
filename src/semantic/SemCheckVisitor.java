@@ -738,11 +738,12 @@ public class SemCheckVisitor
 
     @Override
     public SemNode visitLiteral(@NotNull final DecafParser.LiteralContext ctx) {
-        return new SemNode(ctx.BOOL_LITERAL() != null ? "boolean" :
-                ctx.INT_LITERAL() != null ? "int" : null) {
+        String type = ctx.BOOL_LITERAL() != null ? "boolean" :
+                ctx.INT_LITERAL() != null || ctx.CHAR_LITERAL() != null ? "int" : null;
+        return new SemNode(type) {
             @Override
             public boolean ok() {
-                return true;
+                return type != null;
             }
         };
     }

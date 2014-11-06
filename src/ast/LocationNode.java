@@ -20,7 +20,7 @@ public class LocationNode extends Node {
             out.println(padding + "  <Location>");
             getLocation().print(padding + "    ", out);
             out.println(padding + "  </Location>");
-            out.println(padding + "  </Expression>");
+            out.println(padding + "  <Expression>");
             getExpr().print(padding + "    ", out);
             out.println(padding + "  </Expression>");
             out.println(padding + "</Assignment>");
