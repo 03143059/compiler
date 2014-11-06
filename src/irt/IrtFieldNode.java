@@ -13,8 +13,8 @@ public class IrtFieldNode extends IrtNode {
     private final String id;
     private final int size;
 
-    public IrtFieldNode(FieldType fieldType, String id, int size) {
-        super("field");
+    public IrtFieldNode(String id, FieldType fieldType, int size) {
+        super("-field");
         this.fieldType = fieldType;
         this.id = id;
         this.size = size;
@@ -23,15 +23,15 @@ public class IrtFieldNode extends IrtNode {
     @Override
     public void print(PrintStream out) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Variable (name: ");
-        sb.append(id);
-        sb.append(", type: ");
+        sb.append("Global ");
         sb.append(fieldType);
         if (size > 0) {
-            sb.append(", size: ");
+            sb.append("[");
             sb.append(size);
+            sb.append("]");
         }
-        sb.append(")");
+        sb.append(" ");
+        sb.append(id);
         out.println(sb.toString());
     }
 

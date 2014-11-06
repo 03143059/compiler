@@ -17,22 +17,61 @@ public class IrtVisitor {
     public IrtNode visitStart(ProgramNode ctx) {
         debug("DEBUG: entering " + ctx.getClass().getName());
         IrtNode end = new NopNode();
-        IrtNode fd = new StartNode();
-        IrtList list = new IrtList("program", fd, end);
+        IrtNode fd = new IrtProgramNode();
+        IrtList list = new IrtList(fd, end);
 
         if (ctx.getFields() != null) {
             for (FieldNode v : ctx.getFields()) {
                 fd.next = visit(v);
-                if (!(fd instanceof NopNode)) fd = fd.next;
-            }
-        }
-        if (ctx.getMethods() != null) {
-            for (MethodNode v : ctx.getMethods()) {
-                fd.next = visit(v);
-                if (!(fd instanceof NopNode)) fd = fd.next;
+                if (!(fd.next instanceof NopNode)) fd = fd.next;
             }
         }
 
+        if (ctx.getMethods() != null) {
+            for (MethodNode v : ctx.getMethods()) {
+                fd.next = visit(v);
+                if (!(fd.next instanceof NopNode)) fd = fd.next;
+            }
+        }
+
+        return list;
+    }
+
+    public IrtNode visitField(FieldNode ctx) {
+        debug("DEBUG: entering " + ctx.getClass().getName());
+        IrtNode end = new NopNode();
+        IrtNode fd = new StartNode();
+        IrtList list = new IrtList(fd, end);
+
+        if (ctx.getFieldType() == FieldType.Boolean){
+            for (FieldTypeNode field : ((BooleanFieldNode)ctx).getFields()) {
+                fd.next = visit(field);
+                if (!(fd.next instanceof NopNode)) fd = fd.next;
+            }
+        } else if (ctx.getFieldType() == FieldType.Int) {
+            for (FieldTypeNode field : ((IntFieldNode)ctx).getFields()) {
+                fd.next = visit(field);
+                if (!(fd.next instanceof NopNode)) fd = fd.next;
+            }
+        }
+        return list;
+    }
+
+    public IrtNode visitArray(ArrayNode ctx) {
+        debug("DEBUG: entering " + ctx.getClass().getName());
+        IrtNode end = new NopNode();
+        IrtNode fd = new StartNode();
+        IrtList list = new IrtList(fd, end);
+        fd.next = new IrtFieldNode(ctx.getId(), ctx.getType(), ctx.getSize());
+        return list;
+    }
+
+    public IrtNode visitSingleid(SingleIdNode ctx) {
+        debug("DEBUG: entering " + ctx.getClass().getName());
+        IrtNode end = new NopNode();
+        IrtNode fd = new StartNode();
+        IrtList list = new IrtList(fd, end);
+        fd.next = new IrtFieldNode(ctx.getId(), ctx.getType(), 0);
         return list;
     }
 
@@ -51,44 +90,6 @@ public class IrtVisitor {
 
         fd.next = new IrtMethodList(ctx.getName(), ctx.getType(), params, visit(ctx.getBlock()));
 
-        return list;
-    }
-
-    public IrtNode visitArray(ArrayNode ctx) {
-        debug("DEBUG: entering " + ctx.getClass().getName());
-        IrtNode end = new NopNode();
-        IrtNode fd = new StartNode();
-        IrtList list = new IrtList("array", fd, end);
-        fd.next = new IrtFieldNode(ctx.getType(), ctx.getId(), ctx.getSize());
-        return list;
-    }
-
-    public IrtNode visitSingleid(SingleIdNode ctx) {
-        debug("DEBUG: entering " + ctx.getClass().getName());
-        IrtNode end = new NopNode();
-        IrtNode fd = new StartNode();
-        IrtList list = new IrtList("single", fd, end);
-        fd.next = new IrtFieldNode(ctx.getType(), ctx.getId(), 0);
-        return list;
-    }
-
-    public IrtNode visitField(FieldNode ctx) {
-        debug("DEBUG: entering " + ctx.getClass().getName());
-        IrtNode end = new NopNode();
-        IrtNode fd = new StartNode();
-        IrtList list = new IrtList("fieldlist", fd, end);
-
-        if (ctx.getFieldType() == FieldType.Boolean){
-            for (FieldTypeNode field : ((BooleanFieldNode)ctx).getFields()) {
-                fd.next = visit(field);
-                if (!(fd instanceof NopNode)) fd = fd.next;
-            }
-        } else if (ctx.getFieldType() == FieldType.Int) {
-            for (FieldTypeNode field : ((IntFieldNode)ctx).getFields()) {
-                fd.next = visit(field);
-                if (!(fd instanceof NopNode)) fd = fd.next;
-            }
-        }
         return list;
     }
 

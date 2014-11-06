@@ -2,49 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f8dfea22-b6cf-486e-9ed7-1cfff20dcdb7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/BranchList.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/IrtFieldNode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/IrtIdNode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/IrtLiteralNode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/IrtMethodList.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/IrtStringNode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/JumpList.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/LoadList.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/StartNode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/StoreList.java" />
-      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\test\test.s" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/Ast.class" afterPath="$PROJECT_DIR$/src/ast/Ast.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/AstVisitor.class" afterPath="$PROJECT_DIR$/src/ast/AstVisitor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/FieldTypeNode.class" afterPath="$PROJECT_DIR$/src/ast/FieldTypeNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/ForList.class" afterPath="$PROJECT_DIR$/src/irt/ForList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/ForNode.class" afterPath="$PROJECT_DIR$/src/ast/ForNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IfList.class" afterPath="$PROJECT_DIR$/src/irt/IfList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/Irt.class" afterPath="$PROJECT_DIR$/src/irt/Irt.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/IrtProgramNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtFieldNode.class" afterPath="$PROJECT_DIR$/src/irt/IrtFieldNode.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtList.class" afterPath="$PROJECT_DIR$/src/irt/IrtList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtNode.class" afterPath="$PROJECT_DIR$/src/irt/IrtNode.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtVisitor.class" afterPath="$PROJECT_DIR$/src/irt/IrtVisitor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/LocationNode.class" afterPath="$PROJECT_DIR$/src/ast/LocationNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/NopNode.class" afterPath="$PROJECT_DIR$/src/irt/NopNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$39.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$39.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$40.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$40.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$41.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$41.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/Semantic.class" afterPath="$PROJECT_DIR$/src/semantic/Semantic.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/Ast.java" afterPath="$PROJECT_DIR$/src/ast/Ast.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/AstVisitor.java" afterPath="$PROJECT_DIR$/src/ast/AstVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/FieldTypeNode.java" afterPath="$PROJECT_DIR$/src/ast/FieldTypeNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/ForList.java" afterPath="$PROJECT_DIR$/src/irt/ForList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/ForNode.java" afterPath="$PROJECT_DIR$/src/ast/ForNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IfList.java" afterPath="$PROJECT_DIR$/src/irt/IfList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/Irt.java" afterPath="$PROJECT_DIR$/src/irt/Irt.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtFieldNode.java" afterPath="$PROJECT_DIR$/src/irt/IrtFieldNode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtList.java" afterPath="$PROJECT_DIR$/src/irt/IrtList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtNode.java" afterPath="$PROJECT_DIR$/src/irt/IrtNode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtVisitor.java" afterPath="$PROJECT_DIR$/src/irt/IrtVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ast/LocationNode.java" afterPath="$PROJECT_DIR$/src/ast/LocationNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/NopNode.java" afterPath="$PROJECT_DIR$/src/irt/NopNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor.java" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/Semantic.java" afterPath="$PROJECT_DIR$/src/semantic/Semantic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/test.decaf" afterPath="$PROJECT_DIR$/src/test/test.decaf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/test.s" afterPath="$PROJECT_DIR$/src/test/test.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Compiler.iws" />
@@ -125,11 +90,38 @@
       <file leaf-file-name="IrtVisitor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/irt/IrtVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4017094" vertical-offset="75" max-vertical-offset="6477">
-              <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.5641026" vertical-offset="845" max-vertical-offset="6494">
+              <caret line="75" column="5" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1215#1231#0" expanded="true" />
+                <element signature="e#2656#2672#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IrtProgramNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/irt/IrtProgramNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+              <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+              <folding>
+                <element signature="e#161#162#0" expanded="true" />
+                <element signature="e#194#195#0" expanded="true" />
+                <element signature="e#250#251#0" expanded="true" />
+                <element signature="e#294#295#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IrtFieldNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/irt/IrtFieldNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="148" max-vertical-offset="952">
+              <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -160,8 +152,8 @@
       <file leaf-file-name="IrtList.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/irt/IrtList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="64" max-vertical-offset="1054">
-              <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="72" max-vertical-offset="1054">
+              <caret line="31" column="32" selection-start-line="30" selection-start-column="13" selection-end-line="31" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -229,17 +221,18 @@
         <option value="$PROJECT_DIR$/src/irt/LoadList.java" />
         <option value="$PROJECT_DIR$/src/irt/StartNode.java" />
         <option value="$PROJECT_DIR$/src/test/test.decaf" />
-        <option value="$PROJECT_DIR$/src/irt/IrtFieldNode.java" />
-        <option value="$PROJECT_DIR$/src/irt/IrtList.java" />
         <option value="$PROJECT_DIR$/src/irt/IrtMethodNode.java" />
         <option value="$PROJECT_DIR$/src/irt/NopNode.java" />
-        <option value="$PROJECT_DIR$/src/irt/Irt.java" />
         <option value="$PROJECT_DIR$/src/irt/IrtIdNode.java" />
         <option value="$PROJECT_DIR$/src/irt/IrtLiteralNode.java" />
         <option value="$PROJECT_DIR$/src/irt/BinOpList.java" />
         <option value="$PROJECT_DIR$/src/irt/StoreList.java" />
         <option value="$PROJECT_DIR$/src/irt/IrtStringNode.java" />
         <option value="$PROJECT_DIR$/src/irt/IrtMethodList.java" />
+        <option value="$PROJECT_DIR$/src/irt/Irt.java" />
+        <option value="$PROJECT_DIR$/src/irt/IrtList.java" />
+        <option value="$PROJECT_DIR$/src/irt/IrtProgramNode.java" />
+        <option value="$PROJECT_DIR$/src/irt/IrtFieldNode.java" />
         <option value="$PROJECT_DIR$/src/irt/IrtVisitor.java" />
       </list>
     </option>
@@ -831,7 +824,7 @@
       <workItem from="1414990841714" duration="24598000" />
       <workItem from="1415061948161" duration="6154000" />
       <workItem from="1415195814271" duration="1321000" />
-      <workItem from="1415205805728" duration="25855000" />
+      <workItem from="1415205805728" duration="28527000" />
     </task>
     <task id="LOCAL-00001" summary="changed project settings">
       <created>1407979735465</created>
@@ -1067,11 +1060,23 @@
       <option name="project" value="LOCAL" />
       <updated>1415012500594</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Added lots of Irt constructs">
+      <created>1415241718487</created>
+      <option name="number" value="00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1415241718487</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Added missing classes">
+      <created>1415241760290</created>
+      <option name="number" value="00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1415241760290</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="244411000" />
+    <option name="totallyTimeSpent" value="247083000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1145,7 +1150,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Fixed output format for Lexer&#10;" />
     <MESSAGE value="Fixed operator precedence and output from parser.&#10;" />
     <MESSAGE value="Added AST classes&#10;" />
     <MESSAGE value="Added new classes&#10;" />
@@ -1169,6 +1173,7 @@
     <MESSAGE value="Fixed code to traverse the AST instead of the parse tree" />
     <MESSAGE value="Converted AST representation to XML" />
     <MESSAGE value="Added generics to NodeList" />
+    <MESSAGE value="Added lots of Irt constructs" />
     <MESSAGE value="Added missing classes" />
     <option name="LAST_COMMIT_MESSAGE" value="Added missing classes" />
   </component>
@@ -1183,13 +1188,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ast/RetExprNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4116809" vertical-offset="0" max-vertical-offset="702">
-          <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/tes.s">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="702">
@@ -1462,24 +1460,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/irt/IrtFieldNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="260" max-vertical-offset="952">
-          <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/irt/Irt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="1938">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/irt/ForList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9770115" vertical-offset="85" max-vertical-offset="1122">
@@ -1570,16 +1550,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/irt/IrtList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="64" max-vertical-offset="1054">
-          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ast/AstVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.6" vertical-offset="430" max-vertical-offset="4556">
@@ -1622,13 +1592,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/irt/IrtVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/irt/Irt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4017094" vertical-offset="75" max-vertical-offset="6477">
-          <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="1938">
+          <caret line="23" column="48" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/irt/IrtList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="72" max-vertical-offset="1054">
+          <caret line="31" column="32" selection-start-line="30" selection-start-column="13" selection-end-line="31" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1215#1231#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/irt/IrtProgramNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+          <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+          <folding>
+            <element signature="e#161#162#0" expanded="true" />
+            <element signature="e#194#195#0" expanded="true" />
+            <element signature="e#250#251#0" expanded="true" />
+            <element signature="e#294#295#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/irt/IrtFieldNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="148" max-vertical-offset="952">
+          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/irt/IrtVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5641026" vertical-offset="845" max-vertical-offset="6494">
+          <caret line="75" column="5" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2656#2672#0" expanded="true" />
           </folding>
         </state>
       </provider>

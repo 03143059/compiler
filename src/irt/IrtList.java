@@ -25,11 +25,11 @@ public class IrtList extends IrtNode{
     public void print(PrintStream out) {
         IrtNode n = getStart();
         while (n != null) {
-            if (!(n instanceof NopNode) && !(n instanceof StartNode))
+            if (!(n instanceof NopNode) && !(n instanceof StartNode) && !n.name.startsWith("-") && n.name.length()>0)
                 out.printf("[%s]\n", n.name.toUpperCase());
             n.print(out);
-            if (!(n instanceof NopNode) && !(n instanceof StartNode))
-                out.println();
+//            if (!(n instanceof NopNode) && !(n instanceof StartNode))
+//                out.println();
             n = n.next;
         }
     }
