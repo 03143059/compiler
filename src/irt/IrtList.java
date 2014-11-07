@@ -26,7 +26,7 @@ public class IrtList extends IrtNode{
         IrtNode n = getStart();
         while (n != null) {
             if (!(n instanceof NopNode) && !(n instanceof StartNode) && !n.name.startsWith("-") && n.name.length()>0)
-                out.printf("[%s]\n", n.name.toUpperCase());
+                out.printf("\n[%s]\n", n.name.toUpperCase());
             n.print(out);
 //            if (!(n instanceof NopNode) && !(n instanceof StartNode))
 //                out.println();
@@ -34,17 +34,28 @@ public class IrtList extends IrtNode{
         }
     }
 
+    @Override
     public  String getAssembler() {
         StringBuilder sb = new StringBuilder();
         IrtNode n = getStart();
         while (n != null) {
             sb.append(n.getAssembler());
-            sb.append(System.lineSeparator());
             n = n.next;
         }
         return sb.toString();
     }
 
+    @Override
+    public  String getString() {
+        StringBuilder sb = new StringBuilder();
+        IrtNode n = getStart();
+        while (n != null) {
+            if (sb.length() > 0) sb.append(", ");
+            sb.append(n.getString());
+            n = n.next;
+        }
+        return sb.toString();
+    }
 
     public IrtNode getStart() {
         return start;

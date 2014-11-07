@@ -21,6 +21,7 @@ public class StoreList extends IrtList {
     public void print(PrintStream out){
         out.println("store " + start.name + " on " + loc.name + " with op " + op);
         start.print(out);
+        loc.print(out);
     }
 
     @Override

@@ -8,15 +8,14 @@ import java.io.PrintStream;
 public class IfList extends IrtList {
     public IrtNode true_end, false_end;
 
-    public IfList(IrtNode start, IrtNode end) {
+    public IfList(IrtNode start, IrtNode end, IrtNode iftrue, IrtNode iffalse) {
         super("If", start, end);
-        true_end = new NopNode();
-        false_end = new NopNode();
+        true_end = iftrue;
+        false_end = iffalse;
     }
 
     @Override
     public void print(PrintStream out){
-        out.println(name);
         start.print(out);
         true_end.print(out);
         if (false_end != null)

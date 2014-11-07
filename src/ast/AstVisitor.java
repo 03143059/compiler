@@ -62,7 +62,7 @@ public class AstVisitor
         if (ctx.VOID() != null)
             return new VoidMethodNode(name, params, visit(ctx.block()));
         else return (ctx.type().BOOLEAN() != null) ? new BooleanMethodNode(name, params, visit(ctx.block())) :
-                (ctx.type().INT() != null) ? new BooleanMethodNode(name, params, visit(ctx.block())) : null; // no deberia de suceder
+                (ctx.type().INT() != null) ? new IntMethodNode(name, params, visit(ctx.block())) : null; // no deberia de suceder
     }
 
     @Override

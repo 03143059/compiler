@@ -6,22 +6,23 @@ import java.io.PrintStream;
  * Created by Werner on 10/21/2014.
  */
 public class ForList extends IrtList {
-    private final IrtNode from;
-    private final IrtNode to;
+    private final String varName;
+    private final IrtNode until;
+    private final IrtNode block;
 
-    public ForList(IrtNode from, IrtNode to) {
-        super("For", from, new NopNode());
-
-        this.from = from;
-        this.to = to;
+    public ForList(IrtNode start, IrtNode end, String varName, IrtNode until, IrtNode block) {
+        super("For", start, end);
+        this.varName = varName;
+        this.until = until;
+        this.block = block;
     }
 
     @Override
     public void print(PrintStream out){
-        out.println(name);
+        out.println("use variable " + varName);
         start.print(out);
-        from.print(out);
-        to.print(out);
+        until.print(out);
+        block.print(out);
     }
 
     @Override

@@ -24,7 +24,6 @@ public class IrtMethodList extends IrtList {
         if (r.length() > 0)
             out.print(", params: " + r);
         out.println(")");
-
         start.print(out);
     }
 

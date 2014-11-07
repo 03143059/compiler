@@ -38,13 +38,32 @@ public class IrtFieldNode extends IrtNode {
     @Override
     public String getAssembler() {
         StringBuilder sb = new StringBuilder();
-        sb.append("var_");
-        sb.append(id);
-        sb.append(":\t.word\t");
+        sb.append(String.format("var_%s:\t.word\t", id));
         sb.append((size==0)?1:"0:"+size);
-        sb.append("\t# int ");
-        sb.append(id);
+        sb.append(String.format("\t# int %s", id));
         sb.append((size==0)?"":"["+size+"]");
+        sb.append(System.lineSeparator());
         return sb.toString();
+    }
+
+    public FieldType getFieldType() {
+        return fieldType;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    @Override
+    public String getString(){
+        String r = fieldType + " " + id;
+        if (size > 0) {
+            r += String.format("[%d]", size);
+        }
+        return r;
     }
 }

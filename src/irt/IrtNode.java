@@ -8,6 +8,7 @@ import java.io.PrintStream;
 public abstract class IrtNode {
     public IrtNode next = null;
     public String name;
+    public static Boolean OutputAssembler = false;
 
     protected IrtNode(String name){
         this.name = name;
@@ -15,5 +16,8 @@ public abstract class IrtNode {
 
     public abstract void print(PrintStream out);
     public abstract String getAssembler();
+    protected String getString(){
+        return ""; // implement
+    }
 
 }
