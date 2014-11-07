@@ -6,28 +6,28 @@ import java.io.PrintStream;
  * Created by Werner on 10/21/2014.
  */
 public class JumpList extends IrtList {
-    private final IrtNode from;
-    private final IrtNode to;
+    private final String id;
 
-    public JumpList(IrtNode from, IrtNode to) {
-        super("For", from, new NopNode());
-
-        this.from = from;
-        this.to = to;
+    public JumpList(String id, IrtNode params) {
+        super("Jump", params, new NopNode());
+        this.id = id;
     }
 
     @Override
     public void print(PrintStream out){
-        out.println(name);
-        start.print(out);
-        from.print(out);
-        to.print(out);
+        out.println("load function parameters");
+        IrtNode fd = start;
+        while(fd != null) {
+            fd.print(out);
+            fd = fd.next;
+        }
+        out.println("jump to function: " + id);
     }
 
     @Override
     public String getAssembler() {
         StringBuilder sb = new StringBuilder();
-        sb.append("j label");
+        sb.append("j " + id);
         return sb.toString();
     }
 }

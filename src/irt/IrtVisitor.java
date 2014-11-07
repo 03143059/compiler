@@ -143,10 +143,16 @@ public class IrtVisitor {
 
     public IrtNode visitLocid(IdNode ctx) {
         debug("DEBUG: entering " + ctx.getClass().getName());
-        IrtNode end = new NopNode();
-        IrtNode fd = new IrtIdNode(ctx.getName());
-        IrtList list = new IrtList("id", fd, end);
-        return list;
+        IrtNode expr = new NopNode();
+        //IrtNode loc = new IrtIdNode();
+        return new LoadList(expr, ctx.getName());
+    }
+
+    public IrtNode visitLocarray(LocArrayNode ctx) {
+        debug("DEBUG: entering " + ctx.getClass().getName());
+        IrtNode expr = visit(ctx.getExpr());
+        //IrtNode loc = new IrtIdNode();
+        return new LoadList(expr, ctx.getName());
     }
 
     public IrtNode visitAritexpr(BinOp ctx) {
@@ -176,29 +182,21 @@ public class IrtVisitor {
         return new NopNode();
     }
 
-    public IrtNode visitLocarray(LocArrayNode ctx) {
-        debug("DEBUG: entering " + ctx.getClass().getName());
-        return new IrtList(ctx.getName(), visit(ctx.getExpr()), new NopNode());
-    }
-
-
     public IrtNode visitMetcall(MethodCallNode ctx) {
         debug("DEBUG: entering " + ctx.getClass().getName());
-        IrtNode end = new NopNode();
-        IrtNode fd = new StartNode();
-        IrtList list = new IrtList(ctx.getName(), fd, end);
+        IrtNode params = new StartNode();
+        IrtList list = new JumpList(ctx.getName(), params);
         for(Node node : ctx.getExprs()) {
-            fd.next = visit(node);
-            if (!(fd.next instanceof NopNode)) fd = fd.next;
+            params.next = visit(node);
+            if (!(params.next instanceof NopNode)) params = params.next;
         }
         return list;
     }
 
     public IrtNode visitCallout(CalloutNode ctx) {
         debug("DEBUG: entering " + ctx.getClass().getName());
-        IrtNode end = new NopNode();
         IrtNode fd = new StartNode();
-        IrtList list = new IrtList(ctx.getFunctionName(), fd, end);
+        IrtList list = new JumpList(ctx.getFunctionName(), fd);
         for(CallArgNode node : ctx.getFunctionArgs()) {
             fd.next = visit(node);
             if (!(fd.next instanceof NopNode)) fd = fd.next;
@@ -224,9 +222,9 @@ public class IrtVisitor {
         debug("DEBUG: entering " + ctx.getClass().getName());
         IrtNode end = new NopNode();
         if (ctx.getExpr()== null)
-            return new IrtList("return", new StartNode(), end);
+            return new CmdList(new StartNode(), "return");
         else
-            return new IrtList("return", visit(ctx.getExpr()), end);
+            return new CmdList(visit(ctx.getExpr()), "return");
     }
 
     public IrtNode visitVar(VarNode ctx) {
@@ -272,12 +270,12 @@ public class IrtVisitor {
 
     public IrtNode visitBrkstmt(BreakNode ctx) {
         debug("DEBUG: entering " + ctx.getClass().getName());
-        return new IrtList("break", new StartNode(), new NopNode());
+        return new CmdList(new StartNode(), "break");
     }
 
     public IrtNode visitCntstmt(ContinueNode ctx) {
         debug("DEBUG: entering " + ctx.getClass().getName());
-        return new IrtList("continue", new StartNode(), new NopNode());
+        return new CmdList(new StartNode(), "continue");
     }
 
     public IrtNode visit(Node ctx) {

@@ -1,216 +1,71 @@
-##################################
-# Global Declarations
-##################################
-	.data
-var_a:	.word	1	# int a
-var_b:	.word	1	# int b
-var_c:	.word	0:3	# int c[3]
-var_d:	.word	0:10	# int d[10]
-var_e:	.word	1	# int e
-var_f:	.word	0:2	# int f[2]
-
-##################################
-# End Global
-##################################
-
-	.globl	main
-	.text
-	j	main	# jump to main program
-
-
-[METHOD]
-
-[GCD]
+PROGRAM START
+BEGIN GLOBAL SECTION
+Global Int a
+Global Int b
+Global Int[3] c
+Global Int[10] d
+Global Boolean e
+Global Boolean[2] f
+END GLOBAL SECTION
 Method (name: gcd, returns: INT, params: INT a, INT b)
-
-[IF]
-Binary operation: ==
-
-[LITERAL]
+Evaluate boolean expression
 load immediate literal 0
-
-[ID]
-load variable b
-
-[RETURN]
-
-[GROUP]
-
-[ID]
-
-[ID]
-load variable a
-
-[RETURN]
-
-[GROUP]
-
-[GCD]
-
-[ID]
-
-[ID]
-load variable b
-
-[BINOP]
-Binary operation: %
-
-[ID]
-load variable b
-
-[ID]
-load variable a
-
-[METHOD]
-
-[TEST]
+load b
+Execute binary operation: ==
+If result is true
+load a
+Execute command: return
+If result is false
+load function parameters
+load b
+load b
+load a
+Execute binary operation: %
+jump to function: gcd
+Execute command: return
 Method (name: test, returns: BOOLEAN)
-
-[INT]
-
-[TERMINAL]
-
-[VAR]
 declare variable i
-
-[FOR]
 use variable i
-
-[LITERAL]
 load immediate literal 0
-
-[LITERAL]
 load immediate literal 2
-
-[STORE]
-store BinOP on c with op Equal
-
-[ID]
-
-[ID]
-load variable i
-Binary operation: *
-
-[ID]
-load variable i
-
-[ID]
-load variable i
-
-[RETURN]
-
-[LITERAL]
-
-[LITERAL]
+load i
+load i
+Execute binary operation: *
+load c
+load i
+store with op Equal
 load immediate literal 1
-
-[METHOD]
-
-[TEST2]
+Execute command: return
 Method (name: test2, returns: VOID)
-
-[RETURN]
-
-[METHOD]
-
-[MAIN]
+Execute command: return
 Method (name: main, returns: INT)
-
-[INT]
-
-[TERMINAL]
-
-[VAR]
 declare variable x
-
-[TERMINAL]
-
-[VAR]
 declare variable y
-
-[TERMINAL]
-
-[VAR]
 declare variable z
-
-[STORE]
-store literal on id with op Equal
-
-[ID]
-load variable a
-
-[LITERAL]
 load immediate literal 100
-
-[STORE]
-store literal on id with op Equal
-
-[ID]
-load variable b
-
-[LITERAL]
+load a
+store with op Equal
 load immediate literal 20
-
-[STORE]
-store id on id with op Equal
-
-[ID]
-load variable x
-
-[ID]
-load variable a
-
-[STORE]
-store id on id with op Equal
-
-[ID]
-load variable y
-
-[ID]
-load variable b
-
-[STORE]
-store gcd on id with op Equal
-
-[ID]
-load variable z
-
-[ID]
-
-[ID]
-load variable x
-
-[ID]
-
-[ID]
-load variable y
-
-[PRINTF]
-
-[CALLOUT ARG]
-
-[STRING]
+load b
+store with op Equal
+load a
+load x
+store with op Equal
+load b
+load y
+store with op Equal
+load function parameters
+load x
+load y
+jump to function: gcd
+load z
+store with op Equal
+load function parameters
 load string %c
-
-[CALLOUT ARG]
-
-[ID]
-
-[ID]
-load variable a
-
-[PRINT_INT]
-
-[CALLOUT ARG]
-
-[ID]
-
-[ID]
-load variable z
-
-[RETURN]
-
-[LITERAL]
-
-[LITERAL]
+load a
+jump to function: printf
+load function parameters
+load z
+jump to function: print_int
 load immediate literal 0
+Execute command: return

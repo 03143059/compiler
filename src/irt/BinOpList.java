@@ -18,9 +18,9 @@ public class BinOpList extends IrtList {
 
     @Override
     public void print(PrintStream out){
-        out.println("Binary operation: " + op);
         right.print(out);
         start.print(out);
+        out.println("Execute binary operation: " + op);
     }
 
     @Override

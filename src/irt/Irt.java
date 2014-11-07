@@ -24,7 +24,7 @@ public class Irt {
             IrtVisitor visitor = new IrtVisitor();
             IrtList list = (IrtList) visitor.visit(semantic.getAst().getStart());
 
-            IrtNode.OutputAssembler = true;
+            IrtNode.OutputAssembler = false;
 
           //  IrtList list = GenIntermediate(semantic.getAst().getStart());
 

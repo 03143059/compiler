@@ -5,24 +5,24 @@ import java.io.PrintStream;
 /**
  * Created by Werner on 10/21/2014.
  */
-public class LoadList extends IrtList {
-    private final String loc;
+public class CmdList extends IrtList {
+    private final String cmd;
 
-    public LoadList(IrtNode expr, String loc) {
-        super("Load", expr, new NopNode());
-        this.loc = loc;
+    public CmdList(IrtNode start, String cmd) {
+        super("-Cmd", start, new NopNode());
+        this.cmd = cmd;
     }
 
     @Override
     public void print(PrintStream out){
-        out.println("load " + loc);
         start.print(out);
+        out.println("Execute command: " + cmd);
     }
 
     @Override
     public String getAssembler() {
         StringBuilder sb = new StringBuilder();
-        sb.append("lw  $a, $b($c)");
+        sb.append("COMMAND  $a, $b, $c");
         return sb.toString();
     }
 }

@@ -16,10 +16,14 @@ public class IfList extends IrtList {
 
     @Override
     public void print(PrintStream out){
+        out.println("Evaluate boolean expression");
         start.print(out);
+        out.println("If result is true");
         true_end.print(out);
-        if (false_end != null)
+        if (false_end != null) {
+            out.println("If result is false");
             false_end.print(out);
+        }
     }
 
     @Override
