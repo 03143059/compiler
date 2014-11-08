@@ -2,93 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f8dfea22-b6cf-486e-9ed7-1cfff20dcdb7" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\irt\IrtIdNode.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Dev\_CC4\cc4\compiler\src\semantic\SemNodeList.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/BinOpList.class" afterPath="$PROJECT_DIR$/src/irt/BinOpList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/BranchList.class" afterPath="$PROJECT_DIR$/src/irt/BranchList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/codegen/Codegen.class" afterPath="$PROJECT_DIR$/src/codegen/Codegen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Compiler.class" afterPath="$PROJECT_DIR$/src/Compiler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/ForList.class" afterPath="$PROJECT_DIR$/src/irt/ForList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IfList.class" afterPath="$PROJECT_DIR$/src/irt/IfList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/Irt.class" afterPath="$PROJECT_DIR$/src/irt/Irt.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtFieldNode.class" afterPath="$PROJECT_DIR$/src/irt/IrtFieldNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtList.class" afterPath="$PROJECT_DIR$/src/irt/IrtList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtLiteralNode.class" afterPath="$PROJECT_DIR$/src/irt/IrtLiteralNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtMethodList.class" afterPath="$PROJECT_DIR$/src/irt/IrtMethodList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtStringNode.class" afterPath="$PROJECT_DIR$/src/irt/IrtStringNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtVisitor.class" afterPath="$PROJECT_DIR$/src/irt/IrtVisitor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/JumpList.class" afterPath="$PROJECT_DIR$/src/irt/JumpList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/LoadList.class" afterPath="$PROJECT_DIR$/src/irt/LoadList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$1.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$10.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$11.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$11.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$12.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$12.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$13.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$13.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$14.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$14.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$15.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$15.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$16.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$16.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$17.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$17.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$18.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$18.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$19.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$19.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$2.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$20.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$20.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$21.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$21.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$22.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$22.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$23.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$23.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$24.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$24.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$25.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$25.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$26.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$26.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$27.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$27.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$28.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$28.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$29.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$29.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$3.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$30.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$30.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$31.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$31.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$32.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$32.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$33.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$33.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$34.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$34.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$35.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$35.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$36.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$36.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$37.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$37.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$38.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$38.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$39.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$39.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$4.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$40.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$40.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$41.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$41.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$5.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$6.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$7.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$8.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$9.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor.class" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemNodeList.class" afterPath="$PROJECT_DIR$/src/semantic/SemNodeList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/Semantic.class" afterPath="$PROJECT_DIR$/src/semantic/Semantic.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/StoreList.class" afterPath="$PROJECT_DIR$/src/irt/StoreList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/BinOpList.java" afterPath="$PROJECT_DIR$/src/irt/BinOpList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/BranchList.java" afterPath="$PROJECT_DIR$/src/irt/BranchList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/CmdList.java" afterPath="$PROJECT_DIR$/src/irt/CmdList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/codegen/Codegen.java" afterPath="$PROJECT_DIR$/src/codegen/Codegen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Compiler.java" afterPath="$PROJECT_DIR$/src/Compiler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/ForList.java" afterPath="$PROJECT_DIR$/src/irt/ForList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IfList.java" afterPath="$PROJECT_DIR$/src/irt/IfList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/Irt.java" afterPath="$PROJECT_DIR$/src/irt/Irt.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtFieldNode.java" afterPath="$PROJECT_DIR$/src/irt/IrtFieldNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtList.java" afterPath="$PROJECT_DIR$/src/irt/IrtList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtLiteralNode.java" afterPath="$PROJECT_DIR$/src/irt/IrtLiteralNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtMethodList.java" afterPath="$PROJECT_DIR$/src/irt/IrtMethodList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtProgramNode.java" afterPath="$PROJECT_DIR$/src/irt/IrtProgramNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtStringNode.java" afterPath="$PROJECT_DIR$/src/irt/IrtStringNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtVarNode.java" afterPath="$PROJECT_DIR$/src/irt/IrtVarNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtVisitor.java" afterPath="$PROJECT_DIR$/src/irt/IrtVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/JumpList.java" afterPath="$PROJECT_DIR$/src/irt/JumpList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/LoadList.java" afterPath="$PROJECT_DIR$/src/irt/LoadList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/SemCheckVisitor.java" afterPath="$PROJECT_DIR$/src/semantic/SemCheckVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/semantic/Semantic.java" afterPath="$PROJECT_DIR$/src/semantic/Semantic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/StoreList.java" afterPath="$PROJECT_DIR$/src/irt/StoreList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/UnaryList.java" afterPath="$PROJECT_DIR$/src/irt/UnaryList.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/CmdList.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/IrtProgramNode.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/IrtVarNode.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/UnaryList.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/ttest.s" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/unary.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/test.s" afterPath="$PROJECT_DIR$/src/test/test.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/test2.decaf" afterPath="$PROJECT_DIR$/src/test/test2.decaf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/test2.s" afterPath="$PROJECT_DIR$/src/test/test2.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Compiler.iws" />
@@ -189,8 +109,8 @@
       <file leaf-file-name="BinOpList.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/irt/BinOpList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.83096594" vertical-offset="27" max-vertical-offset="765">
-              <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.74946004" vertical-offset="27" max-vertical-offset="765">
+              <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -871,7 +791,7 @@
       <workItem from="1415205805728" duration="32329000" />
       <workItem from="1415319922576" duration="11283000" />
       <workItem from="1415343915491" duration="110000" />
-      <workItem from="1415447172144" duration="4531000" />
+      <workItem from="1415447172144" duration="4621000" />
     </task>
     <task id="LOCAL-00001" summary="changed project settings">
       <created>1407979735465</created>
@@ -1137,11 +1057,17 @@
       <option name="project" value="LOCAL" />
       <updated>1415343853707</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Started Codegen.&#10;Added some assembler constructs.">
+      <created>1415470554025</created>
+      <option name="number" value="00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1415470554025</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="266809000" />
+    <option name="totallyTimeSpent" value="266899000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1171,6 +1097,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2445055" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1179,24 +1106,23 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49272728" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3282967" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3272727" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18677792" sideWeight="0.59452057" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18677792" sideWeight="0.593047" order="0" side_tool="false" content_ui="combo" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18677792" sideWeight="0.40547946" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18677792" sideWeight="0.40490797" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24967907" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997253" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24967907" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="ANTLR Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909092" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909092" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997253" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32846716" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1215,7 +1141,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Added more methods to visitor&#10;" />
     <MESSAGE value="Extracted classes from Ast" />
     <MESSAGE value="Tuned up ast representation in console" />
     <MESSAGE value="- Added semantic analyzer&#10;- Fixed SymbolTable class" />
@@ -1240,7 +1165,8 @@
     <MESSAGE value="program and fields working" />
     <MESSAGE value="Finished irt" />
     <MESSAGE value="Finished IRT" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished IRT" />
+    <MESSAGE value="Started Codegen.&#10;Added some assembler constructs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Started Codegen.&#10;Added some assembler constructs." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1740,8 +1666,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/irt/BinOpList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.83096594" vertical-offset="27" max-vertical-offset="765">
-          <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.74946004" vertical-offset="27" max-vertical-offset="765">
+          <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
           <folding />
         </state>
       </provider>
