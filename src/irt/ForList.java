@@ -19,6 +19,10 @@ public class ForList extends IrtList {
 
     @Override
     public void print(PrintStream out){
+        if (IrtNode.OutputAssembler) {
+            out.println(getAssembler());
+            return;
+        }
         out.println("use variable " + varName);
         start.print(out);
         until.print(out);

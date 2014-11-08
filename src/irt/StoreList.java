@@ -19,6 +19,10 @@ public class StoreList extends IrtList {
 
     @Override
     public void print(PrintStream out){
+        if (IrtNode.OutputAssembler) {
+            out.println(getAssembler());
+            return;
+        }
         start.print(out);
         loc.print(out);
         out.println("store with op " + op);
@@ -27,7 +31,8 @@ public class StoreList extends IrtList {
     @Override
     public String getAssembler() {
         StringBuilder sb = new StringBuilder();
-        sb.append("sw  $a, $b($c)");
+        sb.append("\tsw\t$a, $b($c)");
+        sb.append(System.lineSeparator());
         return sb.toString();
     }
 }

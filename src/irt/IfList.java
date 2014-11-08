@@ -16,6 +16,10 @@ public class IfList extends IrtList {
 
     @Override
     public void print(PrintStream out){
+        if (IrtNode.OutputAssembler) {
+            out.println(getAssembler());
+            return;
+        }
         out.println("Evaluate boolean expression");
         start.print(out);
         out.println("If result is true");

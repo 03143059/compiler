@@ -15,6 +15,10 @@ public class IrtStringNode extends IrtNode {
 
     @Override
     public void print(PrintStream out) {
+        if (IrtNode.OutputAssembler) {
+            out.println(getAssembler());
+            return;
+        }
         out.println("load string " + value);
     }
 

@@ -15,6 +15,10 @@ public class LoadList extends IrtList {
 
     @Override
     public void print(PrintStream out){
+        if (IrtNode.OutputAssembler) {
+            out.println(getAssembler());
+            return;
+        }
         out.println("load " + loc);
         start.print(out);
     }
@@ -22,7 +26,8 @@ public class LoadList extends IrtList {
     @Override
     public String getAssembler() {
         StringBuilder sb = new StringBuilder();
-        sb.append("lw  $a, $b($c)");
+        sb.append("\tlw\t$a, $b($c)");
+        sb.append(System.lineSeparator());
         return sb.toString();
     }
 }

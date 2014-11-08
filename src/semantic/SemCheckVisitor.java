@@ -12,7 +12,7 @@ import parser.DecafParserBaseVisitor;
  */
 public class SemCheckVisitor
         extends DecafParserBaseVisitor<SemNode>
-        //       implements DecafParserVisitor<SemNode>
+//               implements DecafParserVisitor<SemNode>
 {
     private int ScopeHeap = 1; // control de scopes usando una pila
     private int BaseScope = 1; // Control de scopes multiples en otro scope
@@ -37,6 +37,7 @@ public class SemCheckVisitor
         // TODO: comparar parametros e indicar error si varian
         final Symbol s = SymbolTable.lookup("main()", 1, false);
         if (s == null || (s.getParams() != null && s.getParams().length() > 0)) { // no existe
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: method main is missing from program at line " + ctx.getStop().getLine());
             return new SemNode("null") {
                 @Override
@@ -72,6 +73,7 @@ public class SemCheckVisitor
         String methodId = ctx.method_name().getText() + "(" + params + ")";
         final Symbol s = SymbolTable.locate(methodId, ScopeHeap);
         if (s == null) { // no existe
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: " + methodId + " has not been declared at line " + ctx.getStart().getLine());
             return new SemNode() {
                 @Override
@@ -117,6 +119,7 @@ public class SemCheckVisitor
             // check if var is already defined
             Symbol s = SymbolTable.lookup(id.getText(), ScopeHeap);
             if (s != null) { // existe
+                Semantic.HasSemanticErrors = true;
                 System.err.println("ERROR: " + id.getText() + " is already declared at line " + ctx.getStart().getLine());
                 return new SemNode() {
                     @Override
@@ -143,6 +146,7 @@ public class SemCheckVisitor
         // check if var is already defined
         Symbol s = SymbolTable.lookup(ctx.ID().getText(), ScopeHeap, false);
         if (s != null) { // existe
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: " + ctx.ID().getText() + " is already declared at line " + ctx.getStart().getLine());
             return new SemNode() {
                 @Override
@@ -170,6 +174,7 @@ public class SemCheckVisitor
         // check if var is already defined
         Symbol s = SymbolTable.locate(ctx.ID().getText(), ScopeHeap);
         if (s == null) { // no existe
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: " + ctx.ID().getText() + " has not been declared at line " + ctx.getStart().getLine());
             return new SemNode() {
                 @Override
@@ -184,11 +189,13 @@ public class SemCheckVisitor
         boolean r = true;
         final SemNode v1 = visit(ctx.init);
         if (v1.getType() != null && !v1.getType().equals("int")) {
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: the initial expression of for must be of type integer at line " + ctx.getStart().getLine());
             r = false;
         }
         final SemNode v2 = visit(ctx.end);
         if (v2.getType() != null && !v2.getType().equals("int")) {
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: the ending expression of for must be of type integer at line " + ctx.getStart().getLine());
             r = false;
         }
@@ -215,6 +222,7 @@ public class SemCheckVisitor
 
         final SemNode v1 = visit(ctx.expr());
         if (v1.getType() != null && !v1.getType().equals("boolean")) {
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: the expression of an if statement must be of type boolean at line " + ctx.getStart().getLine());
             r = false;
         }
@@ -252,6 +260,7 @@ public class SemCheckVisitor
         String methodID = ctx.ID().getText() + "(" + params.toString() + ")";
         Symbol s = SymbolTable.lookup(methodID, BaseScope);
         if (s != null && s.getParams() != null && s.getParams().equals(params.toString())) { // ya existe
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: " + ctx.ID().getText() + " is already declared at line " + ctx.getStart().getLine());
             return new SemNode() {
                 @Override
@@ -262,7 +271,7 @@ public class SemCheckVisitor
         }
 
         // add method to global scope
-        String type = (ctx.VOID() == null)? ctx.type().getText() : "void";
+        String type = (ctx.VOID() == null) ? ctx.type().getText() : "void";
         SymbolTable.store(methodID, type, params.toString(), BaseScope);
 
         currMethodIDForReturn = methodID;
@@ -287,7 +296,8 @@ public class SemCheckVisitor
         final SemNode v2 = visit(ctx.block());
 
         // check for return type
-        if (returnExpected) { 
+        if (returnExpected) {
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: missing return value at line " + ctx.getStop().getLine());
             r = false;
         }
@@ -372,7 +382,7 @@ public class SemCheckVisitor
         final SemNode v2 = visit(ctx.assign_op());
         final SemNode v3 = visit(ctx.expr());
 
-        if (v1.getType()==null || v3.getType()==null){
+        if (v1.getType() == null || v3.getType() == null) {
             return new SemNode(null) {
                 @Override
                 public boolean ok() {
@@ -383,7 +393,7 @@ public class SemCheckVisitor
 
         boolean r = true;
 
-        if (ctx.assign_op().ASSIGNEQ()!= null) {
+        if (ctx.assign_op().ASSIGNEQ() != null) {
             r = v1.getType().equals(v3.getType());
             if (!r) {
                 System.err.printf("ERROR: mismatch types (%s, %s) at line %d\n", v1.getType(), v3.getType(), ctx.getStart().getLine());
@@ -410,6 +420,7 @@ public class SemCheckVisitor
         final SemNode v2 = visit(ctx.right);
         final boolean r = v1.getType().equals("int") && v2.getType().equals("int");
         if (!r) {
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: arithmetic expression is only valid for integer types at line " + ctx.getStart().getLine());
         }
         return new SemNode("int") {
@@ -430,6 +441,7 @@ public class SemCheckVisitor
         returnExpected = false;
 
         if (rt.equals("void") && ctx.expr() != null) {
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: void methods can't have return values at line " + ctx.getStart().getLine());
             r = false;
         }
@@ -445,6 +457,7 @@ public class SemCheckVisitor
             r = v1.ok();
 
             if (!rt.equals(v1.getType())) {
+                Semantic.HasSemanticErrors = true;
                 System.err.println("ERROR: return value must match method type at line " + ctx.getStart().getLine());
                 r = false;
             }
@@ -465,6 +478,7 @@ public class SemCheckVisitor
         final SemNode v1 = visit(ctx.expr());
         final boolean r = v1.getType().equals("int");
         if (!r) {
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: negative expression is only valid for integer types at line " + ctx.getStart().getLine());
         }
         return new SemNode("int") {
@@ -481,6 +495,7 @@ public class SemCheckVisitor
         final SemNode v2 = visit(ctx.right);
         final boolean r = v1.getType().equals("int") && v2.getType().equals("int");
         if (!r) {
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: relation expression is only valid for integer types at line " + ctx.getStart().getLine());
         }
         return new SemNode("boolean") {
@@ -497,6 +512,7 @@ public class SemCheckVisitor
         final SemNode v2 = visit(ctx.right);
         final boolean r = v1.getType().equals("boolean") && v2.getType().equals("boolean");
         if (!r) {
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: conditional expression is only valid for boolean types at line " + ctx.getStart().getLine());
         }
         return new SemNode("boolean") {
@@ -524,6 +540,7 @@ public class SemCheckVisitor
         final SemNode v2 = visit(ctx.right);
         final boolean r = v1.getType().equals(v2.getType());
         if (!r) {
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: equality expression is only valid for same types at line " + ctx.getStart().getLine());
         }
         return new SemNode("boolean") {
@@ -539,6 +556,7 @@ public class SemCheckVisitor
         final SemNode v1 = visit(ctx.expr());
         final boolean r = v1.getType().equals("boolean");
         if (!r) {
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: not expression is only valid for boolean types at line " + ctx.getStart().getLine());
         }
         return new SemNode("boolean") {
@@ -578,6 +596,7 @@ public class SemCheckVisitor
         }
         final boolean r = node.getType().equals("void");
         if (r) {
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: method call used as expression must return a result at line " + ctx.getStart().getLine());
         }
         return new SemNode(node.getType()) {
@@ -593,6 +612,7 @@ public class SemCheckVisitor
         // check if var is already defined
         Symbol s = SymbolTable.lookup(ctx.ID().getText(), ScopeHeap, false);  // these are only defined in main body
         if (s != null) { // existe
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: " + ctx.ID().getText() + " is already declared at line " + ctx.getStart().getLine());
         }
 
@@ -615,6 +635,7 @@ public class SemCheckVisitor
         int n = Integer.parseInt(ctx.INT_LITERAL().getText());
         final boolean r = n > 0;
         if (!r) {
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: array size must be greater than zero at line " + ctx.getStart().getLine());
         }
 
@@ -622,13 +643,14 @@ public class SemCheckVisitor
         String id = ctx.ID().getText() + "[]";
         Symbol s = SymbolTable.lookup(id, ScopeHeap, false); // arrays are only defined in main body
         if (s != null) { // existe
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: " + id + " is already declared at line " + ctx.getStart().getLine());
         }
 
         String type = ((DecafParser.Field_declsContext) ctx.getParent()).type().getText();
 
         // add variable to global scope
-        SymbolTable.store(id, type, "size="+n, ScopeHeap);
+        SymbolTable.store(id, type, "size=" + n, ScopeHeap);
 
         return new SemNode() {
             @Override
@@ -646,6 +668,7 @@ public class SemCheckVisitor
         String id = ctx.ID().getText() + "[]";
         final Symbol s = SymbolTable.locate(id, ScopeHeap);
         if (s == null) { // no existe
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: " + id + " has not been declared at line " + ctx.getStart().getLine());
             return new SemNode() {
                 @Override
@@ -659,6 +682,7 @@ public class SemCheckVisitor
         SemNode v1 = visit(ctx.expr());
         boolean r = v1.ok();
         if (!v1.getType().equals("int")) {
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: " + ctx.getText() + " array index must be of type integer at line " + ctx.getStart().getLine());
             r = false;
         }
@@ -676,6 +700,7 @@ public class SemCheckVisitor
         // check if var is already defined
         final Symbol s = SymbolTable.locate(ctx.ID().getText(), ScopeHeap);
         if (s == null) { // no existe
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: " + ctx.ID().getText() + " has not been declared at line " + ctx.getStart().getLine());
             return new SemNode() {
                 @Override
@@ -751,7 +776,8 @@ public class SemCheckVisitor
     @Override
     public SemNode visitBrkstmt(@NotNull DecafParser.BrkstmtContext ctx) {
         boolean r = true;
-        if (!isForBreakAndContinue){
+        if (!isForBreakAndContinue) {
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: all break statements bust be inside a for body at line " + ctx.getStart().getLine());
             r = false;
         }
@@ -767,7 +793,8 @@ public class SemCheckVisitor
     @Override
     public SemNode visitCntstmt(@NotNull DecafParser.CntstmtContext ctx) {
         boolean r = true;
-        if (!isForBreakAndContinue){
+        if (!isForBreakAndContinue) {
+            Semantic.HasSemanticErrors = true;
             System.err.println("ERROR: all continue statements bust be inside a for body at line " + ctx.getStart().getLine());
             r = false;
         }

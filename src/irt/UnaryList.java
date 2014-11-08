@@ -16,14 +16,20 @@ public class UnaryList extends IrtList {
 
     @Override
     public void print(PrintStream out){
-        out.println("Unary operation: " + op);
+        if (IrtNode.OutputAssembler) {
+            out.println(getAssembler());
+            return;
+        }
         start.print(out);
+        out.println("Unary operation: " + op);
     }
 
     @Override
     public String getAssembler() {
         StringBuilder sb = new StringBuilder();
-        sb.append("COMMAND  $a, $b, $c");
+        sb.append("\t");
+        sb.append(op);
+        sb.append("\t$a, $b, $c\n");
         return sb.toString();
     }
 }

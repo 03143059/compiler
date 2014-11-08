@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class IrtVisitor {
 
     private void debug(String s) {
-        System.err.println(s);
+        //System.err.println(s);
     }
 
     public IrtNode visitStart(ProgramNode ctx) {
@@ -112,12 +112,6 @@ public class IrtVisitor {
         IrtNode fd = visit(ctx.getStart());
         IrtList list = new ForList(fd, end, ctx.getVarName(), visit(ctx.getEnd()), visit(ctx.getBlock()));
         return list;
-//        IrtNode end = new NopNode();
-//        ForList forList = new ForList(visit(ctx.getStart()), visit(ctx.getEnd()));
-//        IrtList blockList = (IrtList) visit(ctx.getBlock());
-//        blockList.getEnd().next = forList.getStart();
-//        forList.getEnd().next = blockList.getStart();
-//        return new IrtList(forList.getStart(), end);
     }
 
     public IrtNode visitBlock(BlockNode ctx) {
@@ -350,7 +344,7 @@ public class IrtVisitor {
             return visitNegexpr((NegExprNode) ctx);
 
         if (ctx != null)
-            System.out.println("DEBUG: missing " + ctx.toString());
+            debug("DEBUG: missing " + ctx.toString());
 
         return new NopNode();
     }

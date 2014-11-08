@@ -10,6 +10,7 @@ import lib.SymbolTable;
 public class Semantic {
 
     private final Ast ast;
+    public static boolean HasSemanticErrors = false;
 
     public Semantic(Ast ast) {
         this.ast = ast;
@@ -31,7 +32,7 @@ public class Semantic {
             e.printStackTrace();
         } finally {
             if (!compilerOptions.stopAt(this)) {
-                if (result != null && result.ok())
+                if (result != null && !HasSemanticErrors)
                     new Irt(this);
                 else
                     System.err.println("There were semantic errors. IRT was not generated");

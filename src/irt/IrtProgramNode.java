@@ -50,10 +50,10 @@ public class IrtProgramNode extends IrtNode {
         if (type.equals("begin")) {
             sb.append("##################################\n");
             sb.append("# Global Declarations\n");
-//            sb.append("# Variables: ");
-//            sb.append(getFieldsString());
-            sb.append("##################################\n");
-            sb.append("	.data\n");
+            sb.append("# Variables: ");
+            sb.append(getFieldsString());
+            sb.append("\n##################################\n");
+            sb.append("\t.data\n");
 
             IrtNode n = nextField;
             while (n != null) {

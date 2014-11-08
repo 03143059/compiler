@@ -17,6 +17,10 @@ public class IrtVarNode extends IrtNode {
 
     @Override
     public void print(PrintStream out) {
+        if (IrtNode.OutputAssembler) {
+            out.println(getAssembler());
+            return;
+        }
         out.println("declare variable " + id);
     }
 

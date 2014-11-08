@@ -15,11 +15,19 @@ public class IrtLiteralNode extends IrtNode {
 
     @Override
     public void print(PrintStream out) {
+        if (IrtNode.OutputAssembler) {
+            out.println(getAssembler());
+            return;
+        }
         out.println("load immediate literal " + value);
     }
 
     @Override
     public String getAssembler() {
-        return "li $t0, " + value;
+        StringBuilder sb = new StringBuilder();
+        sb.append("\tli\t$t0 ");
+        sb.append(value);
+        sb.append(System.lineSeparator());
+        return sb.toString();
     }
 }

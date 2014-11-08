@@ -23,6 +23,10 @@ public class IrtList extends IrtNode{
     }
 
     public void print(PrintStream out) {
+        if (IrtNode.OutputAssembler) {
+            out.println(getAssembler());
+            return;
+        }
         IrtNode n = getStart();
         while (n != null) {
 //            if (!(n instanceof NopNode) && !(n instanceof StartNode) && !n.name.startsWith("-") && n.name.length()>0)

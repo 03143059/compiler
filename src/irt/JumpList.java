@@ -15,6 +15,10 @@ public class JumpList extends IrtList {
 
     @Override
     public void print(PrintStream out){
+        if (IrtNode.OutputAssembler) {
+            out.println(getAssembler());
+            return;
+        }
         out.println("load function parameters");
         IrtNode fd = start;
         while(fd != null) {
@@ -27,7 +31,8 @@ public class JumpList extends IrtList {
     @Override
     public String getAssembler() {
         StringBuilder sb = new StringBuilder();
-        sb.append("j " + id);
+        sb.append("\tj\t" + id);
+        sb.append(System.lineSeparator());
         return sb.toString();
     }
 }

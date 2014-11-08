@@ -22,6 +22,10 @@ public class IrtFieldNode extends IrtNode {
 
     @Override
     public void print(PrintStream out) {
+        if (IrtNode.OutputAssembler) {
+            out.println(getAssembler());
+            return;
+        }
         StringBuilder sb = new StringBuilder();
         sb.append("Global ");
         sb.append(fieldType);

@@ -18,6 +18,11 @@ public class BinOpList extends IrtList {
 
     @Override
     public void print(PrintStream out){
+        if (IrtNode.OutputAssembler) {
+            out.println(getAssembler());
+            return;
+        }
+
         right.print(out);
         start.print(out);
         out.println("Execute binary operation: " + op);
@@ -26,7 +31,9 @@ public class BinOpList extends IrtList {
     @Override
     public String getAssembler() {
         StringBuilder sb = new StringBuilder();
-        sb.append("COMMAND  $a, $b, $c");
+        sb.append("\t");
+        sb.append(op);
+        sb.append("\t$a, $b, $c\n");
         return sb.toString();
     }
 }

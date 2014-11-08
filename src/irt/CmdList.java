@@ -15,6 +15,10 @@ public class CmdList extends IrtList {
 
     @Override
     public void print(PrintStream out){
+        if (IrtNode.OutputAssembler) {
+            out.println(getAssembler());
+            return;
+        }
         start.print(out);
         out.println("Execute command: " + cmd);
     }
@@ -22,7 +26,9 @@ public class CmdList extends IrtList {
     @Override
     public String getAssembler() {
         StringBuilder sb = new StringBuilder();
-        sb.append("COMMAND  $a, $b, $c");
+        sb.append("\t");
+        sb.append(cmd);
+        sb.append("\t$a, $b, $c\n");
         return sb.toString();
     }
 }

@@ -112,7 +112,7 @@ public class Compiler {
                 argCount -= 2;
             } else {
                 /****************** SET DEFAULT MODE *************************/
-                compilerOptions.setTarget("irt"); // default ast
+                compilerOptions.setTarget("codegen"); // default ast
                 /****************** SET DEFAULT MODE *************************/
             }
 

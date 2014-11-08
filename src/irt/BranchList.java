@@ -10,7 +10,7 @@ public class BranchList extends IrtList {
     private final IrtNode to;
 
     public BranchList(IrtNode from, IrtNode to) {
-        super("For", from, new NopNode());
+        super("Branch", from, new NopNode());
 
         this.from = from;
         this.to = to;
@@ -18,6 +18,10 @@ public class BranchList extends IrtList {
 
     @Override
     public void print(PrintStream out){
+        if (IrtNode.OutputAssembler) {
+            out.println(getAssembler());
+            return;
+        }
         out.println(name);
         start.print(out);
         from.print(out);
@@ -27,7 +31,8 @@ public class BranchList extends IrtList {
     @Override
     public String getAssembler() {
         StringBuilder sb = new StringBuilder();
-        sb.append("bRELOP label");
+        sb.append("\tbRELOP\tlabel");
+        sb.append(System.lineSeparator());
         return sb.toString();
     }
 }
