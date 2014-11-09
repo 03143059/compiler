@@ -9,7 +9,7 @@
       <Array size="2" type="Boolean">f</Array>
   </Fields>
   <Methods>
-      <Method type="BOOLEAN" name="gcd">
+      <Method type="BOOLEAN" functionName="gcd">
         <MethodParams>
           <MethodParam type="INT">a</MethodParam>
           <MethodParam type="INT">b</MethodParam>
@@ -59,7 +59,7 @@
             </If>
         </Statements>
       </Method>
-      <Method type="BOOLEAN" name="test">
+      <Method type="BOOLEAN" functionName="test">
         <Variables>
             <Variable type="INT">i</Variable>
         </Variables>
@@ -75,7 +75,7 @@
                 <Statements>
                     <Assignment operator="Equal">
                       <Location>
-                        <Array name="c">
+                        <Array functionName="c">
                           <Index>
                             <Id>i</Id>
                           </Index>
@@ -100,12 +100,12 @@
             </Return>
         </Statements>
       </Method>
-      <Method type="VOID" name="test2">
+      <Method type="VOID" functionName="test2">
         <Statements>
             <Return/>
         </Statements>
       </Method>
-      <Method type="BOOLEAN" name="main">
+      <Method type="BOOLEAN" functionName="main">
         <Variables>
             <Variable type="INT">x</Variable>
             <Variable type="INT">y</Variable>

@@ -64,7 +64,7 @@ public class IrtFieldNode extends IrtNode {
 
     @Override
     public String getString(){
-        String r = fieldType + " " + id;
+        String r = fieldType.toString().toLowerCase() + " " + id;
         if (size > 0) {
             r += String.format("[%d]", size);
         }

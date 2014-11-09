@@ -11,9 +11,7 @@ public class IrtProgramNode extends IrtNode {
     private final IrtNode nextField;
 
     public IrtProgramNode(String type) {
-        super("-program");
-        this.type = type;
-        this.nextField = null;
+        this(type, null);
     }
 
     public IrtProgramNode(String type, IrtNode nextField) {
@@ -28,30 +26,42 @@ public class IrtProgramNode extends IrtNode {
             out.println(getAssembler());
             return;
         }
-
+        String fieldsString = getFieldsString();
         if (type.equals("begin")) {
-            out.println("PROGRAM START");
-            out.println("BEGIN GLOBAL SECTION");
+            out.println("Program Start");
+            if (fieldsString.length() == 0) return;
+            out.println("Begin Global Section");
 
             IrtNode n = nextField;
             while (n != null) {
                 n.print(out);
                 n = n.next;
             }
-
-        } else {
-            out.println("END GLOBAL SECTION");
+        } else if (type.equals("data")){
+            if (fieldsString.length() > 0)
+                out.println("End Global Section");
+        } else if (type.equals("end")){
+            out.println("Begin Program Body");
+            out.println("Call Function main");
+            out.println("End Program");
         }
     }
 
     @Override
     public String getAssembler() {
         StringBuilder sb = new StringBuilder();
+        String fieldsString = getFieldsString();
         if (type.equals("begin")) {
             sb.append("##################################\n");
+            sb.append("# Begin Program\n");
+            sb.append("##################################\n\n");
+
+            if (fieldsString.length() == 0) return sb.toString();
+
+            sb.append("##################################\n");
             sb.append("# Global Declarations\n");
-            sb.append("# Variables: ");
-            sb.append(getFieldsString());
+//            sb.append("# Variables: ");
+//            sb.append(fieldsString);
             sb.append("\n##################################\n");
             sb.append("\t.data\n");
 
@@ -60,14 +70,23 @@ public class IrtProgramNode extends IrtNode {
                sb.append(n.getAssembler());
                 n = n.next;
             }
-
-        } else {
+        } else if (type.equals("data")){
+            if (fieldsString.length() > 0) {
+                sb.append("##################################\n");
+                sb.append("# End Global\n");
+                sb.append("##################################\n\n");
+            }
+        } else if (type.equals("end")){
             sb.append("##################################\n");
-            sb.append("# End Global\n");
+            sb.append("# Program Body\n");
             sb.append("##################################\n\n");
             sb.append("\t.globl	main\n");
             sb.append("\t.text\n");
-            sb.append("\tj\tmain\t# jump to main program\n");
+            sb.append("\tj\tmain\t# jump to main function\n");
+            sb.append("\tli\t$v0, 10\n\tsyscall\t# exit\n\n");
+            sb.append("##################################\n");
+            sb.append("# End Program\n");
+            sb.append("##################################\n\n");
         }
         return sb.toString();
     }

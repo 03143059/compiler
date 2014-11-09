@@ -29,7 +29,8 @@ public class IrtVisitor {
             }
         }
 
-        fd.next = new IrtProgramNode("end");
+        fd.next = new IrtProgramNode("data", fs);
+
         if (!(fd.next instanceof NopNode)) fd = fd.next;
 
         if (ctx.getMethods() != null) {
@@ -38,6 +39,8 @@ public class IrtVisitor {
                 if (!(fd.next instanceof NopNode)) fd = fd.next;
             }
         }
+
+        fd.next = new IrtProgramNode("end");
 
         return list;
     }
@@ -83,8 +86,6 @@ public class IrtVisitor {
     public IrtNode visitMethod(MethodNode ctx) {
         debug("DEBUG: entering " + ctx.getClass().getName());
         IrtNode end = new NopNode();
-        IrtNode fd = new StartNode();
-        IrtList list = new IrtList("method", fd, end);
 
         HashMap<String, String> params = new HashMap<String, String>();
         if (ctx.getParams() != null) {
@@ -93,7 +94,32 @@ public class IrtVisitor {
             }
         }
 
-        fd.next = new IrtMethodList(ctx.getName(), ctx.getType(), params, visit(ctx.getBlock()));
+        IrtNode fs = new StartNode();
+        IrtNode fd = new IrtMethodNode(ctx.getName(), ctx.getType(), "begin", fs, params);
+        IrtNode data = new IrtMethodNode(ctx.getName(), ctx.getType(), "data", fs, params);
+        IrtList list = new IrtList(fd, end);
+
+        if (ctx.getBlock() != null && ((BlockNode)ctx.getBlock()).getVars() != null) {
+            for (VarNode v : ((BlockNode)ctx.getBlock()).getVars()) {
+                fs.next = visit(v);
+                if (!(fs.next instanceof NopNode)) fs = fs.next;
+            }
+        }
+
+        fd.next = data; // append data node
+
+        if (!(fd.next instanceof NopNode)) fd = fd.next;
+
+        IrtNode ms = new StartNode();
+
+        if (ctx.getBlock() != null && ((BlockNode)ctx.getBlock()).getStmts() != null) {
+            for (Node v : ((BlockNode)ctx.getBlock()).getStmts()) {
+                ms.next = visit(v);
+                if (!(ms.next instanceof NopNode)) ms = ms.next;
+            }
+        }
+
+        fd.next = new IrtMethodNode(ctx.getName(), ctx.getType(), "end", ms, params);
 
         return list;
     }

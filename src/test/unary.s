@@ -1,7 +1,7 @@
 PROGRAM START
 BEGIN GLOBAL SECTION
 END GLOBAL SECTION
-Method (name: main, returns: VOID)
+Method (functionName: main, returns: VOID)
 declare variable a
 declare variable b
 load immediate literal 10

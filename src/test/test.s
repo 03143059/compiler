@@ -1,13 +1,15 @@
-PROGRAM START
-BEGIN GLOBAL SECTION
+program start
+begin global section
 Global Int a
 Global Int b
 Global Int[3] c
 Global Int[10] d
 Global Boolean e
 Global Boolean[2] f
-END GLOBAL SECTION
-Method (name: gcd, returns: INT, params: INT a, INT b)
+end global section
+function start
+begin var section
+function end
 Evaluate boolean expression
 load immediate literal 0
 load b
@@ -23,8 +25,11 @@ load a
 Execute binary operation: %
 jump to function: gcd
 Execute command: return
-Method (name: test, returns: BOOLEAN)
+function end
+function start
+begin var section
 declare variable i
+function end
 use variable i
 load immediate literal 0
 load immediate literal 2
@@ -36,12 +41,18 @@ load i
 store with op Equal
 load immediate literal 1
 Execute command: return
-Method (name: test2, returns: VOID)
+function end
+function start
+begin var section
+function end
 Execute command: return
-Method (name: main, returns: INT)
+function end
+function start
+begin var section
 declare variable x
 declare variable y
 declare variable z
+function end
 load immediate literal 100
 load a
 store with op Equal
@@ -69,3 +80,7 @@ load z
 jump to function: print_int
 load immediate literal 0
 Execute command: return
+function end
+begin program body
+call function main
+end program

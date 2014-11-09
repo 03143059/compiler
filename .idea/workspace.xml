@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f8dfea22-b6cf-486e-9ed7-1cfff20dcdb7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/CmdList.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/IrtProgramNode.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/IrtVarNode.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/UnaryList.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/ttest.s" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/unary.s" />
+    <list default="true" id="f8dfea22-b6cf-486e-9ed7-1cfff20dcdb7" name="Default" comment="Changed method generation">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/irt/IrtMethodNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtFieldNode.class" afterPath="$PROJECT_DIR$/src/irt/IrtFieldNode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtLiteralNode.class" afterPath="$PROJECT_DIR$/src/irt/IrtLiteralNode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtProgramNode.class" afterPath="$PROJECT_DIR$/src/irt/IrtProgramNode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtVisitor.class" afterPath="$PROJECT_DIR$/src/irt/IrtVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtFieldNode.java" afterPath="$PROJECT_DIR$/src/irt/IrtFieldNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtLiteralNode.java" afterPath="$PROJECT_DIR$/src/irt/IrtLiteralNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtProgramNode.java" afterPath="$PROJECT_DIR$/src/irt/IrtProgramNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/irt/IrtVisitor.java" afterPath="$PROJECT_DIR$/src/irt/IrtVisitor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/test.s" afterPath="$PROJECT_DIR$/src/test/test.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exportToHTML/test/test.xml.html" afterPath="$PROJECT_DIR$/exportToHTML/test/test.xml.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/test.xml" afterPath="$PROJECT_DIR$/src/test/test.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/unary.s" afterPath="$PROJECT_DIR$/src/test/unary.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Compiler.iws" />
@@ -86,101 +92,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="IrtFieldNode.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/irt/IrtFieldNode.java">
+      <file leaf-file-name="IrtProgramNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/irt/IrtProgramNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="282" max-vertical-offset="1207">
-              <caret line="48" column="42" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1870">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BranchList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/irt/BranchList.java">
+      <file leaf-file-name="IrtMethodNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/irt/IrtMethodNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="27" max-vertical-offset="748">
-              <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2186" max-vertical-offset="2941">
+              <caret line="51" column="42" selection-start-line="51" selection-start-column="42" selection-end-line="51" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BinOpList.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/irt/BinOpList.java">
+      <file leaf-file-name="IrtVisitor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/irt/IrtVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.74946004" vertical-offset="27" max-vertical-offset="765">
-              <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1438" max-vertical-offset="6528">
+              <caret line="121" column="85" selection-start-line="121" selection-start-column="85" selection-end-line="121" selection-end-column="85" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2816#2832#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IrtMethodList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/irt/IrtMethodList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="724" max-vertical-offset="1785">
-              <caret line="78" column="41" selection-start-line="78" selection-start-column="41" selection-end-line="78" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JumpList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/irt/JumpList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="27" max-vertical-offset="748">
-              <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IrtLiteralNode.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="IrtLiteralNode.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/irt/IrtLiteralNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
-              <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IrtList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/irt/IrtList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="1292">
-              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IfList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/irt/IfList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="12" max-vertical-offset="1734">
-              <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ForList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/irt/ForList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="1207">
-              <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CmdList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/irt/CmdList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
-              <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.62784094" vertical-offset="0" max-vertical-offset="704">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -217,7 +168,6 @@
         <option value="$PROJECT_DIR$/src/test/test.xml" />
         <option value="$PROJECT_DIR$/src/irt/StartNode.java" />
         <option value="$PROJECT_DIR$/src/test/test.decaf" />
-        <option value="$PROJECT_DIR$/src/irt/IrtMethodNode.java" />
         <option value="$PROJECT_DIR$/src/irt/NopNode.java" />
         <option value="$PROJECT_DIR$/src/irt/IrtIdNode.java" />
         <option value="$PROJECT_DIR$/src/irt/IrtNode.java" />
@@ -229,24 +179,25 @@
         <option value="$PROJECT_DIR$/src/semantic/Semantic.java" />
         <option value="$PROJECT_DIR$/src/semantic/SemCheckVisitor.java" />
         <option value="$PROJECT_DIR$/src/test/test2.decaf" />
-        <option value="$PROJECT_DIR$/src/irt/IrtVisitor.java" />
         <option value="$PROJECT_DIR$/src/irt/ForList.java" />
         <option value="$PROJECT_DIR$/src/irt/IfList.java" />
         <option value="$PROJECT_DIR$/src/irt/Irt.java" />
-        <option value="$PROJECT_DIR$/src/irt/IrtFieldNode.java" />
         <option value="$PROJECT_DIR$/src/irt/IrtStringNode.java" />
         <option value="$PROJECT_DIR$/src/irt/IrtVarNode.java" />
         <option value="$PROJECT_DIR$/src/irt/IrtList.java" />
-        <option value="$PROJECT_DIR$/src/irt/IrtProgramNode.java" />
         <option value="$PROJECT_DIR$/src/irt/IrtMethodList.java" />
         <option value="$PROJECT_DIR$/src/irt/BinOpList.java" />
         <option value="$PROJECT_DIR$/src/irt/UnaryList.java" />
         <option value="$PROJECT_DIR$/src/irt/JumpList.java" />
         <option value="$PROJECT_DIR$/src/irt/LoadList.java" />
         <option value="$PROJECT_DIR$/src/irt/StoreList.java" />
-        <option value="$PROJECT_DIR$/src/irt/IrtLiteralNode.java" />
         <option value="$PROJECT_DIR$/src/irt/CmdList.java" />
         <option value="$PROJECT_DIR$/src/irt/BranchList.java" />
+        <option value="$PROJECT_DIR$/src/irt/IrtLiteralNode.java" />
+        <option value="$PROJECT_DIR$/src/irt/IrtFieldNode.java" />
+        <option value="$PROJECT_DIR$/src/irt/IrtProgramNode.java" />
+        <option value="$PROJECT_DIR$/src/irt/IrtVisitor.java" />
+        <option value="$PROJECT_DIR$/src/irt/IrtMethodNode.java" />
       </list>
     </option>
   </component>
@@ -302,7 +253,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -333,6 +283,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -410,6 +378,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -791,7 +760,8 @@
       <workItem from="1415205805728" duration="32329000" />
       <workItem from="1415319922576" duration="11283000" />
       <workItem from="1415343915491" duration="110000" />
-      <workItem from="1415447172144" duration="4621000" />
+      <workItem from="1415447172144" duration="4652000" />
+      <workItem from="1415557224741" duration="6380000" />
     </task>
     <task id="LOCAL-00001" summary="changed project settings">
       <created>1407979735465</created>
@@ -1063,11 +1033,17 @@
       <option name="project" value="LOCAL" />
       <updated>1415470554025</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Added missing files">
+      <created>1415470603255</created>
+      <option name="number" value="00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1415470603255</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="266899000" />
+    <option name="totallyTimeSpent" value="273310000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1097,7 +1073,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2445055" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3260274" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1106,24 +1082,24 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49272728" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3282967" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3272727" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18677792" sideWeight="0.593047" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18677792" sideWeight="0.5931507" order="0" side_tool="false" content_ui="combo" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18677792" sideWeight="0.40490797" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3260274" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18677792" sideWeight="0.40547946" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24967907" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997253" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24967907" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="ANTLR Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909092" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909092" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997253" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3282967" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1141,8 +1117,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Extracted classes from Ast" />
-    <MESSAGE value="Tuned up ast representation in console" />
     <MESSAGE value="- Added semantic analyzer&#10;- Fixed SymbolTable class" />
     <MESSAGE value="- Added more semantic rules" />
     <MESSAGE value="- Added scope control routines" />
@@ -1166,7 +1140,9 @@
     <MESSAGE value="Finished irt" />
     <MESSAGE value="Finished IRT" />
     <MESSAGE value="Started Codegen.&#10;Added some assembler constructs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Started Codegen.&#10;Added some assembler constructs." />
+    <MESSAGE value="Added missing files" />
+    <MESSAGE value="Changed method generation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed method generation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1179,13 +1155,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ast/NodeList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="97" max-vertical-offset="799">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ast/ProgramNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.77492875" vertical-offset="0" max-vertical-offset="702">
@@ -1310,13 +1279,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/test.decaf">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2766272" vertical-offset="0" max-vertical-offset="782">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
         </state>
-      </provider>
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/parser/DecafParser.g4">
@@ -1337,7 +1306,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1071" max-vertical-offset="3128">
           <caret line="114" column="50" selection-start-line="114" selection-start-column="50" selection-end-line="114" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1345,7 +1313,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.31392047" vertical-offset="0" max-vertical-offset="5355">
           <caret line="16" column="33" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1353,7 +1320,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41051137" vertical-offset="0" max-vertical-offset="5134">
           <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1361,10 +1327,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.058238637" vertical-offset="3835" max-vertical-offset="4573">
           <caret line="240" column="26" selection-start-line="240" selection-start-column="21" selection-end-line="240" selection-end-column="26" />
-          <folding>
-            <element signature="e#9568#9569#0" expanded="true" />
-            <element signature="e#9615#9616#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1372,95 +1334,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41051137" vertical-offset="10574" max-vertical-offset="13889">
           <caret line="639" column="9" selection-start-line="639" selection-start-column="9" selection-end-line="639" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1814#1815#0" expanded="true" />
-            <element signature="e#1866#1867#0" expanded="true" />
-            <element signature="e#2025#2026#0" expanded="true" />
-            <element signature="e#2068#2069#0" expanded="true" />
-            <element signature="e#3078#3223#0" expanded="true" />
-            <element signature="e#3222#3223#0" expanded="true" />
-            <element signature="e#3618#3619#0" expanded="true" />
-            <element signature="e#3674#3675#0" expanded="true" />
-            <element signature="e#3968#4092#0" expanded="true" />
-            <element signature="e#4091#4092#0" expanded="true" />
-            <element signature="e#4623#4788#0" expanded="true" />
-            <element signature="e#4787#4788#0" expanded="true" />
-            <element signature="e#4952#5076#0" expanded="true" />
-            <element signature="e#5075#5076#0" expanded="true" />
-            <element signature="e#5549#5694#0" expanded="true" />
-            <element signature="e#5693#5694#0" expanded="true" />
-            <element signature="e#5843#5967#0" expanded="true" />
-            <element signature="e#5966#5967#0" expanded="true" />
-            <element signature="e#6506#6651#0" expanded="true" />
-            <element signature="e#6650#6651#0" expanded="true" />
-            <element signature="e#7566#7725#0" expanded="true" />
-            <element signature="e#7724#7725#0" expanded="true" />
-            <element signature="e#8545#8693#0" expanded="true" />
-            <element signature="e#8692#8693#0" expanded="true" />
-            <element signature="e#9721#9866#0" expanded="true" />
-            <element signature="e#9865#9866#0" expanded="true" />
-            <element signature="e#11047#11048#0" expanded="true" />
-            <element signature="e#11103#11104#0" expanded="true" />
-            <element signature="e#11874#12010#0" expanded="true" />
-            <element signature="e#12009#12010#0" expanded="true" />
-            <element signature="e#12798#12799#0" expanded="true" />
-            <element signature="e#12843#12844#0" expanded="true" />
-            <element signature="e#13301#13302#0" expanded="true" />
-            <element signature="e#13353#13354#0" expanded="true" />
-            <element signature="e#14125#14126#0" expanded="true" />
-            <element signature="e#14203#14204#0" expanded="true" />
-            <element signature="e#14784#14785#0" expanded="true" />
-            <element signature="e#14846#14847#0" expanded="true" />
-            <element signature="e#16147#16148#0" expanded="true" />
-            <element signature="e#16192#16193#0" expanded="true" />
-            <element signature="e#16696#16697#0" expanded="true" />
-            <element signature="e#16747#16748#0" expanded="true" />
-            <element signature="e#17328#17329#0" expanded="true" />
-            <element signature="e#17390#17391#0" expanded="true" />
-            <element signature="e#17984#17985#0" expanded="true" />
-            <element signature="e#18046#18047#0" expanded="true" />
-            <element signature="e#18302#18303#0" expanded="true" />
-            <element signature="e#18348#18349#0" expanded="true" />
-            <element signature="e#18901#18902#0" expanded="true" />
-            <element signature="e#18963#18964#0" expanded="true" />
-            <element signature="e#19470#19471#0" expanded="true" />
-            <element signature="e#19521#19522#0" expanded="true" />
-            <element signature="e#19628#19629#0" expanded="true" />
-            <element signature="e#19671#19672#0" expanded="true" />
-            <element signature="e#19761#19762#0" expanded="true" />
-            <element signature="e#19805#19806#0" expanded="true" />
-            <element signature="e#19895#19896#0" expanded="true" />
-            <element signature="e#19942#19943#0" expanded="true" />
-            <element signature="e#20177#20322#0" expanded="true" />
-            <element signature="e#20321#20322#0" expanded="true" />
-            <element signature="e#20694#20695#0" expanded="true" />
-            <element signature="e#20735#20736#0" expanded="true" />
-            <element signature="e#21436#21560#0" expanded="true" />
-            <element signature="e#21559#21560#0" expanded="true" />
-            <element signature="e#22585#22710#0" expanded="true" />
-            <element signature="e#22709#22710#0" expanded="true" />
-            <element signature="e#23257#23402#0" expanded="true" />
-            <element signature="e#23401#23402#0" expanded="true" />
-            <element signature="e#23913#23914#0" expanded="true" />
-            <element signature="e#23958#23959#0" expanded="true" />
-            <element signature="e#24413#24558#0" expanded="true" />
-            <element signature="e#24557#24558#0" expanded="true" />
-            <element signature="e#24666#24667#0" expanded="true" />
-            <element signature="e#24709#24710#0" expanded="true" />
-            <element signature="e#24841#24965#0" expanded="true" />
-            <element signature="e#24964#24965#0" expanded="true" />
-            <element signature="e#25207#25351#0" expanded="true" />
-            <element signature="e#25350#25351#0" expanded="true" />
-            <element signature="e#25489#25613#0" expanded="true" />
-            <element signature="e#25612#25613#0" expanded="true" />
-            <element signature="e#25720#25844#0" expanded="true" />
-            <element signature="e#25843#25844#0" expanded="true" />
-            <element signature="e#26188#26189#0" expanded="true" />
-            <element signature="e#26239#26240#0" expanded="true" />
-            <element signature="e#26666#26792#0" expanded="true" />
-            <element signature="e#26791#26792#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1468,7 +1341,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.048295453" vertical-offset="0" max-vertical-offset="704">
           <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1476,7 +1348,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6761364" vertical-offset="17" max-vertical-offset="765">
           <caret line="34" column="39" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1484,7 +1355,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.74857956" vertical-offset="0" max-vertical-offset="1683">
           <caret line="31" column="14" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1492,7 +1362,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.50710225" vertical-offset="0" max-vertical-offset="704">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1500,7 +1369,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1527,7 +1395,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="697">
           <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1547,64 +1414,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/irt/IrtVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="6086">
-          <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/irt/IrtVarNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="27" max-vertical-offset="731">
-          <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/irt/IrtStringNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="782">
           <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/irt/IrtProgramNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="656" max-vertical-offset="1581">
-          <caret line="71" column="29" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/irt/IrtNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
-          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
-          <folding>
-            <element signature="e#420#421#0" expanded="true" />
-            <element signature="e#458#459#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/irt/IrtMethodList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="724" max-vertical-offset="1785">
-          <caret line="78" column="41" selection-start-line="78" selection-start-column="41" selection-end-line="78" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/irt/IrtLiteralNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
-          <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1612,14 +1425,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="1292">
           <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/irt/IrtFieldNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="282" max-vertical-offset="1207">
-          <caret line="48" column="42" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="42" />
           <folding />
         </state>
       </provider>
@@ -1666,8 +1471,80 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/irt/BinOpList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74946004" vertical-offset="27" max-vertical-offset="765">
-          <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="40" max-vertical-offset="765">
+          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/irt/IrtVarNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="27" max-vertical-offset="731">
+          <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/irt/IrtNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
+          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+          <folding>
+            <element signature="e#420#421#0" expanded="true" />
+            <element signature="e#458#459#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/irt/IrtFieldNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.68607956" vertical-offset="503" max-vertical-offset="1207">
+          <caret line="66" column="53" selection-start-line="66" selection-start-column="53" selection-end-line="66" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/irt/IrtMethodList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5411932" vertical-offset="809" max-vertical-offset="1785">
+          <caret line="72" column="37" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/irt/IrtMethodNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2186" max-vertical-offset="2941">
+          <caret line="51" column="42" selection-start-line="51" selection-start-column="42" selection-end-line="51" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/irt/IrtVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1438" max-vertical-offset="6528">
+          <caret line="121" column="85" selection-start-line="121" selection-start-column="85" selection-end-line="121" selection-end-column="85" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2816#2832#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/irt/IrtProgramNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1870">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/irt/IrtLiteralNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.62784094" vertical-offset="0" max-vertical-offset="704">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>

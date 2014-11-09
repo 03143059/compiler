@@ -25,7 +25,7 @@ public class IrtLiteralNode extends IrtNode {
     @Override
     public String getAssembler() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\tli\t$t0 ");
+        sb.append("\tli\t$t0, ");
         sb.append(value);
         sb.append(System.lineSeparator());
         return sb.toString();
